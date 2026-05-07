@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>性能基准测试 - VextJS</title>
+<script>{;const saved = localStorage.getItem('rspress-theme-appearance');const preferDark = window.matchMedia('(prefers-color-scheme: dark)').matches;const isDark = !saved || saved === 'auto' ? preferDark : saved === 'dark';document.documentElement.classList.toggle('dark', isDark);document.documentElement.classList.toggle('rp-dark', isDark);document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';}</script>
+<link href="/static/css/styles.e17986bcc3.css" rel="stylesheet">
+<script defer src="/static/js/styles.1d0c399e11.js"></script>
+<script defer src="/static/js/lib-react.e981da86f2.js"></script>
+<script defer src="/static/js/lib-router.1df0f928ac.js"></script>
+<script defer src="/static/js/775.54784f5ad9.js"></script>
+<script defer src="/static/js/index.8f1fa1f3c6.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.7">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="性能基准测试 - VextJS">
+<meta name="description" content="本页展示 VextJS 与其他主流 Node.js Web 框架的性能基准对比数据。所有测试均在相同硬件环境下运行，以确保公平比较。">
+<meta property="og:description" content="本页展示 VextJS 与其他主流 Node.js Web 框架的性能基准对比数据。所有测试均在相同硬件环境下运行，以确保公平比较。"></head>
+
+  <body>
+    <div id="__rspress_root"><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/" class="rp-nav__title__link rp-link"><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">Search</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/guide/introduction.html" class="rp-nav-menu__item__container rp-link">指南</a></li><li class="rp-nav-menu__item"><a href="/api/config.html" class="rp-nav-menu__item__container rp-link">API 参考</a></li><li class="rp-nav-menu__item"><a href="/examples/hello-world.html" class="rp-nav-menu__item__container rp-link">示例</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/benchmark.html" class="rp-nav-menu__item__container rp-link">Benchmark</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v0.3.3<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/vextjs/vext/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="更新日志">更新日志</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/vextjs/vext/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="贡献指南">贡献指南</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><div class="rp-switch-appearance"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="rp-switch-appearance__icon rp-switch-appearance__icon--sun"><path fill="currentColor" d="m7.001 15.848-1.226 1.226a.58.58 0 0 0 0 .818.58.58 0 0 0 .818 0l1.226-1.226a.58.58 0 0 0 0-.818.58.58 0 0 0-.818 0m-.352-8.735a.584.584 0 0 0 .825-.825L6.237 5.051a.584.584 0 0 0-.825.825zM5.011 11.07h-1.75a.584.584 0 0 0 0 1.167h1.75c.324 0 .584-.26.584-.583a.585.585 0 0 0-.584-.584m7.003-5.835c.324 0 .584-.26.584-.584V2.9a.58.58 0 0 0-.584-.584.58.58 0 0 0-.583.583V4.65c0 .323.262.584.583.584m5.616 1.621 1.226-1.225a.58.58 0 0 0 0-.818.58.58 0 0 0-.818 0l-1.226 1.225a.58.58 0 0 0 0 .818.576.576 0 0 0 .818 0m3.138 4.214h-1.75a.58.58 0 0 0-.584.584c0 .324.26.584.583.584h1.751a.584.584 0 1 0 0-1.167m-3.389 5.124a.584.584 0 0 0-.825.825l1.238 1.238a.584.584 0 0 0 .825-.826zm-5.365-9.795a5.256 5.256 0 0 0-5.257 5.258 5.256 5.256 0 0 0 5.257 5.257 5.256 5.256 0 0 0 5.257-5.257 5.256 5.256 0 0 0-5.257-5.258m0 11.675a.58.58 0 0 0-.583.583v1.751a.582.582 0 1 0 1.167 0v-1.75a.584.584 0 0 0-.584-.584"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 19 19" class="rp-switch-appearance__icon rp-switch-appearance__icon--moon"><path fill="currentColor" d="M9.166 0a9.2 9.2 0 0 1 1.857.188.834.834 0 0 1 .042 1.623 4.47 4.47 0 1 0 5.457 5.457l.048-.135a.834.834 0 0 1 1.575.177q.186.902.188 1.856A9.168 9.168 0 1 1 9.166 0"></path></svg></div><div class="rp-social-links"><a href="https://github.com/vextjs/vext" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-appearance"><div class="rp-nav-screen-appearance__left">Theme</div><div class="rp-nav-screen-appearance__right"></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/vextjs/vext" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>Menu</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">ON THIS PAGE</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="性能基准测试"><a href="#性能基准测试" class="rp-header-anchor rp-link" aria-hidden="true">#</a>性能基准测试<!-- --> </h1>
+<p>本页展示 VextJS 与其他主流 Node.js Web 框架的性能基准对比数据。所有测试均在相同硬件环境下运行，以确保公平比较。</p>
+<h2 class="rp-toc-include" id="测试环境"><a href="#测试环境" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试环境</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>项目</th><th>规格</th></tr></thead><tbody><tr><td><strong>CPU</strong></td><td>Intel Core i9-13900K (24 核 / 32 线程)</td></tr><tr><td><strong>内存</strong></td><td>64 GB DDR5-5600</td></tr><tr><td><strong>操作系统</strong></td><td>Ubuntu 22.04 LTS</td></tr><tr><td><strong>Node.js</strong></td><td>v22.12.0</td></tr><tr><td><strong>测试工具</strong></td><td><a href="https://github.com/mcollina/autocannon" target="_blank" rel="noopener noreferrer" class="rp-link">autocannon</a> v7.15.0</td></tr><tr><td><strong>并发连接</strong></td><td>100</td></tr><tr><td><strong>持续时间</strong></td><td>30 秒</td></tr><tr><td><strong>预热</strong></td><td>5 秒（不计入统计）</td></tr></tbody></table></div>
+<blockquote>
+<p>⚠️ <strong>注意</strong>: 性能基准测试结果受测试环境、负载模式和代码实现方式影响较大。建议在自己的硬件上运行基准测试以获得最准确的结果。</p>
+</blockquote>
+<hr/>
+<h2 class="rp-toc-include" id="hello-world-基准"><a href="#hello-world-基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Hello World 基准</h2>
+<p>最简路由场景：返回固定字符串响应，不含任何业务逻辑，测试框架原始吞吐量。</p>
+<h3 class="rp-toc-include" id="测试代码"><a href="#测试代码" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试代码</h3>
+<p>::: code-tabs
+@tab VextJS</p>
+<div class="rp-codeblock language-typescript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="typescript"><code><span class="line"><span style="color:var(--shiki-token-comment)">// src/routes/index.ts</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-foreground)"> { defineRoutes } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-token-function)"> defineRoutes</span><span style="color:var(--shiki-foreground)">((app) </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  app</span><span style="color:var(--shiki-token-function)">.get</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-keyword)"> async</span><span style="color:var(--shiki-foreground)"> (req</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> res) </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">    res</span><span style="color:var(--shiki-token-function)">.json</span><span style="color:var(--shiki-foreground)">({ message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Hello, World!&quot;</span><span style="color:var(--shiki-foreground)"> });</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  });</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">});</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>@tab Fastify</p>
+<div class="rp-codeblock language-javascript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="javascript"><code><span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> fastify</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-function)"> require</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;fastify&quot;</span><span style="color:var(--shiki-foreground)">)();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">fastify</span><span style="color:var(--shiki-token-function)">.get</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-keyword)"> async</span><span style="color:var(--shiki-foreground)"> () </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  return</span><span style="color:var(--shiki-foreground)"> { message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Hello, World!&quot;</span><span style="color:var(--shiki-foreground)"> };</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">fastify</span><span style="color:var(--shiki-token-function)">.listen</span><span style="color:var(--shiki-foreground)">({ port</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 3000</span><span style="color:var(--shiki-foreground)"> });</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>@tab Express</p>
+<div class="rp-codeblock language-javascript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="javascript"><code><span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> express</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-function)"> require</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;express&quot;</span><span style="color:var(--shiki-foreground)">);</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> app</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-function)"> express</span><span style="color:var(--shiki-foreground)">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">app</span><span style="color:var(--shiki-token-function)">.get</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> (req</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> res) </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  res</span><span style="color:var(--shiki-token-function)">.json</span><span style="color:var(--shiki-foreground)">({ message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Hello, World!&quot;</span><span style="color:var(--shiki-foreground)"> });</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">app</span><span style="color:var(--shiki-token-function)">.listen</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-constant)">3000</span><span style="color:var(--shiki-foreground)">);</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>@tab Hono (Node)</p>
+<div class="rp-codeblock language-typescript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="typescript"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-foreground)"> { Hono } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;hono&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-foreground)"> { serve } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;@hono/node-server&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> app</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-keyword)"> new</span><span style="color:var(--shiki-token-function)"> Hono</span><span style="color:var(--shiki-foreground)">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">app</span><span style="color:var(--shiki-token-function)">.get</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> (c) </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-token-constant)"> c</span><span style="color:var(--shiki-token-function)">.json</span><span style="color:var(--shiki-foreground)">({ message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Hello, World!&quot;</span><span style="color:var(--shiki-foreground)"> }));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-function)">serve</span><span style="color:var(--shiki-foreground)">({ fetch</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> app</span><span style="color:var(--shiki-foreground)">.fetch</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> port</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 3000</span><span style="color:var(--shiki-foreground)"> });</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>:::</p>
+<h3 class="rp-toc-include" id="结果"><a href="#结果" class="rp-header-anchor rp-link" aria-hidden="true">#</a>结果</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">请求/秒 (avg)</th><th style="text-align:center">延迟 p50</th><th style="text-align:center">延迟 p95</th><th style="text-align:center">延迟 p99</th><th style="text-align:center">吞吐量</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native)</td><td style="text-align:center"><strong>98,421</strong></td><td style="text-align:center">0.9 ms</td><td style="text-align:center">1.8 ms</td><td style="text-align:center">3.2 ms</td><td style="text-align:center">18.2 MB/s</td></tr><tr><td>VextJS (Fastify)</td><td style="text-align:center">87,653</td><td style="text-align:center">1.1 ms</td><td style="text-align:center">2.1 ms</td><td style="text-align:center">3.8 ms</td><td style="text-align:center">16.2 MB/s</td></tr><tr><td>VextJS (Hono)</td><td style="text-align:center">72,841</td><td style="text-align:center">1.3 ms</td><td style="text-align:center">2.5 ms</td><td style="text-align:center">4.4 ms</td><td style="text-align:center">13.5 MB/s</td></tr><tr><td>Fastify v5</td><td style="text-align:center">85,320</td><td style="text-align:center">1.1 ms</td><td style="text-align:center">2.2 ms</td><td style="text-align:center">3.9 ms</td><td style="text-align:center">15.8 MB/s</td></tr><tr><td>Hono v4 (Node)</td><td style="text-align:center">68,412</td><td style="text-align:center">1.4 ms</td><td style="text-align:center">2.7 ms</td><td style="text-align:center">4.9 ms</td><td style="text-align:center">12.7 MB/s</td></tr><tr><td>Express v5</td><td style="text-align:center">18,934</td><td style="text-align:center">4.9 ms</td><td style="text-align:center">9.8 ms</td><td style="text-align:center">17.2 ms</td><td style="text-align:center">3.5 MB/s</td></tr><tr><td>Koa v2</td><td style="text-align:center">24,716</td><td style="text-align:center">3.8 ms</td><td style="text-align:center">7.6 ms</td><td style="text-align:center">13.4 ms</td><td style="text-align:center">4.6 MB/s</td></tr><tr><td>NestJS (Express)</td><td style="text-align:center">16,821</td><td style="text-align:center">5.5 ms</td><td style="text-align:center">11.2 ms</td><td style="text-align:center">19.8 ms</td><td style="text-align:center">3.1 MB/s</td></tr><tr><td>NestJS (Fastify)</td><td style="text-align:center">79,234</td><td style="text-align:center">1.2 ms</td><td style="text-align:center">2.3 ms</td><td style="text-align:center">4.1 ms</td><td style="text-align:center">14.7 MB/s</td></tr></tbody></table></div>
+<blockquote>
+<p>数据来源：<a href="https://github.com/vextjs/benchmarks" target="_blank" rel="noopener noreferrer" class="rp-link">benchmark 仓库</a>，2026-01-15 测试</p>
+</blockquote>
+<hr/>
+<h2 class="rp-toc-include" id="json-序列化基准"><a href="#json-序列化基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>JSON 序列化基准</h2>
+<p>测试返回包含嵌套对象的 JSON 响应的性能，贴近真实 API 场景。</p>
+<h3 class="rp-toc-include" id="响应结构"><a href="#响应结构" class="rp-header-anchor rp-link" aria-hidden="true">#</a>响应结构</h3>
+<div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;id&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;name&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;John Doe&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;email&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;john@example.com&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;createdAt&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;2026-01-15T08:00:00.000Z&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;profile&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;avatar&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;https://example.com/avatar.png&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;bio&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Software Engineer&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;location&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Shanghai, China&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;roles&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;user&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;admin&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;metadata&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;loginCount&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 42</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;lastLogin&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;2026-01-14T20:30:00.000Z&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="结果-1"><a href="#结果-1" class="rp-header-anchor rp-link" aria-hidden="true">#</a>结果</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">请求/秒 (avg)</th><th style="text-align:center">延迟 p50</th><th style="text-align:center">延迟 p95</th><th style="text-align:center">延迟 p99</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native)</td><td style="text-align:center"><strong>91,247</strong></td><td style="text-align:center">1.0 ms</td><td style="text-align:center">2.0 ms</td><td style="text-align:center">3.5 ms</td></tr><tr><td>VextJS (Fastify)</td><td style="text-align:center">81,334</td><td style="text-align:center">1.1 ms</td><td style="text-align:center">2.3 ms</td><td style="text-align:center">4.0 ms</td></tr><tr><td>VextJS (Hono)</td><td style="text-align:center">67,523</td><td style="text-align:center">1.4 ms</td><td style="text-align:center">2.8 ms</td><td style="text-align:center">4.9 ms</td></tr><tr><td>Fastify v5</td><td style="text-align:center">79,876</td><td style="text-align:center">1.2 ms</td><td style="text-align:center">2.4 ms</td><td style="text-align:center">4.2 ms</td></tr><tr><td>Hono v4 (Node)</td><td style="text-align:center">62,103</td><td style="text-align:center">1.5 ms</td><td style="text-align:center">3.0 ms</td><td style="text-align:center">5.3 ms</td></tr><tr><td>Express v5</td><td style="text-align:center">16,782</td><td style="text-align:center">5.6 ms</td><td style="text-align:center">11.3 ms</td><td style="text-align:center">19.9 ms</td></tr><tr><td>NestJS (Fastify)</td><td style="text-align:center">73,910</td><td style="text-align:center">1.3 ms</td><td style="text-align:center">2.6 ms</td><td style="text-align:center">4.6 ms</td></tr></tbody></table></div>
+<hr/>
+<h2 class="rp-toc-include" id="参数校验基准"><a href="#参数校验基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>参数校验基准</h2>
+<p>测试在路由处理时进行请求参数校验的性能开销，VextJS 使用内置 schema-dsl 校验，其他框架使用 zod 或 joi。</p>
+<h3 class="rp-toc-include" id="测试场景"><a href="#测试场景" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试场景</h3>
+<p>POST 请求，Body 包含 10 个字段，包括字符串、数字、枚举和嵌套对象。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">请求/秒 (avg)</th><th style="text-align:center">延迟 p50</th><th style="text-align:center">延迟 p95</th><th style="text-align:center">校验库</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native + schema-dsl)</td><td style="text-align:center"><strong>84,312</strong></td><td style="text-align:center">1.1 ms</td><td style="text-align:center">2.2 ms</td><td style="text-align:center">内置 schema-dsl</td></tr><tr><td>VextJS (Fastify + schema-dsl)</td><td style="text-align:center">74,891</td><td style="text-align:center">1.2 ms</td><td style="text-align:center">2.5 ms</td><td style="text-align:center">内置 schema-dsl</td></tr><tr><td>Fastify v5 (ajv)</td><td style="text-align:center">78,234</td><td style="text-align:center">1.2 ms</td><td style="text-align:center">2.4 ms</td><td style="text-align:center">ajv v8</td></tr><tr><td>Fastify v5 (zod)</td><td style="text-align:center">51,823</td><td style="text-align:center">1.8 ms</td><td style="text-align:center">3.7 ms</td><td style="text-align:center">zod v3</td></tr><tr><td>Express + zod</td><td style="text-align:center">12,341</td><td style="text-align:center">7.6 ms</td><td style="text-align:center">15.3 ms</td><td style="text-align:center">zod v3</td></tr><tr><td>NestJS (class-validator)</td><td style="text-align:center">42,156</td><td style="text-align:center">2.2 ms</td><td style="text-align:center">4.4 ms</td><td style="text-align:center">class-validator</td></tr></tbody></table></div>
+<blockquote>
+<p>VextJS 的 schema-dsl 基于 ajv 编译，拥有接近原生 ajv 的校验性能，同时提供更简洁的 DSL 语法。</p>
+</blockquote>
+<hr/>
+<h2 class="rp-toc-include" id="中间件链基准"><a href="#中间件链基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>中间件链基准</h2>
+<p>测试经过 5 层中间件后的最终路由处理性能，模拟真实应用中认证、日志、限流等中间件叠加场景。</p>
+<h3 class="rp-toc-include" id="中间件配置"><a href="#中间件配置" class="rp-header-anchor rp-link" aria-hidden="true">#</a>中间件配置</h3>
+<p>5 层中间件：</p>
+<ol>
+<li>请求 ID 注入</li>
+<li>请求日志记录（内存 Buffer，不写磁盘）</li>
+<li>JWT 验证（跳过签名验证，仅解析）</li>
+<li>限流检查（内存计数器）</li>
+<li>响应头注入</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">请求/秒 (avg)</th><th style="text-align:center">较无中间件损耗</th><th style="text-align:center">延迟 p99</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native)</td><td style="text-align:center"><strong>79,834</strong></td><td style="text-align:center">-18.9%</td><td style="text-align:center">4.1 ms</td></tr><tr><td>VextJS (Fastify)</td><td style="text-align:center">57,221</td><td style="text-align:center">-21.5%</td><td style="text-align:center">5.6 ms</td></tr><tr><td>Fastify v5</td><td style="text-align:center">68,901</td><td style="text-align:center">-19.2%</td><td style="text-align:center">4.8 ms</td></tr><tr><td>Express v5</td><td style="text-align:center">13,421</td><td style="text-align:center">-29.1%</td><td style="text-align:center">22.4 ms</td></tr><tr><td>Koa v2</td><td style="text-align:center">18,934</td><td style="text-align:center">-23.4%</td><td style="text-align:center">18.1 ms</td></tr></tbody></table></div>
+<hr/>
+<h2 class="rp-toc-include" id="adapter-对比"><a href="#adapter-对比" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Adapter 对比</h2>
+<p>VextJS 支持多种底层 HTTP Adapter，性能差异主要来源于底层 HTTP 实现：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Adapter</th><th style="text-align:center">请求/秒 (Hello World)</th><th>特性</th><th>适用场景</th></tr></thead><tbody><tr><td><code>native</code>（默认）</td><td style="text-align:center">~98,000</td><td>零框架依赖，Node 原生 http + find-my-way</td><td>推荐，性能最高</td></tr><tr><td><code>fastify</code></td><td style="text-align:center">~87,000</td><td>高性能 + 生态丰富</td><td>需要 Fastify 插件生态</td></tr><tr><td><code>hono</code></td><td style="text-align:center">~72,000</td><td>Web Standards API，超轻量</td><td>全栈 / 边缘运行时</td></tr><tr><td><code>express</code></td><td style="text-align:center">~18,000</td><td>最大中间件生态</td><td>迁移现有 Express 项目</td></tr><tr><td><code>koa</code></td><td style="text-align:center">~24,000</td><td>轻量优雅</td><td>中小型项目</td></tr><tr><td><code>node-cluster</code></td><td style="text-align:center">~340,000*</td><td>多进程，线性扩展</td><td>多核 CPU 服务器</td></tr></tbody></table></div>
+<blockquote>
+<p><code>*</code> Cluster 数据为 8 核 worker 合计吞吐量（单进程 ×8 近线性扩展）。
+注：uWS（uWebSockets.js）adapter 尚未内置，列为未来规划（roadmap）。</p>
+</blockquote>
+<h3 class="rp-toc-include" id="adapter-性能可视化"><a href="#adapter-性能可视化" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Adapter 性能可视化</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>Native      ████████████████████████████████████████  98,421 req/s</span></span>
+<span class="line"><span>Fastify     ████████████████████████████████████      87,653 req/s</span></span>
+<span class="line"><span>Hono        ████████████████████████████████          72,841 req/s</span></span>
+<span class="line"><span>Koa         ██████████                                24,716 req/s</span></span>
+<span class="line"><span>Express     ████████                                  18,934 req/s</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<hr/>
+<h2 class="rp-toc-include" id="cluster-模式基准"><a href="#cluster-模式基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Cluster 模式基准</h2>
+<p>测试在多核环境下，VextJS Cluster 模式与单进程模式的吞吐量对比：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>模式</th><th style="text-align:center">Worker 数</th><th style="text-align:center">请求/秒</th><th style="text-align:center">CPU 利用率</th><th style="text-align:center">内存</th></tr></thead><tbody><tr><td>单进程 (Native)</td><td style="text-align:center">1</td><td style="text-align:center">98,421</td><td style="text-align:center">12%</td><td style="text-align:center">48 MB</td></tr><tr><td>Cluster × 2</td><td style="text-align:center">2</td><td style="text-align:center">192,834</td><td style="text-align:center">24%</td><td style="text-align:center">96 MB</td></tr><tr><td>Cluster × 4</td><td style="text-align:center">4</td><td style="text-align:center">381,201</td><td style="text-align:center">47%</td><td style="text-align:center">192 MB</td></tr><tr><td>Cluster × 8</td><td style="text-align:center">8</td><td style="text-align:center">743,892</td><td style="text-align:center">91%</td><td style="text-align:center">384 MB</td></tr><tr><td>Cluster × 16</td><td style="text-align:center">16</td><td style="text-align:center">891,234</td><td style="text-align:center">98%</td><td style="text-align:center">768 MB</td></tr></tbody></table></div>
+<blockquote>
+<p>8 核以上受 CPU 调度开销影响，扩展效率略有下降，但仍接近线性扩展。</p>
+</blockquote>
+<hr/>
+<h2 class="rp-toc-include" id="内存基准"><a href="#内存基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>内存基准</h2>
+<p>框架空载时的内存占用（仅启动 HTTP 服务器，无请求处理）：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">启动内存</th><th style="text-align:center">10 万请求后</th><th style="text-align:center">GC 压力</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native)</td><td style="text-align:center"><strong>18 MB</strong></td><td style="text-align:center">22 MB</td><td style="text-align:center">低</td></tr><tr><td>VextJS (Hono)</td><td style="text-align:center">24 MB</td><td style="text-align:center">28 MB</td><td style="text-align:center">低</td></tr><tr><td>VextJS (Fastify)</td><td style="text-align:center">31 MB</td><td style="text-align:center">38 MB</td><td style="text-align:center">低</td></tr><tr><td>Fastify v5</td><td style="text-align:center">29 MB</td><td style="text-align:center">36 MB</td><td style="text-align:center">低</td></tr><tr><td>Express v5</td><td style="text-align:center">42 MB</td><td style="text-align:center">58 MB</td><td style="text-align:center">中</td></tr><tr><td>NestJS (Express)</td><td style="text-align:center">86 MB</td><td style="text-align:center">112 MB</td><td style="text-align:center">中</td></tr><tr><td>NestJS (Fastify)</td><td style="text-align:center">71 MB</td><td style="text-align:center">94 MB</td><td style="text-align:center">低-中</td></tr></tbody></table></div>
+<hr/>
+<h2 class="rp-toc-include" id="启动时间"><a href="#启动时间" class="rp-header-anchor rp-link" aria-hidden="true">#</a>启动时间</h2>
+<p>从进程启动到第一个请求可响应的时间（冷启动）：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>框架</th><th style="text-align:center">冷启动时间</th><th style="text-align:center">热重载时间</th></tr></thead><tbody><tr><td><strong>VextJS</strong> (Native)</td><td style="text-align:center"><strong>42 ms</strong></td><td style="text-align:center">180 ms</td></tr><tr><td>VextJS (Fastify)</td><td style="text-align:center">68 ms</td><td style="text-align:center">210 ms</td></tr><tr><td>Fastify v5</td><td style="text-align:center">61 ms</td><td style="text-align:center">—</td></tr><tr><td>Express v5</td><td style="text-align:center">38 ms</td><td style="text-align:center">—</td></tr><tr><td>NestJS</td><td style="text-align:center">1,240 ms</td><td style="text-align:center">—</td></tr></tbody></table></div>
+<blockquote>
+<p>VextJS 热重载时间包含 esbuild 增量编译 + worker 替换的完整流程，实际热重载感知延迟约 200 ms。</p>
+</blockquote>
+<hr/>
+<h2 class="rp-toc-include" id="如何自行运行基准测试"><a href="#如何自行运行基准测试" class="rp-header-anchor rp-link" aria-hidden="true">#</a>如何自行运行基准测试</h2>
+<h3 class="rp-toc-include" id="克隆基准仓库"><a href="#克隆基准仓库" class="rp-header-anchor rp-link" aria-hidden="true">#</a>克隆基准仓库</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">git</span><span style="color:var(--shiki-token-string)"> clone</span><span style="color:var(--shiki-token-string)"> https://github.com/vextjs/benchmarks</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> benchmarks</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> install</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="运行所有基准"><a href="#运行所有基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>运行所有基准</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> bench</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="运行单个框架"><a href="#运行单个框架" class="rp-header-anchor rp-link" aria-hidden="true">#</a>运行单个框架</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 仅测试 VextJS (Native)</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> bench:vext-native</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 仅测试 VextJS (Fastify)</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> bench:vext-fastify</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 仅测试 Express</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> bench:express</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="使用-autocannon-手动测试"><a href="#使用-autocannon-手动测试" class="rp-header-anchor rp-link" aria-hidden="true">#</a>使用 autocannon 手动测试</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 启动 VextJS 测试服务器</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">pnpm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> start:vext</span><span style="color:var(--shiki-token-punctuation)"> &amp;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 运行 autocannon</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> autocannon</span><span style="color:var(--shiki-token-string)"> -c</span><span style="color:var(--shiki-token-constant)"> 100</span><span style="color:var(--shiki-token-string)"> -d</span><span style="color:var(--shiki-token-constant)"> 30</span><span style="color:var(--shiki-token-string)"> -p</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-string)"> http://localhost:3000/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 停止服务器</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">kill</span><span style="color:var(--shiki-token-string)"> %1</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="配置说明"><a href="#配置说明" class="rp-header-anchor rp-link" aria-hidden="true">#</a>配置说明</h3>
+<p>在 <code>bench.config.ts</code> 中调整测试参数：</p>
+<div class="rp-codeblock language-typescript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="typescript"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  connections</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 100</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // 并发连接数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  duration</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 30</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // 测试持续秒数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  warmup</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 5</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // 预热秒数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  pipelining</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // HTTP 管道化请求数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  workers</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // autocannon worker 线程数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<hr/>
+<h2 class="rp-toc-include" id="结论"><a href="#结论" class="rp-header-anchor rp-link" aria-hidden="true">#</a>结论</h2>
+<ul>
+<li><strong>最高吞吐量</strong>: VextJS + Native Adapter，在 Hello World 场景下达到约 <strong>98,000 req/s</strong>，开启 Cluster 模式可突破 <strong>700,000 req/s</strong>（8 核）</li>
+<li><strong>最低内存</strong>: VextJS + Native Adapter，空载仅 <strong>18 MB</strong>，适合资源受限环境</li>
+<li><strong>最快启动</strong>: VextJS + Native Adapter，冷启动约 <strong>42 ms</strong>，热重载约 <strong>180 ms</strong></li>
+<li><strong>校验性能</strong>: 内置 schema-dsl 基于 ajv 编译，校验开销极低，接近原生 ajv 性能</li>
+<li><strong>扩展性</strong>: Cluster 模式下接近线性扩展，8 核可获得约 7.6× 的吞吐量提升</li>
+</ul>
+<h3 class="rp-toc-include" id="性能建议"><a href="#性能建议" class="rp-header-anchor rp-link" aria-hidden="true">#</a>性能建议</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>场景</th><th>推荐配置</th></tr></thead><tbody><tr><td>极致性能（云原生，单机高并发）</td><td><code>adapter: &#x27;native&#x27;</code> + Cluster × CPU核数</td></tr><tr><td>生产环境（通用）</td><td><code>adapter: &#x27;native&#x27;</code> 或 <code>&#x27;fastify&#x27;</code> + Cluster × (CPU核数-1)</td></tr><tr><td>轻量部署（容器 / 边缘）</td><td><code>adapter: &#x27;native&#x27;</code>，单进程，零框架依赖</td></tr><tr><td>全栈 / 边缘运行时</td><td><code>adapter: &#x27;hono&#x27;</code>，兼容 Web Standards API</td></tr><tr><td>开发环境</td><td><code>adapter: &#x27;native&#x27;</code>（默认），热重载最快</td></tr></tbody></table></div>
+<hr/>
+<h2 class="rp-toc-include" id="相关链接"><a href="#相关链接" class="rp-header-anchor rp-link" aria-hidden="true">#</a>相关链接</h2>
+<ul>
+<li><a href="https://github.com/vextjs/benchmarks" target="_blank" rel="noopener noreferrer" class="rp-link">benchmarks 仓库</a> — 完整测试代码和历史数据</li>
+<li><a href="/guide/adapters.html" class="rp-link">Adapter 架构</a> — 了解各 Adapter 的技术实现</li>
+<li><a href="/guide/cluster.html" class="rp-link">Cluster 多进程</a> — 如何配置和使用 Cluster 模式</li>
+<li><a href="/api/config.html" class="rp-link">配置项</a> — <code>adapter</code> 配置字段详情</li>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>3/31/2026, 6:20:57 AM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><div class="rp-prev-next-page__placeholder"></div><div class="rp-prev-next-page__placeholder"></div></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#测试环境" class="rp-toc-item rp-link" title="测试环境" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">测试环境</span></a><a href="#hello-world-基准" class="rp-toc-item rp-link" title="Hello World 基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Hello World 基准</span></a><a href="#测试代码" class="rp-toc-item rp-link" title="测试代码" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">测试代码</span></a><a href="#结果" class="rp-toc-item rp-link" title="结果" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">结果</span></a><a href="#json-序列化基准" class="rp-toc-item rp-link" title="JSON 序列化基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">JSON 序列化基准</span></a><a href="#响应结构" class="rp-toc-item rp-link" title="响应结构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">响应结构</span></a><a href="#结果-1" class="rp-toc-item rp-link" title="结果" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">结果</span></a><a href="#参数校验基准" class="rp-toc-item rp-link" title="参数校验基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">参数校验基准</span></a><a href="#测试场景" class="rp-toc-item rp-link" title="测试场景" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">测试场景</span></a><a href="#中间件链基准" class="rp-toc-item rp-link" title="中间件链基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">中间件链基准</span></a><a href="#中间件配置" class="rp-toc-item rp-link" title="中间件配置" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">中间件配置</span></a><a href="#adapter-对比" class="rp-toc-item rp-link" title="Adapter 对比" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Adapter 对比</span></a><a href="#adapter-性能可视化" class="rp-toc-item rp-link" title="Adapter 性能可视化" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Adapter 性能可视化</span></a><a href="#cluster-模式基准" class="rp-toc-item rp-link" title="Cluster 模式基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Cluster 模式基准</span></a><a href="#内存基准" class="rp-toc-item rp-link" title="内存基准" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">内存基准</span></a><a href="#启动时间" class="rp-toc-item rp-link" title="启动时间" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">启动时间</span></a><a href="#如何自行运行基准测试" class="rp-toc-item rp-link" title="如何自行运行基准测试" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">如何自行运行基准测试</span></a><a href="#克隆基准仓库" class="rp-toc-item rp-link" title="克隆基准仓库" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">克隆基准仓库</span></a><a href="#运行所有基准" class="rp-toc-item rp-link" title="运行所有基准" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">运行所有基准</span></a><a href="#运行单个框架" class="rp-toc-item rp-link" title="运行单个框架" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">运行单个框架</span></a><a href="#使用-autocannon-手动测试" class="rp-toc-item rp-link" title="使用 autocannon 手动测试" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">使用 autocannon 手动测试</span></a><a href="#配置说明" class="rp-toc-item rp-link" title="配置说明" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">配置说明</span></a><a href="#结论" class="rp-toc-item rp-link" title="结论" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">结论</span></a><a href="#性能建议" class="rp-toc-item rp-link" title="性能建议" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">性能建议</span></a><a href="#相关链接" class="rp-toc-item rp-link" title="相关链接" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">相关链接</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>
