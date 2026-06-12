@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="zh">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLI 命令 - VextJS</title>
+<link href="/static/css/styles.63e783842e.css" rel="stylesheet">
+<script defer src="/static/js/styles.9f6eb39360.js"></script>
+<script defer src="/static/js/lib-react.b473cabded.js"></script>
+<script defer src="/static/js/lib-router.b76a51aefb.js"></script>
+<script defer src="/static/js/193.d0c921acfd.js"></script>
+<script defer src="/static/js/index.ba41117a25.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.7">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CLI 命令 - VextJS">
+<meta property="og:description" content="VextJS 提供了 vext 命令行工具，覆盖项目创建、开发、构建、部署的完整生命周期。">
+<meta property="og:url" content="https://vextjs.github.io/">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="VextJS 提供了 vext 命令行工具，覆盖项目创建、开发、构建、部署的完整生命周期。"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/vextjs/vext" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://vextjs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://vextjs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://vextjs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://vextjs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/zh/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">搜索</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/zh/guide/introduction.html" class="rp-nav-menu__item__container rp-link">指南</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/routing.html" class="rp-nav-menu__item__container rp-link">运行时</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/validation.html" class="rp-nav-menu__item__container rp-link">数据</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/zh/guide/deployment.html" class="rp-nav-menu__item__container rp-link">生产</a></li><li class="rp-nav-menu__item"><a href="/zh/api/config.html" class="rp-nav-menu__item__container rp-link">API 参考</a></li><li class="rp-nav-menu__item"><a href="/zh/examples/hello-world.html" class="rp-nav-menu__item__container rp-link">示例</a></li><li class="rp-nav-menu__item"><a href="/zh/benchmark.html" class="rp-nav-menu__item__container rp-link">基准测试</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v0.3.24<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/vextjs/vext/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="更新日志">更新日志</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/vextjs/vext/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="贡献指南">贡献指南</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/guide/cli.html" class="rp-hover-group__item__link rp-link" aria-label="English" lang="en" hrefLang="en" rel="alternate">English</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><a href="/zh/guide/cli.html" class="rp-hover-group__item__link rp-link" aria-label="简体中文" lang="zh" hrefLang="zh" rel="alternate">简体中文</a></li></ul></li><div class="rp-social-links"><a href="https://github.com/vextjs/vext" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">语言</div><div class="rp-nav-screen-langs__right">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><a href="/guide/cli.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="en" lang="en" rel="alternate">English</a><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">简体中文</span></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/vextjs/vext" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>菜单</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">目录</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>开始</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/introduction.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>介绍</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/quick-start.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>快速开始</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>项目结构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>运行时</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>路由</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>服务层</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/middleware.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>中间件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/plugins.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>插件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hooks.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>运行时 Hooks</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/request-context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>请求上下文</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/configuration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>配置</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/adapters.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Adapter 架构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>数据与接口</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>参数校验</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>响应缓存</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/database.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>数据库 (MonSQLize)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>内置 HTTP 客户端</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/openapi.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>OpenAPI 文档</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>交付与生产</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/build.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>构建</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/deployment.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>部署与生产环境</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/testing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>测试</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cli.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>CLI 命令</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hot-reload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>热重载</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/preload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>预加载 (Preload)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cluster.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Cluster 多进程</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>国际化 (i18n)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/logger.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>日志</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/error-handling.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>错误处理</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>API 参考</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/api/config.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>配置项</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/route-definition.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>路由定义</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>请求与响应</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/app.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>应用实例</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Fetch API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/plugin-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>插件 API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/testing-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>测试工具</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/access-log.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Access Log 中间件</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>示例</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/hello-world.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Hello World</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/crud-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>CRUD API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/zod-validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Zod 校验集成</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/drizzle-orm.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Drizzle ORM 集成</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/prisma-orm.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Prisma ORM 集成</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span>生态集成</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/nacos-integration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>Nacos 接入</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/opentelemetry.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span>OpenTelemetry 可观测性</span></div><div class="rp-sidebar-item__right"></div></a></div></div></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="cli-命令"><a href="#cli-命令" class="rp-header-anchor rp-link" aria-hidden="true">#</a>CLI 命令<!-- --> </h1>
+<p>VextJS 提供了 <code>vext</code> 命令行工具，覆盖项目创建、开发、构建、部署的完整生命周期。</p>
+<h2 class="rp-toc-include" id="安装"><a href="#安装" class="rp-header-anchor rp-link" aria-hidden="true">#</a>安装</h2>
+<p><code>vext</code> CLI 随 <code>vextjs</code> 包一起安装，无需额外安装：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> install</span><span style="color:var(--shiki-token-string)"> vextjs</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>安装后可以通过以下方式调用：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 通过 npx</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vext</span><span style="color:var(--shiki-token-keyword)"> &lt;</span><span style="color:var(--shiki-token-string)">comman</span><span style="color:var(--shiki-foreground)">d</span><span style="color:var(--shiki-token-keyword)">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 通过 package.json scripts（推荐）</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-comment)">    # → vext dev</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-comment)">      # → vext start</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-comment)">  # → vext build</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="命令概览"><a href="#命令概览" class="rp-header-anchor rp-link" aria-hidden="true">#</a>命令概览</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>命令</th><th>说明</th><th>常用场景</th></tr></thead><tbody><tr><td><code>vext create &lt;name&gt;</code></td><td>创建新项目</td><td>项目初始化</td></tr><tr><td><code>vext dev</code></td><td>开发模式启动</td><td>日常开发</td></tr><tr><td><code>vext build</code></td><td>构建项目</td><td>部署前构建</td></tr><tr><td><code>vext typegen</code></td><td>生成声明 + service 依赖诊断（experimental）</td><td>TS/JS 项目工程辅助</td></tr><tr><td><code>vext doctor routes</code></td><td>静态路由诊断 + inspect / manifest（experimental）</td><td>OpenAPI / 路由治理</td></tr><tr><td><code>vext start</code></td><td>生产模式启动</td><td>生产部署</td></tr><tr><td><code>vext stop</code></td><td>停止服务</td><td>Cluster 模式管理</td></tr><tr><td><code>vext reload</code></td><td>滚动重启</td><td>零停机更新</td></tr><tr><td><code>vext status</code></td><td>查看运行状态</td><td>Cluster 状态监控</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="vext-create--创建项目"><a href="#vext-create--创建项目" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext create</code> — 创建项目</h2>
+<p>交互式创建新的 VextJS 项目，自动生成项目骨架和配置文件。</p>
+<h3 class="rp-toc-include" id="用法"><a href="#用法" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-keyword)"> &lt;</span><span style="color:var(--shiki-token-string)">project-nam</span><span style="color:var(--shiki-foreground)">e</span><span style="color:var(--shiki-token-keyword)">&gt;</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项"><a href="#选项" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--adapter &lt;name&gt;</code></td><td>指定 Adapter（native / hono / fastify / express / koa）</td><td><code>native</code></td></tr><tr><td><code>--js</code></td><td>创建 JavaScript 项目（而非 TypeScript）</td><td><code>false</code></td></tr><tr><td><code>--skip-install</code></td><td>跳过 <code>npm install</code></td><td><code>false</code></td></tr><tr><td><code>--force</code></td><td>目标目录存在且非空时强制覆盖</td><td><code>false</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="示例"><a href="#示例" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 创建 TypeScript 项目（默认 Native Adapter）</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-string)"> my-app</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定 Adapter</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-string)"> my-app</span><span style="color:var(--shiki-token-string)"> --adapter</span><span style="color:var(--shiki-token-string)"> hono</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-string)"> my-app</span><span style="color:var(--shiki-token-string)"> --adapter</span><span style="color:var(--shiki-token-string)"> fastify</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 创建 JavaScript 项目</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-string)"> my-app</span><span style="color:var(--shiki-token-string)"> --js</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 跳过依赖安装</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> create</span><span style="color:var(--shiki-token-string)"> my-app</span><span style="color:var(--shiki-token-string)"> --skip-install</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="生成的目录结构"><a href="#生成的目录结构" class="rp-header-anchor rp-link" aria-hidden="true">#</a>生成的目录结构</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>my-app/</span></span>
+<span class="line"><span>├── preload/</span></span>
+<span class="line"><span>│   └── README.md             # 项目级 preload 脚本占位说明</span></span>
+<span class="line"><span>├── src/</span></span>
+<span class="line"><span>│   ├── config/</span></span>
+<span class="line"><span>│   │   ├── default.ts        # 默认配置（port: 3000）</span></span>
+<span class="line"><span>│   │   ├── development.ts    # 开发环境覆盖</span></span>
+<span class="line"><span>│   │   ├── production.ts     # 生产环境覆盖（port: 3001）</span></span>
+<span class="line"><span>│   │   ├── local.example.ts  # 复制为 local.ts 后启用本地覆盖</span></span>
+<span class="line"><span>│   │   └── bootstrap.example.ts # 复制为 bootstrap.ts 后启用启动期 provider</span></span>
+<span class="line"><span>│   ├── routes/</span></span>
+<span class="line"><span>│   │   └── index.ts          # 示例路由</span></span>
+<span class="line"><span>│   ├── services/</span></span>
+<span class="line"><span>│   │   └── example.ts        # 示例服务</span></span>
+<span class="line"><span>│   ├── middlewares/</span></span>
+<span class="line"><span>│   │   └── README.md         # 自定义中间件占位说明</span></span>
+<span class="line"><span>│   ├── plugins/</span></span>
+<span class="line"><span>│   │   └── README.md         # 自定义插件占位说明</span></span>
+<span class="line"><span>│   ├── locales/</span></span>
+<span class="line"><span>│   │   └── README.md         # i18n 语言包占位说明</span></span>
+<span class="line"><span>│   └── types/</span></span>
+<span class="line"><span>│       └── generated/</span></span>
+<span class="line"><span>│           └── .gitkeep      # typegen 输出目录占位（TS 项目）</span></span>
+<span class="line"><span>├── package.json</span></span>
+<span class="line"><span>├── tsconfig.json</span></span>
+<span class="line"><span>└── .gitignore</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>创建完成后：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> my-app</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> dev</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>访问 <code>http://localhost:3000</code>，你应该能看到框架的 JSON 响应。</p>
+<p>如需在配置冻结前拉取远程配置（例如 Nacos / 启动期数据库配置），可将 <code>src/config/bootstrap.example.ts</code> 复制为 <code>src/config/bootstrap.ts</code> 并通过 <code>defineBootstrapConfig()</code> 注册 provider。需要本地覆盖时，可将 <code>src/config/local.example.ts</code> 复制为 <code>src/config/local.ts</code>，该文件默认被 <code>.gitignore</code> 排除。</p>
+<h2 class="rp-toc-include" id="vext-dev--开发模式"><a href="#vext-dev--开发模式" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext dev</code> — 开发模式</h2>
+<p>以开发模式启动项目，支持文件监听和智能热重载。</p>
+<h3 class="rp-toc-include" id="用法-1"><a href="#用法-1" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项-1"><a href="#选项-1" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--port &lt;number&gt;</code></td><td>指定端口</td><td>配置文件中的值</td></tr><tr><td><code>--host &lt;address&gt;</code></td><td>指定监听地址</td><td>配置文件中的值</td></tr><tr><td><code>--debounce &lt;ms&gt;</code></td><td>防抖间隔（毫秒，0 = 不开启）</td><td><code>0</code></td></tr><tr><td><code>--poll</code></td><td>强制轮询模式（Docker / NFS 环境）</td><td><code>false</code></td></tr><tr><td><code>--poll-interval &lt;ms&gt;</code></td><td>轮询间隔（毫秒，仅 <code>--poll</code> 时有效）</td><td><code>1000</code></td></tr><tr><td><code>--no-hot</code></td><td>禁用 Soft Reload，所有变更走 Cold Restart</td><td>—</td></tr><tr><td><code>--strict-preflight</code></td><td>让 TypeScript 语义诊断重新阻塞启动 / 重载</td><td>—</td></tr><tr><td><code>--port-conflict &lt;strategy&gt;</code></td><td>端口冲突策略（<code>error/prompt/kill/next</code>）</td><td><code>error</code></td></tr><tr><td><code>--verbose-lifecycle</code></td><td>输出详细生命周期日志与完整 watcher 变更列表</td><td>—</td></tr><tr><td><code>--startup-profile</code></td><td>输出启动阶段摘要与详细耗时</td><td>—</td></tr><tr><td><code>--startup-profile-json &lt;p&gt;</code></td><td>将启动阶段耗时写入 JSON 文件</td><td>—</td></tr><tr><td><code>--clear</code></td><td>每次重载后清空控制台</td><td>—</td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h4 class="rp-toc-include" id="端口冲突策略"><a href="#端口冲突策略" class="rp-header-anchor rp-link" aria-hidden="true">#</a>端口冲突策略</h4>
+<ul>
+<li><code>error</code>：直接失败（默认）</li>
+<li><code>prompt</code>：在 TTY 环境下询问父进程如何处理</li>
+<li><code>kill</code>：尝试终止占用端口的进程</li>
+<li><code>next</code>：自动选择下一个可用端口</li>
+</ul>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --port-conflict</span><span style="color:var(--shiki-token-string)"> prompt</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --port-conflict</span><span style="color:var(--shiki-token-string)"> next</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h4 class="rp-toc-include" id="启动日志分层"><a href="#启动日志分层" class="rp-header-anchor rp-link" aria-hidden="true">#</a>启动日志分层</h4>
+<p>默认 <code>vext dev</code> 只打印监听地址与总启动耗时，随后在 cold restart / hot reload 时打印必要结果。<code>vext dev --startup-profile</code> 才会输出人类可读的启动摘要与详细事件；摘要按 <code>main/preflight</code>、<code>main/preload</code>、<code>pre-worker-bootstrap</code>、<code>compile</code>、<code>config</code>、<code>i18n</code>、<code>database</code>、<code>plugins</code>、<code>middleware</code>、<code>services</code>、<code>routes</code>、<code>openapi</code>、<code>listen</code>、<code>onReady</code> 等阶段归类；超过阈值的未命名空窗会以 <code>gap.*</code> 形式进入 profile JSON。</p>
+<p><code>--startup-profile-json &lt;path&gt;</code> 只写 JSON 文件，不会自动打印摘要或 details；如需两者同时输出，可组合 <code>--startup-profile --startup-profile-json &lt;path&gt;</code>。</p>
+<p>如需生命周期排障细节，可开启：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --verbose-lifecycle</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">VEXT_VERBOSE_LIFECYCLE</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">1</span><span style="color:var(--shiki-token-function)"> vext</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="示例-1"><a href="#示例-1" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 使用配置文件中的默认设置</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定端口</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 8080</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定地址和端口</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --host</span><span style="color:var(--shiki-token-constant)"> 127.0.0.1</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 8080</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 开启 50ms 防抖（快速连续保存时合并为一次重载）</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --debounce</span><span style="color:var(--shiki-token-constant)"> 50</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Docker / NFS 环境使用轮询模式</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --poll</span><span style="color:var(--shiki-token-string)"> --poll-interval</span><span style="color:var(--shiki-token-constant)"> 2000</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 禁用 Soft Reload（所有变更均走 Cold Restart）</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --no-hot</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 输出启动阶段摘要与详细耗时</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --startup-profile</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 仅写 JSON，不打印 summary/details</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> dev</span><span style="color:var(--shiki-token-string)"> --startup-profile-json</span><span style="color:var(--shiki-token-string)"> .vext/inspect/startup-profile.json</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="热重载策略"><a href="#热重载策略" class="rp-header-anchor rp-link" aria-hidden="true">#</a>热重载策略</h3>
+<p><code>vext dev</code> 提供三层热重载策略，自动选择最优方式：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>层级</th><th>触发条件</th><th>行为</th><th>速度</th></tr></thead><tbody><tr><td><strong>Tier 1</strong> — 路由热替换</td><td><code>src/routes/</code> 文件变更</td><td>原子替换请求处理器，零中断</td><td>⚡ 毫秒级</td></tr><tr><td><strong>Tier 2</strong> — 服务重载</td><td><code>src/services/</code> 或 <code>src/locales/</code> 文件变更</td><td>重建受影响的服务实例</td><td>⚡ 毫秒级</td></tr><tr><td><strong>Tier 3</strong> — 冷重启</td><td><code>src/config/</code> 或 <code>src/plugins/</code> 文件变更</td><td>完整重启进程</td><td>🔄 秒级</td></tr></tbody></table></div>
+<p>详见 <a href="/zh/guide/hot-reload.html" class="rp-link">热重载</a> 章节。</p>
+<h3 class="rp-toc-include" id="packagejson-脚本"><a href="#packagejson-脚本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>package.json 脚本</h3>
+<div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;scripts&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;dev&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext dev&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="vext-build--构建项目"><a href="#vext-build--构建项目" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext build</code> — 构建项目</h2>
+<p>将 TypeScript 源码编译为 JavaScript，生成生产可用的 <code>dist/</code> 目录；构建前会刷新 typegen 与 route manifest 这类工具产物。</p>
+<h3 class="rp-toc-include" id="用法-2"><a href="#用法-2" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项-2"><a href="#选项-2" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--outdir &lt;path&gt;</code></td><td>输出目录</td><td><code>dist</code></td></tr><tr><td><code>--clean</code></td><td>编译前清理输出目录</td><td><code>false</code></td></tr><tr><td><code>--sourcemap</code></td><td>生成 source map</td><td><code>true</code></td></tr><tr><td><code>--no-sourcemap</code></td><td>禁用 source map</td><td>—</td></tr><tr><td><code>--minify</code></td><td>压缩输出代码</td><td><code>false</code></td></tr><tr><td><code>--typecheck</code></td><td>刷新 generated / manifest 后执行 <code>tsc --noEmit</code></td><td><code>false</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="示例-2"><a href="#示例-2" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 构建项目</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 刷新 generated / manifest 后执行类型检查，再构建</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --typecheck</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 清理旧 dist 后构建</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --clean</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定输出目录</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --outdir</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 构建后启动</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-punctuation)"> &amp;&amp;</span><span style="color:var(--shiki-token-function)"> vext</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="构建行为"><a href="#构建行为" class="rp-header-anchor rp-link" aria-hidden="true">#</a>构建行为</h3>
+<ul>
+<li>先刷新 <code>.vext/types/*.generated.d.ts</code>、<code>src/types/generated/index.d.ts</code>、<code>.vext/manifest/services.json</code> 与 <code>.vext/manifest/routes.json</code></li>
+<li><code>--typecheck</code> 开启时，在 generated / manifest 刷新后执行 <code>tsc --noEmit</code></li>
+<li>使用 esbuild 进行极速编译（TypeScript → JavaScript）</li>
+<li>输出目录默认为 <code>dist/</code></li>
+<li>保持源码目录结构</li>
+<li>默认生成 <code>.js</code> 和 <code>.js.map</code> 文件；不会在 <code>dist/</code> 中生成声明文件</li>
+</ul>
+<h3 class="rp-toc-include" id="packagejson-脚本-1"><a href="#packagejson-脚本-1" class="rp-header-anchor rp-link" aria-hidden="true">#</a>package.json 脚本</h3>
+<div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;scripts&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;build&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext build&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;prepublishOnly&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext build&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<div class="rp-callout rp-callout--tip"><div class="rp-callout__title">开发 vs 构建</div><div class="rp-callout__content"><ul>
+<li><strong><code>vext dev</code></strong>：直接从 <code>src/</code> 加载 <code>.ts</code> 文件，通过 esbuild 即时编译，支持热重载</li>
+<li><strong><code>vext build</code></strong>：将 <code>src/</code> 编译到 <code>dist/</code>，生产模式从 <code>dist/</code> 加载
+:::</li>
+</ul><h2 class="rp-toc-include" id="vext-typegen--生成声明并执行-service-依赖诊断experimental"><a href="#vext-typegen--生成声明并执行-service-依赖诊断experimental" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext typegen</code> — 生成声明并执行 service 依赖诊断（experimental）</h2><p>为 <code>app.services</code> 与插件里的 <code>app.extend()</code> / <code>defineAppExtensions&lt;{ ... }&gt;()</code> 提供 generated 声明，同时执行 tooling-only 的 service 依赖检查。</p><h3 class="rp-toc-include" id="用法-3"><a href="#用法-3" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> typegen</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="选项-3"><a href="#选项-3" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--services</code></td><td>仅生成 <code>services.generated.d.ts</code></td><td><code>false</code></td></tr><tr><td><code>--app-extensions</code></td><td>仅生成 <code>app-extensions.generated.d.ts</code></td><td><code>false</code></td></tr><tr><td><code>--check</code></td><td>只校验 generated 结果，不写文件</td><td><code>false</code></td></tr><tr><td><code>--json</code></td><td>输出机器可读 JSON</td><td><code>false</code></td></tr><tr><td><code>--write-manifest</code></td><td>写入 <code>.vext/manifest/services.json</code></td><td><code>false</code></td></tr><tr><td><code>--root &lt;path&gt;</code></td><td>指定项目根目录</td><td>当前目录</td></tr><tr><td><code>-C &lt;path&gt;</code></td><td><code>--root</code> 别名</td><td>—</td></tr><tr><td><code>--verbose</code></td><td>预留给后续详细日志</td><td><code>false</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div><h3 class="rp-toc-include" id="产物"><a href="#产物" class="rp-header-anchor rp-link" aria-hidden="true">#</a>产物</h3><div class="rp-codeblock language-text"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="text"><code><span class="line"><span>.vext/types/services.generated.d.ts</span></span>
+<span class="line"><span>.vext/types/app-extensions.generated.d.ts</span></span>
+<span class="line"><span>src/types/generated/index.d.ts</span></span>
+<span class="line"><span>.vext/manifest/services.json</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="示例-3"><a href="#示例-3" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> typegen</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> typegen</span><span style="color:var(--shiki-token-string)"> --check</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> typegen</span><span style="color:var(--shiki-token-string)"> --write-manifest</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> typegen</span><span style="color:var(--shiki-token-string)"> --services</span><span style="color:var(--shiki-token-string)"> --root</span><span style="color:var(--shiki-token-string)"> ./examples/hello-world</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="适用边界"><a href="#适用边界" class="rp-header-anchor rp-link" aria-hidden="true">#</a>适用边界</h3><ul>
+<li><code>typegen</code> 整体仍属于 <strong>tooling-only</strong> 能力，不会进入 <code>vext start</code> 的 runtime 主路径；</li>
+<li><code>vext dev</code> 会在 preflight 中自动执行基础 <code>typegen</code>，<code>vext build</code> 也会在可选 typecheck 与编译前刷新 generated 声明和 manifest；</li>
+<li>TypeScript 语义诊断默认在 ready / reload 后异步输出；如果希望像旧行为一样阻塞启动或重载，可使用 <code>--strict-preflight</code> 或 <code>VEXT_DEV_STRICT_PREFLIGHT=1</code>；</li>
+<li>TS 项目优先输出高质量类型，JS 项目允许退化到 <code>import(...).default</code> / <code>unknown</code>，但命令本身仍可用；</li>
+<li><code>--write-manifest</code> 会把 service 索引、<code>app.extend()</code> / <code>defineAppExtensions&lt;{ ... }&gt;()</code> 聚合结果与服务依赖图摘要写入 <code>.vext/manifest/services.json</code>；</li>
+<li>更多 generated 声明示例可结合 <a href="/zh/guide/services.html" class="rp-link">服务</a> 与 <a href="/zh/guide/plugins.html" class="rp-link">插件</a> 文档查看。</li>
+</ul><h2 class="rp-toc-include" id="vext-doctor-routes--静态路由诊断experimental"><a href="#vext-doctor-routes--静态路由诊断experimental" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext doctor routes</code> — 静态路由诊断（experimental）</h2><p>扫描 <code>src/routes/</code> 中的静态路由元数据，输出重复路由、缺失 <code>docs.summary</code>、自动推断 <code>operationId</code> 等诊断，并可将结果落盘到 inspect / manifest 产物中。</p><h3 class="rp-toc-include" id="用法-4"><a href="#用法-4" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> doctor</span><span style="color:var(--shiki-token-keyword)"> &lt;</span><span style="color:var(--shiki-token-string)">targe</span><span style="color:var(--shiki-foreground)">t</span><span style="color:var(--shiki-token-keyword)">&gt;</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="targets"><a href="#targets" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Targets</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Target</th><th>说明</th></tr></thead><tbody><tr><td><code>routes</code></td><td>扫描静态路由元数据与 OpenAPI 相关字段</td></tr><tr><td><code>all</code></td><td>当前仍是 <code>routes</code> 的别名，用于保留后续扩展位</td></tr></tbody></table></div><h3 class="rp-toc-include" id="选项-4"><a href="#选项-4" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--json</code></td><td>输出机器可读 JSON</td><td><code>false</code></td></tr><tr><td><code>--write-inspect</code></td><td>写入 <code>.vext/inspect/routes.json</code></td><td><code>false</code></td></tr><tr><td><code>--write-manifest</code></td><td>写入 <code>.vext/manifest/routes.json</code></td><td><code>false</code></td></tr><tr><td><code>--refresh</code></td><td>跳过缓存 manifest，重新扫描路由诊断</td><td><code>false</code></td></tr><tr><td><code>--root &lt;path&gt;</code></td><td>指定项目根目录</td><td>当前目录</td></tr><tr><td><code>-C &lt;path&gt;</code></td><td><code>--root</code> 别名</td><td>—</td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div><h3 class="rp-toc-include" id="产物定位"><a href="#产物定位" class="rp-header-anchor rp-link" aria-hidden="true">#</a>产物定位</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>产物</th><th>定位</th><th>适用对象</th></tr></thead><tbody><tr><td><code>.vext/inspect/routes.json</code></td><td>inspect / 诊断中间层，包含诊断明细与调试字段</td><td><code>doctor</code>、debug、深度分析</td></tr><tr><td><code>.vext/manifest/routes.json</code></td><td>稳定消费层，字段收敛为 routes-only manifest</td><td>编辑器、CI、可视化、后续 codemod</td></tr></tbody></table></div><h3 class="rp-toc-include" id="示例-4"><a href="#示例-4" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> doctor</span><span style="color:var(--shiki-token-string)"> routes</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> doctor</span><span style="color:var(--shiki-token-string)"> routes</span><span style="color:var(--shiki-token-string)"> --write-inspect</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> doctor</span><span style="color:var(--shiki-token-string)"> routes</span><span style="color:var(--shiki-token-string)"> --write-inspect</span><span style="color:var(--shiki-token-string)"> --write-manifest</span><span style="color:var(--shiki-token-string)"> --json</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="当前边界"><a href="#当前边界" class="rp-header-anchor rp-link" aria-hidden="true">#</a>当前边界</h3><ul>
+<li>当前 route manifest 与 services manifest 仍分层维护，不合并为单一总 manifest；</li>
+<li><code>docs.operationId</code> 缺失时，doctor 会按 runtime 行为给出 <code>auto-operation-id</code> 信息提示，而不是误报 warning；</li>
+<li>路由侧仍由 <code>doctor routes --write-manifest</code> 负责；service 侧则由 <code>typegen --write-manifest</code> 负责。</li>
+</ul><h2 class="rp-toc-include" id="vext-start--生产模式启动"><a href="#vext-start--生产模式启动" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext start</code> — 生产模式启动</h2><p>以生产模式启动项目。TypeScript 项目从 <code>dist/</code> 目录加载编译后的代码，需要先执行 <code>vext build</code>；如果缺少有效构建产物，命令会直接失败并提示使用 <code>vext build</code> 或开发期改用 <code>vext dev</code>。</p><h3 class="rp-toc-include" id="用法-5"><a href="#用法-5" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="选项-5"><a href="#选项-5" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--port &lt;number&gt;</code></td><td>指定端口</td><td>配置文件中的值</td></tr><tr><td><code>--host &lt;address&gt;</code></td><td>指定监听地址</td><td>配置文件中的值</td></tr><tr><td><code>--port-conflict &lt;strategy&gt;</code></td><td>端口冲突策略（<code>error/prompt/kill/next</code>）</td><td><code>error</code></td></tr><tr><td><code>--startup-profile</code></td><td>输出生产启动阶段摘要与详细耗时</td><td>—</td></tr><tr><td><code>--startup-profile-json &lt;p&gt;</code></td><td>将生产启动阶段耗时写入 JSON 文件</td><td>—</td></tr><tr><td><code>--verbose-lifecycle</code></td><td>输出详细生命周期日志</td><td>—</td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div><h3 class="rp-toc-include" id="示例-5"><a href="#示例-5" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 先构建，再启动</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定端口</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 8080</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 端口冲突时自动切到下一个可用端口</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --port-conflict</span><span style="color:var(--shiki-token-string)"> next</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 排查生产 cold-start 阶段耗时</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --startup-profile</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --startup-profile-json</span><span style="color:var(--shiki-token-string)"> .vext/inspect/start-profile.json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 加载 production 配置</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">PORT</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">8080</span><span style="color:var(--shiki-foreground)"> NODE_ENV</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">production</span><span style="color:var(--shiki-token-function)"> vext</span><span style="color:var(--shiki-token-string)"> start</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 加载自定义环境配置（需存在 src/config/sg-sit.ts）</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">NODE_ENV</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">sg-sit</span><span style="color:var(--shiki-token-function)"> vext</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="默认命令"><a href="#默认命令" class="rp-header-anchor rp-link" aria-hidden="true">#</a>默认命令</h3><p>当不传任何命令时，<code>vext</code> 默认执行 <code>start</code>：</p><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 以下两种方式等效</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="cluster-模式"><a href="#cluster-模式" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Cluster 模式</h3><p>如果配置中启用了 <code>cluster</code>，<code>vext start</code> 会自动进入 Cluster 模式，由 Master 进程管理多个 Worker 进程：</p><div class="rp-codeblock language-typescript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="typescript"><code><span class="line"><span style="color:var(--shiki-token-comment)">// src/config/production.ts</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  cluster</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    workers</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;auto&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-comment)"> // 自动检测 CPU 核数</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><p>或通过环境变量启用：</p><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-foreground)">VEXT_CLUSTER</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">1</span><span style="color:var(--shiki-token-function)"> vext</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><h3 class="rp-toc-include" id="预加载preload自动注入"><a href="#预加载preload自动注入" class="rp-header-anchor rp-link" aria-hidden="true">#</a>预加载（Preload）自动注入</h3><p><code>vext start</code> 和 <code>vext dev</code> 会自动解析两类 preload 来源：</p><ol>
+<li>已安装依赖包中声明的 <code>vext.preload</code></li>
+<li>应用项目根目录中的 <code>preload/</code></li>
+</ol><p>在子进程启动前，这些脚本会统一通过 <code>--import</code> 注入。例如 <code>vextjs-opentelemetry</code> 可利用包级 <code>vext.preload</code> 在应用代码加载前自动初始化 OpenTelemetry SDK；应用项目本身也可以直接在根目录 <code>preload/</code> 中放置脚本做启动前环境桥接。</p><p>首期项目级 preload 规则：</p><ul>
+<li>目录固定为项目根 <code>preload/</code></li>
+<li>非递归扫描</li>
+<li>项目级 preload 先执行，包级 preload 后执行</li>
+<li><code>.mjs</code> / <code>.js</code> 直接注入</li>
+<li><code>.ts</code> / <code>.mts</code> 会在启动前编译到 <code>.vext/preload/*.mjs</code> 再注入</li>
+<li><code>vext dev</code> 下若 <code>preload/</code> 里的文件发生变化，会触发 cold restart</li>
+</ul><p>详见 <a href="/zh/guide/preload.html" class="rp-link">预加载 (Preload)</a>。</p><h3 class="rp-toc-include" id="启动期配置-provider"><a href="#启动期配置-provider" class="rp-header-anchor rp-link" aria-hidden="true">#</a>启动期配置 Provider</h3><p>如果项目存在 <code>src/config/bootstrap.ts</code>，<code>vext start</code> / <code>vext dev</code> 会在配置 validate / freeze 前执行其中声明的 <code>bootstrap config provider</code>，并将 provider 返回的 patch 合并到最终配置中。优先级为：<code>default &lt; env &lt; local &lt; provider &lt; CLI</code>。</p><p>Cluster 模式下，Master 会把本轮 provider patch 传递给 Worker 复用，避免同一启动周期内 Master / Worker 看到不同远程配置。</p><h3 class="rp-toc-include" id="packagejson-脚本-2"><a href="#packagejson-脚本-2" class="rp-header-anchor rp-link" aria-hidden="true">#</a>package.json 脚本</h3><p>推荐在跨平台项目中使用 <code>cross-env</code> 设置环境变量：</p><div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> i</span><span style="color:var(--shiki-token-string)"> -D</span><span style="color:var(--shiki-token-string)"> cross-env</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;scripts&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;build&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext build&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;cross-env NODE_ENV=production vext start&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start:sg-sit&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;cross-env NODE_ENV=sg-sit vext start&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start:us-uat&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;cross-env NODE_ENV=us-uat vext start&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div><p>Vext 本身不内置 <code>cross-env</code>；它只是推荐的脚本层兼容工具，用于在 Windows、macOS、Linux 下统一设置 <code>NODE_ENV</code>。</p><p>:::tip 环境文件选择
+当前 <code>vext start</code> 没有 <code>--config &lt;file&gt;</code> 这样的参数。环境配置文件的选择机制是：</p><ul>
+<li>读取运行时 <code>NODE_ENV</code></li>
+<li>匹配 <code>src/config/{NODE_ENV}.ts</code>（build 后对应 <code>dist/config/{NODE_ENV}.js</code>）</li>
+</ul><p>如果你需要 <code>sg-sit.ts</code>、<code>us-uat.ts</code> 这类自定义环境，只需在启动时设置对应的 <code>NODE_ENV</code>。</p></div></div>
+<h2 class="rp-toc-include" id="vext-stop--停止服务"><a href="#vext-stop--停止服务" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext stop</code> — 停止服务</h2>
+<p>停止正在运行的 Cluster 模式服务。通过读取 PID 文件发送停止信号。</p>
+<h3 class="rp-toc-include" id="用法-6"><a href="#用法-6" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> stop</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项-6"><a href="#选项-6" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--pid-file &lt;path&gt;</code></td><td>PID 文件路径</td><td><code>.vext.pid</code></td></tr><tr><td><code>--force</code></td><td>强制终止（SIGKILL）</td><td><code>false</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="示例-6"><a href="#示例-6" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 优雅停止</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> stop</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 强制停止</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> stop</span><span style="color:var(--shiki-token-string)"> --force</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 指定 PID 文件</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> stop</span><span style="color:var(--shiki-token-string)"> --pid-file</span><span style="color:var(--shiki-token-string)"> /var/run/myapp.pid</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<div class="rp-callout rp-callout--info"><div class="rp-callout__title">Info</div><div class="rp-callout__content"><p>
+<code>vext stop</code> 仅在 Cluster 模式下可用。单进程模式下直接使用 <code>Ctrl+C</code> 或发送 <code>SIGTERM</code> 信号即可优雅关闭。</p></div></div>
+<h2 class="rp-toc-include" id="vext-reload--滚动重启"><a href="#vext-reload--滚动重启" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext reload</code> — 滚动重启</h2>
+<p>触发 Cluster 模式的零停机滚动重启（Rolling Restart）。逐个重启 Worker 进程，确保服务始终可用。</p>
+<h3 class="rp-toc-include" id="用法-7"><a href="#用法-7" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> reload</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项-7"><a href="#选项-7" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--pid-file &lt;path&gt;</code></td><td>PID 文件路径</td><td><code>.vext.pid</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="示例-7"><a href="#示例-7" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 部署新版本后滚动重启</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> reload</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="滚动重启流程"><a href="#滚动重启流程" class="rp-header-anchor rp-link" aria-hidden="true">#</a>滚动重启流程</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>1. 向 Master 进程发送 SIGUSR2 信号</span></span>
+<span class="line"><span>2. Master 逐个重启 Worker：</span></span>
+<span class="line"><span>   a. 启动新 Worker</span></span>
+<span class="line"><span>   b. 等待新 Worker ready</span></span>
+<span class="line"><span>   c. 优雅关闭旧 Worker</span></span>
+<span class="line"><span>   d. 重复，直到所有 Worker 更新完成</span></span>
+<span class="line"><span>3. 整个过程中始终有 Worker 处理请求，零停机</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<div class="rp-callout rp-callout--tip"><div class="rp-callout__title">适用场景</div><div class="rp-callout__content"><p>
+代码更新后执行 <code>vext build</code> + <code>vext reload</code>，无需停机即可完成版本更新。适合需要高可用性的生产环境。</p></div></div>
+<h2 class="rp-toc-include" id="vext-status--查看运行状态"><a href="#vext-status--查看运行状态" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext status</code> — 查看运行状态</h2>
+<p>查看 Cluster 模式下的服务运行状态，包括 Master 进程和各 Worker 进程的信息。</p>
+<h3 class="rp-toc-include" id="用法-8"><a href="#用法-8" class="rp-header-anchor rp-link" aria-hidden="true">#</a>用法</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> status</span><span style="color:var(--shiki-foreground)"> [options]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="选项-8"><a href="#选项-8" class="rp-header-anchor rp-link" aria-hidden="true">#</a>选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th><th>默认值</th></tr></thead><tbody><tr><td><code>--pid-file &lt;path&gt;</code></td><td>PID 文件路径</td><td><code>.vext.pid</code></td></tr><tr><td><code>-h, --help</code></td><td>显示帮助</td><td>—</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="示例-8"><a href="#示例-8" class="rp-header-anchor rp-link" aria-hidden="true">#</a>示例</h3>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> status</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="输出示例"><a href="#输出示例" class="rp-header-anchor rp-link" aria-hidden="true">#</a>输出示例</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>VextJS Cluster Status</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Master PID: 12345</span></span>
+<span class="line"><span>Workers: 4/4 running</span></span>
+<span class="line"><span>Uptime: 2d 5h 32m</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  PID     State    CPU    Memory    Requests</span></span>
+<span class="line"><span>  12346   online   2.1%   48 MB     125,432</span></span>
+<span class="line"><span>  12347   online   1.8%   52 MB     124,891</span></span>
+<span class="line"><span>  12348   online   2.3%   47 MB     126,003</span></span>
+<span class="line"><span>  12349   online   1.9%   50 MB     125,720</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="全局选项"><a href="#全局选项" class="rp-header-anchor rp-link" aria-hidden="true">#</a>全局选项</h2>
+<p>所有命令都支持以下全局选项：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>选项</th><th>说明</th></tr></thead><tbody><tr><td><code>-h, --help</code></td><td>显示帮助信息</td></tr><tr><td><code>-v, --version</code></td><td>显示版本号</td></tr></tbody></table></div>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 查看版本</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> --version</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 输出: vextjs v0.3.24</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 查看帮助</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">vext</span><span style="color:var(--shiki-token-string)"> --help</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="推荐的-packagejson-脚本"><a href="#推荐的-packagejson-脚本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>推荐的 package.json 脚本</h2>
+<div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;name&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;my-app&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;type&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;module&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;scripts&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;dev&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext dev&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;build&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext build&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext start&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;stop&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext stop&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;reload&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext reload&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;status&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext status&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;test&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vitest run&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;test:watch&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vitest&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;test:cov&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vitest run --coverage&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;typecheck&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;tsc --noEmit&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="常见问题"><a href="#常见问题" class="rp-header-anchor rp-link" aria-hidden="true">#</a>常见问题</h2>
+<h3 class="rp-toc-include" id="vext-start-报错-dist-not-found"><a href="#vext-start-报错-dist-not-found" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext start</code> 报错 &quot;dist/ not found&quot;</h3>
+<p>需要先执行 <code>vext build</code> 编译 TypeScript 代码。<code>vext start</code> 从 <code>dist/</code> 加载编译后的 JavaScript 文件。</p>
+<h3 class="rp-toc-include" id="开发时应该用-vext-dev-还是-vext-start"><a href="#开发时应该用-vext-dev-还是-vext-start" class="rp-header-anchor rp-link" aria-hidden="true">#</a>开发时应该用 <code>vext dev</code> 还是 <code>vext start</code>？</h3>
+<p>日常开发使用 <code>vext dev</code>，它直接加载 <code>src/</code> 下的 TypeScript 文件，支持热重载，无需手动编译。<code>vext start</code> 用于生产环境。</p>
+<h3 class="rp-toc-include" id="如何指定-nodejs-版本"><a href="#如何指定-nodejs-版本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>如何指定 Node.js 版本？</h3>
+<p>VextJS 要求 Node.js &gt;= 20.19.0。推荐在项目根目录创建 <code>.node-version</code> 或 <code>.nvmrc</code> 文件指定版本：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">echo</span><span style="color:var(--shiki-token-string-expression)"> &quot;22&quot;</span><span style="color:var(--shiki-token-keyword)"> &gt;</span><span style="color:var(--shiki-token-string)"> .node-version</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="#22a041" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="#49cd37" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h3 class="rp-toc-include" id="vext-stop--vext-reload--vext-status-不工作"><a href="#vext-stop--vext-reload--vext-status-不工作" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>vext stop</code> / <code>vext reload</code> / <code>vext status</code> 不工作？</h3>
+<p>这三个命令仅在 Cluster 模式下可用。确保配置中启用了 <code>cluster.enabled: true</code> 或使用了 <code>VEXT_CLUSTER=1</code> 环境变量，且服务通过 <code>vext start</code> 启动。</p>
+<h2 class="rp-toc-include" id="下一步"><a href="#下一步" class="rp-header-anchor rp-link" aria-hidden="true">#</a>下一步</h2>
+<ul>
+<li>了解 <a href="/zh/guide/hot-reload.html" class="rp-link">热重载</a> 的三层策略细节</li>
+<li>学习 <a href="/zh/guide/cluster.html" class="rp-link">Cluster 多进程</a> 的完整配置</li>
+<li>查看 <a href="/zh/guide/configuration.html" class="rp-link">配置</a> 中端口、日志等选项</li>
+<li>探索 <a href="/zh/guide/project-structure.html" class="rp-link">项目结构</a> 的约定</li>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/6/12 12:00:25</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/guide/testing.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>测试</span></span></a><a href="/zh/guide/hot-reload.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>热重载</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#安装" class="rp-toc-item rp-link" title="安装" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">安装</span></a><a href="#命令概览" class="rp-toc-item rp-link" title="命令概览" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">命令概览</span></a><a href="#vext-create--创建项目" class="rp-toc-item rp-link" title="vext create — 创建项目" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext create</code> — 创建项目</span></a><a href="#用法" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#生成的目录结构" class="rp-toc-item rp-link" title="生成的目录结构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">生成的目录结构</span></a><a href="#vext-dev--开发模式" class="rp-toc-item rp-link" title="vext dev — 开发模式" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext dev</code> — 开发模式</span></a><a href="#用法-1" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-1" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#端口冲突策略" class="rp-toc-item rp-link" title="端口冲突策略" style="padding-left:24px" data-depth="2"><span class="rp-toc-item__text rp-doc">端口冲突策略</span></a><a href="#启动日志分层" class="rp-toc-item rp-link" title="启动日志分层" style="padding-left:24px" data-depth="2"><span class="rp-toc-item__text rp-doc">启动日志分层</span></a><a href="#示例-1" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#热重载策略" class="rp-toc-item rp-link" title="热重载策略" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">热重载策略</span></a><a href="#packagejson-脚本" class="rp-toc-item rp-link" title="package.json 脚本" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">package.json 脚本</span></a><a href="#vext-build--构建项目" class="rp-toc-item rp-link" title="vext build — 构建项目" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext build</code> — 构建项目</span></a><a href="#用法-2" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-2" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例-2" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#构建行为" class="rp-toc-item rp-link" title="构建行为" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">构建行为</span></a><a href="#packagejson-脚本-1" class="rp-toc-item rp-link" title="package.json 脚本" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">package.json 脚本</span></a><a href="#vext-typegen--生成声明并执行-service-依赖诊断experimental" class="rp-toc-item rp-link" title="vext typegen — 生成声明并执行 service 依赖诊断（experimental）" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext typegen</code> — 生成声明并执行 service 依赖诊断（experimental）</span></a><a href="#用法-3" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-3" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#产物" class="rp-toc-item rp-link" title="产物" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">产物</span></a><a href="#示例-3" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#适用边界" class="rp-toc-item rp-link" title="适用边界" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">适用边界</span></a><a href="#vext-doctor-routes--静态路由诊断experimental" class="rp-toc-item rp-link" title="vext doctor routes — 静态路由诊断（experimental）" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext doctor routes</code> — 静态路由诊断（experimental）</span></a><a href="#用法-4" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#targets" class="rp-toc-item rp-link" title="Targets" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Targets</span></a><a href="#选项-4" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#产物定位" class="rp-toc-item rp-link" title="产物定位" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">产物定位</span></a><a href="#示例-4" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#当前边界" class="rp-toc-item rp-link" title="当前边界" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">当前边界</span></a><a href="#vext-start--生产模式启动" class="rp-toc-item rp-link" title="vext start — 生产模式启动" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext start</code> — 生产模式启动</span></a><a href="#用法-5" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-5" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例-5" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#默认命令" class="rp-toc-item rp-link" title="默认命令" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">默认命令</span></a><a href="#cluster-模式" class="rp-toc-item rp-link" title="Cluster 模式" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Cluster 模式</span></a><a href="#预加载preload自动注入" class="rp-toc-item rp-link" title="预加载（Preload）自动注入" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">预加载（Preload）自动注入</span></a><a href="#启动期配置-provider" class="rp-toc-item rp-link" title="启动期配置 Provider" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">启动期配置 Provider</span></a><a href="#packagejson-脚本-2" class="rp-toc-item rp-link" title="package.json 脚本" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">package.json 脚本</span></a><a href="#vext-stop--停止服务" class="rp-toc-item rp-link" title="vext stop — 停止服务" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext stop</code> — 停止服务</span></a><a href="#用法-6" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-6" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例-6" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#vext-reload--滚动重启" class="rp-toc-item rp-link" title="vext reload — 滚动重启" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext reload</code> — 滚动重启</span></a><a href="#用法-7" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-7" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例-7" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#滚动重启流程" class="rp-toc-item rp-link" title="滚动重启流程" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">滚动重启流程</span></a><a href="#vext-status--查看运行状态" class="rp-toc-item rp-link" title="vext status — 查看运行状态" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>vext status</code> — 查看运行状态</span></a><a href="#用法-8" class="rp-toc-item rp-link" title="用法" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">用法</span></a><a href="#选项-8" class="rp-toc-item rp-link" title="选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">选项</span></a><a href="#示例-8" class="rp-toc-item rp-link" title="示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">示例</span></a><a href="#输出示例" class="rp-toc-item rp-link" title="输出示例" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">输出示例</span></a><a href="#全局选项" class="rp-toc-item rp-link" title="全局选项" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">全局选项</span></a><a href="#推荐的-packagejson-脚本" class="rp-toc-item rp-link" title="推荐的 package.json 脚本" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">推荐的 package.json 脚本</span></a><a href="#常见问题" class="rp-toc-item rp-link" title="常见问题" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">常见问题</span></a><a href="#vext-start-报错-dist-not-found" class="rp-toc-item rp-link" title="vext start 报错 &quot;dist/ not found&quot;" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc"><code>vext start</code> 报错 "dist/ not found"</span></a><a href="#开发时应该用-vext-dev-还是-vext-start" class="rp-toc-item rp-link" title="开发时应该用 vext dev 还是 vext start？" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">开发时应该用 <code>vext dev</code> 还是 <code>vext start</code>？</span></a><a href="#如何指定-nodejs-版本" class="rp-toc-item rp-link" title="如何指定 Node.js 版本？" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">如何指定 Node.js 版本？</span></a><a href="#vext-stop--vext-reload--vext-status-不工作" class="rp-toc-item rp-link" title="vext stop / vext reload / vext status 不工作？" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc"><code>vext stop</code> / <code>vext reload</code> / <code>vext status</code> 不工作？</span></a><a href="#下一步" class="rp-toc-item rp-link" title="下一步" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">下一步</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>
