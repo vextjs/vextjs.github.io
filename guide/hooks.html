@@ -8,7 +8,7 @@
 <script defer src="/static/js/lib-react.b473cabded.js"></script>
 <script defer src="/static/js/lib-router.b76a51aefb.js"></script>
 <script defer src="/static/js/193.d0c921acfd.js"></script>
-<script defer src="/static/js/index.925cbcbbe4.js"></script>
+<script defer src="/static/js/index.379ae1cd71.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Rspress v2.0.7">
 <meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
@@ -109,139 +109,44 @@
 
 <div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Hook Type</th><th>Strategy</th></tr></thead><tbody><tr><td><code>request:start</code>, <code>validation:success</code>, <code>handler:before</code>, <code>fetch:before</code>, <code>proxy:before</code>, <code>plugin:beforeSetup</code>, <code>server:beforeListen</code></td><td>Errors thrown by the handler will propagate upward and can prevent subsequent processes</td></tr><tr><td><code>response:before</code>, <code>error:beforeResponse</code>, <code>service:beforeCall</code>, <code>service:afterCall</code>, <code>service:error</code>, <code>openapi:*</code></td><td>Synchronous life cycle, return of Promise is not allowed</td></tr><tr><td><code>handler:after</code>, <code>handler:error</code>, <code>response:after</code>, <code>error:afterResponse</code>, <code>fetch:after/error</code>, <code>proxy:after/error</code>, <code>cache:*</code>, <code>plugin:afterSetup/error</code>, <code>routes:ready</code>, <code>app:ready/close</code></td><td>safe emit, hook errors will be recorded but will not change the main process</td></tr></tbody></table></div>
 <h2 class="rp-toc-include" id="available-hooks"><a href="#available-hooks" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Available Hooks</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Name</th><th>Trigger Point</th></tr></thead><tbody><tr><td><code>request:start</code></td><td>After requestId is generated, it enters the global middleware chain; 404 will also be triggered, <code>matched=false</code></td></tr><tr><td><code>route:matched</code></td><td>After the adapter matches the route and before executing the checksum handler</td></tr><tr><td><code>route:notFound</code></td><td>No route matching, 404 response before sending</td></tr><tr><td><code>validation:success</code></td><td>Route <code>validate</code> all passed, before <code>next()</code></td></tr><tr><td><code>validation:error</code></td><td>Route <code>validate</code> fails and throws <code>VextValidationError</code> before</td></tr><tr><td><code>handler:before</code></td><td>Before the business handler is called</td></tr><tr><td><code>handler:after</code></td><td>After the business handler returns successfully</td></tr><tr><td><code>handler:error</code></td><td>After the business handler throws an error and before entering global error handling</td></tr><tr><td><code>response:before</code></td><td><code>res.json/rawJson/text/stream</code> can be synchronized before sending. patch <code>data/status/headers</code></td></tr><tr><td><code>response:after</code></td><td>After the response is sent</td></tr><tr><td><code>error:beforeResponse</code></td><td><code>error-handler</code> can synchronize patch <code>body/status</code> before writing JSON error response</td></tr><tr><td><code>error:afterResponse</code></td><td>After the error response is sent</td></tr><tr><td><code>fetch:before</code></td><td><code>app.fetch</code> can be modified before leaving the website <code>Headers</code></td></tr><tr><td><code>fetch:after</code></td><td><code>app.fetch</code> returns <code>Response</code> after</td></tr><tr><td><code>fetch:error</code></td><td><code>app.fetch</code> finally fails</td></tr><tr><td><code>proxy:before</code></td><td><code>app.fetch.proxy</code> After parsing the upstream request and before sending it</td></tr><tr><td><code>proxy:after</code></td><td><code>app.fetch.proxy</code> after receiving the upstream response and before transparent transmission</td></tr><tr><td><code>proxy:error</code></td><td><code>app.fetch.proxy</code> on local error, timeout or upstream network failure</td></tr><tr><td><code>service:loaded</code></td><td>After service is loaded and mounted during cold start</td></tr><tr><td><code>service:reloaded</code></td><td>dev soft reload after re-instantiating service</td></tr><tr><td><code>service:beforeCall</code></td><td>Before the service method is called</td></tr><tr><td><code>service:afterCall</code></td><td>After the service method returns successfully</td></tr><tr><td><code>service:error</code></td><td>After the service method throws an error or rejects</td></tr><tr><td><code>cache:hit</code>, <code>cache:miss</code>, <code>cache:write</code>, <code>cache:error</code></td><td>Route-level response cache read and write life cycle</td></tr><tr><td><code>plugin:beforeSetup</code>, <code>plugin:afterSetup</code>, <code>plugin:error</code></td><td>Plugin <code>setup()</code> before and after and failure; plugins cannot observe their own <code>beforeSetup</code></td></tr><tr><td><code>openapi:beforeGenerate</code>, <code>openapi:afterGenerate</code></td><td>Before and after OpenAPI document generation; <code>afterGenerate</code> can replace document synchronously</td></tr><tr><td><code>server:beforeListen</code></td><td>Before HTTP server starts listening</td></tr><tr><td><code>app:ready</code></td><td><code>onReady</code> before and after execution</td></tr><tr><td><code>app:close</code></td><td><code>onClose</code> / shutdown before and after execution</td></tr></tbody></table></div>
+<p>| Name                                                      | Trigger Point                                                                                                     |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --- | -------------- | --------------------------------------------------- |
+| <code>request:start</code>                                           | After requestId is generated, it enters the global middleware chain; 404 will also be triggered, <code>matched=false</code>  |
+| <code>route:matched</code>                                           | After the adapter matches the route and before executing the checksum handler                                     |
+| <code>route:notFound</code>                                          | No route matching, 404 response before sending                                                                    |
+| <code>validation:success</code>                                      | Route <code>validate</code> all passed, before <code>next()</code>                                                                      |
+| <code>validation:error</code>                                        | Route <code>validate</code> fails and throws <code>VextValidationError</code> before                                                    |
+| <code>handler:before</code>                                          | Before the business handler is called                                                                             |
+| <code>handler:after</code>                                           | After the business handler returns successfully                                                                   |
+| <code>handler:error</code>                                           | After the business handler throws an error and before entering global error handling                              |
+| <code>response:before</code>                                         | Runs before <code>json/rawJson/text/html/render/stream/download/redirect</code>; synchronously patches <code>data/status/headers</code> |
+| <code>response:after</code>                                          | After the response is sent                                                                                        |
+| <code>error:beforeResponse</code>                                    | <code>error-handler</code> can synchronize patch <code>body/status</code> before writing JSON error response                            |
+| <code>error:afterResponse</code>                                     | After the error response is sent                                                                                  |
+| <code>fetch:before</code>                                            | <code>app.fetch</code> can be modified before leaving the website <code>Headers</code>                                                  |
+| <code>fetch:after</code>                                             | <code>app.fetch</code> returns <code>Response</code> after                                                                              |
+| <code>fetch:error</code>                                             | <code>app.fetch</code> finally fails                                                                                         |
+| <code>proxy:before</code>                                            | <code>app.fetch.proxy</code> After parsing the upstream request and before sending it                                        |
+| <code>proxy:after</code>                                             | <code>app.fetch.proxy</code> after receiving the upstream response and before transparent transmission                       |
+| <code>proxy:error</code>                                             | <code>app.fetch.proxy</code> on local error, timeout or upstream network failure                                             |
+| <code>service:loaded</code>                                          | After service is loaded and mounted during cold start                                                             |
+| <code>service:reloaded</code>                                        | dev soft reload after re-instantiating service                                                                    |
+| <code>service:beforeCall</code>                                      | Before the service method is called                                                                               |
+| <code>service:afterCall</code>                                       | After the service method returns successfully                                                                     |
+| <code>service:error</code>                                           | After the service method throws an error or rejects                                                               |
+| <code>cache:hit</code>, <code>cache:miss</code>, <code>cache:write</code>, <code>cache:error</code>   | Route-level response cache read and write life cycle                                                              |
+| <code>plugin:beforeSetup</code>, <code>plugin:afterSetup</code>, <code>plugin:error</code> | Plugin <code>setup()</code> before and after and failure; plugins cannot observe their own <code>beforeSetup</code>                     |     | <code>routes:ready</code> | After route scanning and registration are completed |
+| <code>openapi:beforeGenerate</code>, <code>openapi:afterGenerate</code>         | Before and after OpenAPI document generation; <code>afterGenerate</code> can replace document synchronously                  |
+| <code>server:beforeListen</code>                                     | Before HTTP server starts listening                                                                               |
+| <code>app:ready</code>                                               | <code>onReady</code> before and after execution                                                                              |
+| <code>app:close</code>                                               | <code>onClose</code> / shutdown before and after execution                                                                   |</p>
 <h2 class="rp-toc-include" id="more-references"><a href="#more-references" class="rp-header-anchor rp-link" aria-hidden="true">#</a>More references</h2>
 <ul>
 <li><a href="/api/app.html#apphooks" class="rp-link"><code>app.hooks</code> API</a></li>
 <li>[Register runtime hooks in plug-ins](/guide/plugins#apphookson--Register runtime life cycle-hook)</li>
 <li><a href="/guide/fetch.html" class="rp-link">Fetch / Proxy hooks</a></li>
 <li><a href="/guide/openapi.html" class="rp-link">OpenAPI hooks</a></li>
-</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>6/12/2026, 12:00:25 PM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/guide/plugins.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Plugins</span></span></a><a href="/guide/request-context.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>Request Context</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#common-scenarios" class="rp-toc-item rp-link" title="Common scenarios" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Common scenarios</span></a><a href="#only-record-requests-that-pass-the-verification" class="rp-toc-item rp-link" title="Only record requests that pass the verification" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Only record requests that pass the verification</span></a><a href="#add-header-before-sending-response" class="rp-toc-item rp-link" title="Add header before sending response" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Add header before sending response</span></a><a href="#track-service-calls" class="rp-toc-item rp-link" title="Track service calls" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Track service calls</span></a><a href="#monitor-outbound-requests-and-proxies" class="rp-toc-item rp-link" title="Monitor outbound requests and proxies" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Monitor outbound requests and proxies</span></a><a href="#modify-openapi-documentation" class="rp-toc-item rp-link" title="Modify OpenAPI documentation" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Modify OpenAPI documentation</span></a><a href="#execution-strategy" class="rp-toc-item rp-link" title="Execution strategy" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Execution strategy</span></a><a href="#available-hooks" class="rp-toc-item rp-link" title="Available Hooks" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Available Hooks</span></a><a href="#more-references" class="rp-toc-item rp-link" title="More references" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">More references</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>7/13/2026, 9:06:12 AM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/guide/plugins.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Plugins</span></span></a><a href="/guide/request-context.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>Request Context</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#common-scenarios" class="rp-toc-item rp-link" title="Common scenarios" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Common scenarios</span></a><a href="#only-record-requests-that-pass-the-verification" class="rp-toc-item rp-link" title="Only record requests that pass the verification" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Only record requests that pass the verification</span></a><a href="#add-header-before-sending-response" class="rp-toc-item rp-link" title="Add header before sending response" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Add header before sending response</span></a><a href="#track-service-calls" class="rp-toc-item rp-link" title="Track service calls" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Track service calls</span></a><a href="#monitor-outbound-requests-and-proxies" class="rp-toc-item rp-link" title="Monitor outbound requests and proxies" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Monitor outbound requests and proxies</span></a><a href="#modify-openapi-documentation" class="rp-toc-item rp-link" title="Modify OpenAPI documentation" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Modify OpenAPI documentation</span></a><a href="#execution-strategy" class="rp-toc-item rp-link" title="Execution strategy" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Execution strategy</span></a><a href="#available-hooks" class="rp-toc-item rp-link" title="Available Hooks" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Available Hooks</span></a><a href="#more-references" class="rp-toc-item rp-link" title="More references" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">More references</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
     <div id="__rspress_modal_container"></div>
   </body>
 </html>
