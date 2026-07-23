@@ -8,7 +8,7 @@
 <script defer src="/static/js/lib-react.b473cabded.js"></script>
 <script defer src="/static/js/lib-router.b76a51aefb.js"></script>
 <script defer src="/static/js/193.d0c921acfd.js"></script>
-<script defer src="/static/js/index.379ae1cd71.js"></script>
+<script defer src="/static/js/index.cd84b2f5da.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Rspress v2.0.7">
 <meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
@@ -158,6 +158,48 @@
 
 
 <div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.enabled</code></td><td><code>false</code></td><td>Enable built-in frontend pipeline</td></tr><tr><td><code>frontend.framework</code></td><td><code>&quot;react&quot;</code></td><td>Framework label for built-in React support</td></tr><tr><td><code>frontend.root</code></td><td><code>&quot;src/frontend&quot;</code></td><td>User frontend source root</td></tr><tr><td><code>frontend.indexHtml</code></td><td><code>src/frontend/pages/_document.html</code></td><td>Document template</td></tr><tr><td><code>frontend.outDir</code></td><td><code>.vext/client</code> in dev, <code>dist/client</code> in build</td><td>Frontend output directory</td></tr><tr><td><code>frontend.publicDir</code></td><td><code>&quot;public&quot;</code></td><td>Static public directory</td></tr><tr><td><code>frontend.publicPath</code></td><td><code>&quot;/&quot;</code></td><td>Public asset URL prefix</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="style-fields"><a href="#style-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Style Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.styles.entry</code></td><td><code>styles/index.css</code></td><td>Global CSS entry resolved from <code>frontend.root</code></td></tr><tr><td><code>frontend.styles.jscss.enabled</code></td><td><code>true</code></td><td>Enable Vext JSCSS extraction</td></tr><tr><td><code>frontend.styles.jscss.files</code></td><td><code>**/*.style.ts</code>, <code>**/*.style.js</code>, <code>**/*.css.ts</code></td><td>JSCSS source globs</td></tr><tr><td><code>frontend.styles.jscss.runtimeAdapter</code></td><td><code>css-variables</code></td><td>Emit dynamic variables as CSS custom properties; <code>none</code>/<code>false</code> uses fallback values</td></tr><tr><td><code>frontend.styles.jscss.dynamicVars</code></td><td><code>true</code></td><td>Emit custom property declarations and <code>var(...)</code> references</td></tr><tr><td><code>frontend.styles.jscss.recipes</code></td><td><code>true</code></td><td>Emit recipe variant classes and rules</td></tr></tbody></table></div>
 <h2 class="rp-toc-include" id="build-fields"><a href="#build-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build Fields</h2>
 
 
@@ -219,8 +261,29 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>Browser target passed to esbuild</td></tr><tr><td><code>frontend.build.minify</code></td><td>production <code>true</code></td><td>Minify browser output</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>dev <code>true</code></td><td>Emit source maps</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>Browser external modules</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>Import-map URLs for browser externals</td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>Shared runtime chunk strategy</td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>Inline imported assets below this byte size</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>Enable CSS Modules</td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>Block server-only imports from browser graph</td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>Write raw/gzip/brotli size report</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>Browser target passed to esbuild</td></tr><tr><td><code>frontend.build.minify</code></td><td>production <code>true</code></td><td>Minify browser output</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>dev <code>true</code></td><td>Emit source maps</td></tr><tr><td><code>frontend.build.client.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>Browser bundle asset subdirectory</td></tr><tr><td><code>frontend.build.client.splitting</code></td><td><code>true</code></td><td>Enable browser code splitting</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>Browser external modules</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>Import-map URLs for browser externals</td></tr><tr><td><code>frontend.build.server.outFile</code></td><td><code>server/renderer.cjs</code></td><td>SSR renderer bundle file under <code>frontend.outDir</code></td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>Shared runtime chunk strategy</td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>Inline imported assets below this byte size</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>Enable CSS Modules</td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>Block server-only imports from browser graph</td></tr><tr><td><code>frontend.build.diagnostics.sizeReport</code></td><td><code>true</code></td><td>Write <code>size-report.json</code></td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>Include route-level performance metrics</td></tr></tbody></table></div>
 <p>React-related browser externals must define <code>externalRuntime</code> mappings. Otherwise the build fails with a friendly diagnostic.</p>
+<p>Browser output is directory-based and uses <code>frontend.outDir</code>; <code>frontend.build.client.outFile</code> is not supported. Vext always emits the frontend manifest family required by SSR, preload, deploy, and verification, so <code>build.client.manifest</code> / <code>build.server.manifest</code> are not configuration fields.</p>
 <h2 class="rp-toc-include" id="deploy-fields"><a href="#deploy-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Deploy Fields</h2>
 
 
@@ -294,7 +357,12 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>true</code></td><td>Enable frontend page copy</td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td>backend default locale</td><td>Fallback frontend locale</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>Browser locale loading mode</td></tr></tbody></table></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>true</code></td><td>Scan and bundle frontend page copy</td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td>backend default locale</td><td>Fallback frontend locale</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>Browser locale loading mode</td></tr><tr><td><code>frontend.i18n.htmlLang</code></td><td><code>true</code></td><td>Write request-aware <code>{vext.lang}</code> / <code>&lt;html lang&gt;</code></td></tr></tbody></table></div>
 <h2 class="rp-toc-include" id="dev-fields"><a href="#dev-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Dev Fields</h2>
 
 
@@ -321,7 +389,13 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>Enable frontend dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>Enable React Fast Refresh when possible</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>Browser behavior after render-data backend reload</td></tr></tbody></table></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>Enable frontend dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>Enable React Fast Refresh when possible</td></tr><tr><td><code>frontend.dev.overlay</code></td><td><code>true</code></td><td>Show browser UI for frontend rebuild errors and render refresh prompts</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>Browser behavior after render-data backend reload</td></tr></tbody></table></div>
+<p><code>frontend.dev.overlay</code> only controls frontend browser development UI. Backend exception HTML overlays are configured separately through top-level <code>dev.errorOverlay</code>.</p>
 <h2 class="rp-toc-include" id="spa-fallback-fields"><a href="#spa-fallback-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SPA Fallback Fields</h2>
 
 
@@ -363,7 +437,12 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>Explicit client-router sub-app fallback scopes</td></tr><tr><td><code>scopes[].basePath</code></td><td>required</td><td>URL prefix handled by the shell</td></tr><tr><td><code>scopes[].page</code></td><td>required</td><td>Shell page id from <code>src/frontend/pages/**</code></td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>Whether the shell should be SSR-rendered</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>Paths that must not be handled by fallback</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>HTTP status for matched fallback</td></tr></tbody></table></div><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>6/23/2026, 7:59:49 AM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration Validation</span></span></a><a href="/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>API Client and Contracts</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#table-of-contents" class="rp-toc-item rp-link" title="Table of Contents" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Table of Contents</span></a><a href="#minimal-config" class="rp-toc-item rp-link" title="Minimal Config" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Minimal Config</span></a><a href="#complete-example" class="rp-toc-item rp-link" title="Complete Example" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Complete Example</span></a><a href="#core-fields" class="rp-toc-item rp-link" title="Core Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Core Fields</span></a><a href="#build-fields" class="rp-toc-item rp-link" title="Build Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build Fields</span></a><a href="#deploy-fields" class="rp-toc-item rp-link" title="Deploy Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy Fields</span></a><a href="#i18n-fields" class="rp-toc-item rp-link" title="I18n Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n Fields</span></a><a href="#dev-fields" class="rp-toc-item rp-link" title="Dev Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev Fields</span></a><a href="#spa-fallback-fields" class="rp-toc-item rp-link" title="SPA Fallback Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback Fields</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>Explicit client-router sub-app fallback scopes</td></tr><tr><td><code>frontend.spaFallback.exclude</code></td><td><code>[&quot;/api/**&quot;, &quot;/openapi.json&quot;, &quot;/docs/**&quot;, &quot;/_vext/docs/**&quot;]</code></td><td>Global paths that fallback never captures</td></tr><tr><td><code>scopes[].basePath</code></td><td>required</td><td>URL prefix handled by the shell</td></tr><tr><td><code>scopes[].page</code></td><td>required</td><td>Shell page id from <code>src/frontend/pages/**</code></td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>Whether the shell should be SSR-rendered</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>Paths that must not be handled by fallback</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>HTTP status for matched fallback</td></tr></tbody></table></div><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>7/20/2026, 10:05:33 PM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration Validation</span></span></a><a href="/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>API Client and Contracts</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#table-of-contents" class="rp-toc-item rp-link" title="Table of Contents" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Table of Contents</span></a><a href="#minimal-config" class="rp-toc-item rp-link" title="Minimal Config" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Minimal Config</span></a><a href="#complete-example" class="rp-toc-item rp-link" title="Complete Example" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Complete Example</span></a><a href="#core-fields" class="rp-toc-item rp-link" title="Core Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Core Fields</span></a><a href="#style-fields" class="rp-toc-item rp-link" title="Style Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Style Fields</span></a><a href="#build-fields" class="rp-toc-item rp-link" title="Build Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build Fields</span></a><a href="#deploy-fields" class="rp-toc-item rp-link" title="Deploy Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy Fields</span></a><a href="#i18n-fields" class="rp-toc-item rp-link" title="I18n Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n Fields</span></a><a href="#dev-fields" class="rp-toc-item rp-link" title="Dev Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev Fields</span></a><a href="#spa-fallback-fields" class="rp-toc-item rp-link" title="SPA Fallback Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback Fields</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
     <div id="__rspress_modal_container"></div>
   </body>
 </html>

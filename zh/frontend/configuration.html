@@ -8,7 +8,7 @@
 <script defer src="/static/js/lib-react.b473cabded.js"></script>
 <script defer src="/static/js/lib-router.b76a51aefb.js"></script>
 <script defer src="/static/js/193.d0c921acfd.js"></script>
-<script defer src="/static/js/index.379ae1cd71.js"></script>
+<script defer src="/static/js/index.cd84b2f5da.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Rspress v2.0.7">
 <meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
@@ -158,6 +158,48 @@
 
 
 <div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.enabled</code></td><td><code>false</code></td><td>启用内置前端流水线</td></tr><tr><td><code>frontend.framework</code></td><td><code>&quot;react&quot;</code></td><td>内置 React 支持的框架标签</td></tr><tr><td><code>frontend.root</code></td><td><code>&quot;src/frontend&quot;</code></td><td>用户前端源码根目录</td></tr><tr><td><code>frontend.indexHtml</code></td><td><code>src/frontend/pages/_document.html</code></td><td>Document 模板</td></tr><tr><td><code>frontend.outDir</code></td><td>dev 为 <code>.vext/client</code>，build 为 <code>dist/client</code></td><td>前端输出目录</td></tr><tr><td><code>frontend.publicDir</code></td><td><code>&quot;public&quot;</code></td><td>公共静态资源目录</td></tr><tr><td><code>frontend.publicPath</code></td><td><code>&quot;/&quot;</code></td><td>公开资源 URL 前缀</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="style-字段"><a href="#style-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Style 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.styles.entry</code></td><td><code>styles/index.css</code></td><td>从 <code>frontend.root</code> 解析的全局 CSS 入口</td></tr><tr><td><code>frontend.styles.jscss.enabled</code></td><td><code>true</code></td><td>启用 Vext JSCSS 抽取</td></tr><tr><td><code>frontend.styles.jscss.files</code></td><td><code>**/*.style.ts</code>, <code>**/*.style.js</code>, <code>**/*.css.ts</code></td><td>JSCSS source globs</td></tr><tr><td><code>frontend.styles.jscss.runtimeAdapter</code></td><td><code>css-variables</code></td><td>以 CSS custom properties 输出动态变量；<code>none</code>/<code>false</code> 使用 fallback 值</td></tr><tr><td><code>frontend.styles.jscss.dynamicVars</code></td><td><code>true</code></td><td>输出 custom property 声明与 <code>var(...)</code> 引用</td></tr><tr><td><code>frontend.styles.jscss.recipes</code></td><td><code>true</code></td><td>输出 recipe variant class 与 rules</td></tr></tbody></table></div>
 <h2 class="rp-toc-include" id="build-字段"><a href="#build-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build 字段</h2>
 
 
@@ -219,8 +261,29 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>传给 esbuild 的浏览器目标</td></tr><tr><td><code>frontend.build.minify</code></td><td>生产期 <code>true</code></td><td>压缩浏览器产物</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>开发期 <code>true</code></td><td>生成 source map</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>浏览器 external 模块</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>浏览器 external 的 import-map URL</td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>共享 runtime chunk 策略</td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>小于该字节数的 import 型资源内联</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>启用 CSS Modules</td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>阻断服务端模块进入浏览器 graph</td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>写入 raw/gzip/brotli size report</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>传给 esbuild 的浏览器目标</td></tr><tr><td><code>frontend.build.minify</code></td><td>生产期 <code>true</code></td><td>压缩浏览器产物</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>开发期 <code>true</code></td><td>生成 source map</td></tr><tr><td><code>frontend.build.client.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>浏览器 bundle 资源子目录</td></tr><tr><td><code>frontend.build.client.splitting</code></td><td><code>true</code></td><td>启用浏览器代码拆分</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>浏览器 external 模块</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>浏览器 external 的 import-map URL</td></tr><tr><td><code>frontend.build.server.outFile</code></td><td><code>server/renderer.cjs</code></td><td><code>frontend.outDir</code> 下的 SSR renderer bundle 文件</td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>共享 runtime chunk 策略</td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>小于该字节数的 import 型资源内联</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>启用 CSS Modules</td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>阻断服务端模块进入浏览器 graph</td></tr><tr><td><code>frontend.build.diagnostics.sizeReport</code></td><td><code>true</code></td><td>写入 <code>size-report.json</code></td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>包含路由级性能指标</td></tr></tbody></table></div>
 <p>React 相关 browser external 必须提供 <code>externalRuntime</code> 映射，否则构建会用友好诊断失败。</p>
+<p>浏览器输出采用目录模式，通过 <code>frontend.outDir</code> 配置；不支持 <code>frontend.build.client.outFile</code>。Vext 始终生成 SSR、preload、deploy 和验证所需的 frontend manifest family，因此 <code>build.client.manifest</code> / <code>build.server.manifest</code> 不是配置字段。</p>
 <h2 class="rp-toc-include" id="deploy-字段"><a href="#deploy-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Deploy 字段</h2>
 
 
@@ -294,7 +357,12 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>true</code></td><td>启用前端页面文案</td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td>后端默认 locale</td><td>前端 fallback locale</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>浏览器 locale 加载模式</td></tr></tbody></table></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>true</code></td><td>扫描并打包前端页面文案</td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td>后端默认 locale</td><td>前端 fallback locale</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>浏览器 locale 加载模式</td></tr><tr><td><code>frontend.i18n.htmlLang</code></td><td><code>true</code></td><td>写入请求级 <code>{vext.lang}</code> / <code>&lt;html lang&gt;</code></td></tr></tbody></table></div>
 <h2 class="rp-toc-include" id="dev-字段"><a href="#dev-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Dev 字段</h2>
 
 
@@ -321,7 +389,13 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>启用前端 dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>尽可能启用 React Fast Refresh</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>render-data 后端 reload 后的浏览器行为</td></tr></tbody></table></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>启用前端 dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>尽可能启用 React Fast Refresh</td></tr><tr><td><code>frontend.dev.overlay</code></td><td><code>true</code></td><td>显示前端 rebuild 错误与 render refresh 浏览器提示 UI</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>render-data 后端 reload 后的浏览器行为</td></tr></tbody></table></div>
+<p><code>frontend.dev.overlay</code> 只控制前端浏览器开发 UI。后端异常 HTML overlay 由顶层 <code>dev.errorOverlay</code> 单独配置。</p>
 <h2 class="rp-toc-include" id="spa-fallback-字段"><a href="#spa-fallback-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SPA Fallback 字段</h2>
 
 
@@ -363,7 +437,12 @@
 
 
 
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>显式 client-router 子应用 fallback 范围</td></tr><tr><td><code>scopes[].basePath</code></td><td>必填</td><td>shell 负责的 URL 前缀</td></tr><tr><td><code>scopes[].page</code></td><td>必填</td><td><code>src/frontend/pages/**</code> 下的 shell page id</td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>shell 是否 SSR 渲染</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>不进入 fallback 的路径</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>fallback 命中后的 HTTP status</td></tr></tbody></table></div><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/6/23 07:59:49</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration 验证</span></span></a><a href="/zh/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>API Client 与契约</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#目录导航" class="rp-toc-item rp-link" title="目录导航" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">目录导航</span></a><a href="#最小配置" class="rp-toc-item rp-link" title="最小配置" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">最小配置</span></a><a href="#完整示例" class="rp-toc-item rp-link" title="完整示例" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">完整示例</span></a><a href="#核心字段" class="rp-toc-item rp-link" title="核心字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心字段</span></a><a href="#build-字段" class="rp-toc-item rp-link" title="Build 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build 字段</span></a><a href="#deploy-字段" class="rp-toc-item rp-link" title="Deploy 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy 字段</span></a><a href="#i18n-字段" class="rp-toc-item rp-link" title="I18n 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n 字段</span></a><a href="#dev-字段" class="rp-toc-item rp-link" title="Dev 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev 字段</span></a><a href="#spa-fallback-字段" class="rp-toc-item rp-link" title="SPA Fallback 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback 字段</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>显式 client-router 子应用 fallback 范围</td></tr><tr><td><code>frontend.spaFallback.exclude</code></td><td><code>[&quot;/api/**&quot;, &quot;/openapi.json&quot;, &quot;/docs/**&quot;, &quot;/_vext/docs/**&quot;]</code></td><td>fallback 永远不会接管的全局路径</td></tr><tr><td><code>scopes[].basePath</code></td><td>必填</td><td>shell 负责的 URL 前缀</td></tr><tr><td><code>scopes[].page</code></td><td>必填</td><td><code>src/frontend/pages/**</code> 下的 shell page id</td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>shell 是否 SSR 渲染</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>不进入 fallback 的路径</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>fallback 命中后的 HTTP status</td></tr></tbody></table></div><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/7/20 22:05:33</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration 验证</span></span></a><a href="/zh/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>API Client 与契约</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#目录导航" class="rp-toc-item rp-link" title="目录导航" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">目录导航</span></a><a href="#最小配置" class="rp-toc-item rp-link" title="最小配置" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">最小配置</span></a><a href="#完整示例" class="rp-toc-item rp-link" title="完整示例" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">完整示例</span></a><a href="#核心字段" class="rp-toc-item rp-link" title="核心字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心字段</span></a><a href="#style-字段" class="rp-toc-item rp-link" title="Style 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Style 字段</span></a><a href="#build-字段" class="rp-toc-item rp-link" title="Build 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build 字段</span></a><a href="#deploy-字段" class="rp-toc-item rp-link" title="Deploy 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy 字段</span></a><a href="#i18n-字段" class="rp-toc-item rp-link" title="I18n 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n 字段</span></a><a href="#dev-字段" class="rp-toc-item rp-link" title="Dev 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev 字段</span></a><a href="#spa-fallback-字段" class="rp-toc-item rp-link" title="SPA Fallback 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback 字段</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
     <div id="__rspress_modal_container"></div>
   </body>
 </html>
