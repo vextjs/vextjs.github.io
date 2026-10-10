@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build (vext build) - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-eea9376cc46c.3040820ef7.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Build (vext build) - VextJS">
+<meta property="og:description" content="vext build prepares application output for production. It compiles TypeScript backend code to JavaScript; a pure JavaScript backend runs from source. With frontend enabled, it also builds browser assets, the server renderer, and related manifests. This page first builds, starts, and checks an application, then explains compilation rules, configuration, output, and deployment. See CLI for commands and Frontend Build and Deploy for frontend delivery.">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/guide/build.html">
+<link rel="alternate" hreflang="zh" href="/zh/guide/build.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="vext build prepares application output for production. It compiles TypeScript backend code to JavaScript; a pure JavaScript backend runs from source. With frontend enabled, it also builds browser assets, the server renderer, and related manifests. This page first builds, starts, and checks an application, then explains compilation rules, configuration, output, and deployment. See CLI for commands and Frontend Build and Deploy for frontend delivery."><link rel="canonical" href="https://vextjs.github.io/guide/build"><meta property="og:url" content="https://vextjs.github.io/guide/build"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">Search</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/guide/introduction.html" class="rp-nav-menu__item__container rp-link">Guide</a></li><li class="rp-nav-menu__item"><a href="/frontend/overview.html" class="rp-nav-menu__item__container rp-link">Frontend</a></li><li class="rp-nav-menu__item"><a href="/guide/routing.html" class="rp-nav-menu__item__container rp-link">Runtime</a></li><li class="rp-nav-menu__item"><a href="/guide/validation.html" class="rp-nav-menu__item__container rp-link">Data</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/guide/deployment.html" class="rp-nav-menu__item__container rp-link">Tooling &amp; Operations</a></li><li class="rp-nav-menu__item"><a href="/api/config.html" class="rp-nav-menu__item__container rp-link">API Reference</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">Resources<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="Examples">Examples</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="Benchmark">Benchmark</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Contributing">Contributing</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="Support &amp; Services">Support &amp; Services</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="Docs Data &amp; AI">Docs Data &amp; AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Changelog">Changelog</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="en">English</div></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/guide/build.html" class="rp-hover-group__item__link rp-link" aria-label="简体中文" lang="zh" hrefLang="zh" rel="alternate">简体中文</a></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">Languages</div><div class="rp-nav-screen-langs__right">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">English</span><a href="/zh/guide/build.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="zh" lang="zh" rel="alternate">简体中文</a></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>Menu</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">ON THIS PAGE</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Start</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/introduction.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Introduction</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/quick-start.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Quick Start</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Project Structure</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Runtime</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Routing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Services</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/middleware.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Middleware</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/plugins.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Plugins</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/hooks.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Runtime Hooks</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/request-context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Request Context</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/configuration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Configuration</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/adapters.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Adapter Architecture</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Specifications</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/specification/index.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Development Specifications</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/architecture.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Architecture and Responsibilities</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/http-and-routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP and Routing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/validation-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Validation and Data Contracts</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/data-access.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Data Access</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/security-and-resources.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Security and Resources</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs and Scheduling</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/operations.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Build and Operations</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Data and APIs</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Validation</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/security.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Authentication and Security</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/rate-limit.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Rate Limiting</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/uploads.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">File Uploads</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cookies-session.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cookies &amp; Sessions</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Response Cache</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/database.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Database</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP Client</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/openapi.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenAPI</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/guide/frontend.html" class="rp-sidebar-item rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Frontend Integration</span></div><div class="rp-sidebar-item__right"></div></a><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Tooling &amp; Operations</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/build.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Build</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/deployment.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Deployment</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/testing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Testing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cli.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CLI Commands</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/mcp-generation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">MCP Code Generation</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/hot-reload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hot Reload</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/preload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Preload</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cluster.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cluster</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Internationalization (i18n)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/logger.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Logger</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/error-handling.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Error Handling</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">API Reference</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/api/config.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Config</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/route-definition.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Route Definition</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Request and Response</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/app.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">App</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fetch API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/plugin-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Plugin API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/testing-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Testing API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/access-log.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Access Log</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Examples</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/examples/hello-world.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hello World</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/crud-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CRUD API</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Ecosystem Integrations</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/examples/permission-core-auth.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">permission-core Auth</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/nacos-integration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Nacos</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/opentelemetry.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenTelemetry</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/benchmark.html" class="rp-sidebar-item rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Benchmarking</span></div><div class="rp-sidebar-item__right"></div></a></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="build-vext-build"><a href="#build-vext-build" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build (vext build)<!-- --> </h1>
+<p><code>vext build</code> prepares application output for production. It compiles TypeScript backend code to JavaScript; a pure JavaScript backend runs from source. With frontend enabled, it also builds browser assets, the server renderer, and related manifests.</p>
+<p>This page first builds, starts, and checks an application, then explains compilation rules, configuration, output, and deployment. See <a href="/guide/cli.html" class="rp-link">CLI</a> for commands and <a href="/frontend/build-and-deploy.html" class="rp-link">Frontend Build and Deploy</a> for frontend delivery.</p>
+<h2 class="rp-toc-include" id="quick-start"><a href="#quick-start" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Quick Start</h2>
+<h3 class="rp-toc-include" id="prerequisites-and-project-types"><a href="#prerequisites-and-project-types" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Prerequisites and project types</h3>
+<p>Run commands in the application root containing <code>package.json</code> and <code>src/</code>, after installing project dependencies. <code>npx vextjs</code> invokes the installed Vext CLI; npm scripts can use <code>vext</code> directly. See <a href="/guide/quick-start.html" class="rp-link">Quick Start</a> to create a project.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Project type</th><th>Build behavior</th><th>Keep for deployment</th></tr></thead><tbody><tr><td>TypeScript API</td><td>Refresh types and route manifest, then compile backend</td><td>Backend output, build identity, production dependencies, runtime resources</td></tr><tr><td>TypeScript with frontend</td><td>Compile backend, then build frontend</td><td>Complete backend/frontend output, identity, production dependencies</td></tr><tr><td>JavaScript API</td><td>No backend compile step; can start from source</td><td><code>src/</code>, production dependencies, runtime resources</td></tr><tr><td>JavaScript with frontend</td><td>Refresh route manifest and build frontend; backend still runs from source</td><td><code>src/</code>, frontend output, build identity, production dependencies</td></tr></tbody></table></div>
+<p>For a TypeScript project, first stop its <code>vext dev</code> process to avoid a competing project writer, then run:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --typecheck</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 3000</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>--typecheck</code> requires TypeScript and a valid <code>tsconfig.json</code>. Without it, esbuild transpiles the code but does not prove TypeScript type checking passed.</p>
+<p>If you used the <a href="/guide/cli.html#from-project-creation-to-production-startup" class="rp-link">API scaffold in the CLI guide</a>, request these routes from a second terminal:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">curl</span><span style="color:var(--shiki-token-string)"> -i</span><span style="color:var(--shiki-token-string)"> http://127.0.0.1:3000/</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">curl</span><span style="color:var(--shiki-token-string)"> -i</span><span style="color:var(--shiki-token-string)"> http://127.0.0.1:3000/health</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Both should return HTTP 200. The first returns a greeting; the second has <code>data.status: &quot;ok&quot;</code>. For your project, request its actual routes and verify business results. Stop the server with Ctrl+C afterward. This example explicitly sets the port; the scaffold&#x27;s production profile defaults to 3001.</p>
+<h3 class="rp-toc-include" id="output-directory-and-configuration-profile"><a href="#output-directory-and-configuration-profile" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Output directory and configuration profile</h3>
+<p>Output selection follows explicit <code>--outdir</code> → <code>VEXT_BUILD_OUTDIR</code> → last successful build record → <code>dist</code>. To inspect a specific output:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --typecheck</span><span style="color:var(--shiki-token-string)"> --outdir</span><span style="color:var(--shiki-token-string)"> dist</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --outdir</span><span style="color:var(--shiki-token-string)"> dist</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 3000</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>For a custom profile, first provide <code>src/config/&lt;name&gt;.ts</code> or another supported config file, then build and start:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --config</span><span style="color:var(--shiki-token-string)"> sg-sit</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --config</span><span style="color:var(--shiki-token-string)"> sg-sit</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Build profile precedence is <code>--config</code> → <code>VEXT_CONFIG</code> → compatibility fallback from a nonstandard <code>NODE_ENV</code> → <code>production</code>. Startup without an explicit profile prefers the build record, then production; see <a href="/guide/configuration.html" class="rp-link">Configuration</a>. Backend compilation statically replaces <code>process.env.NODE_ENV</code> in user source with <code>&quot;production&quot;</code>. A config profile serves a different purpose; do not use compiled source&#x27;s NODE_ENV branch to switch sit/uat/prod.</p>
+<h2 class="rp-toc-include" id="refresh-generated-files-before-building"><a href="#refresh-generated-files-before-building" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Refresh generated files before building</h2>
+<p>For a TypeScript project, <code>vext build</code> first refreshes generated types and manifests, then runs optional type checking and esbuild compilation:</p>
+<ol>
+<li><code>vext typegen</code> basic refresh: write <code>.vext/types/*.generated.d.ts</code>, <code>src/types/generated/index.d.ts</code> and <code>.vext/manifest/services.json</code></li>
+<li><code>doctor routes --refresh --write-manifest</code>: Rescan routes and write <code>.vext/manifest/routes.json</code></li>
+<li>If <code>--typecheck</code> is passed in, execute <code>tsc --noEmit</code> at this time</li>
+<li>esbuild outputs the server runtime into the selected directory (<code>dist/</code> by default)</li>
+<li>If <code>config.frontend.enabled</code> is true, the frontend build follows (<code>client/</code> under the backend output by default)</li>
+</ol>
+<p>This ensures that new scaffolding or projects that have just cleaned <code>.vext/</code> can also get the latest generated type in <code>vext build --typecheck</code> before entering TypeScript verification.</p>
+<h2 class="rp-toc-include" id="compilation-strategy"><a href="#compilation-strategy" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Compilation strategy</h2>
+<h3 class="rp-toc-include" id="file-by-file-transform"><a href="#file-by-file-transform" class="rp-header-anchor rp-link" aria-hidden="true">#</a>File-by-File Transform</h3>
+<p>The backend retains a separate CommonJS <code>.js</code> output for each source module and its directory structure so runtime loaders can discover routes, services, plugins, middleware, and models. The mapping below illustrates paths; a project need not create every directory.</p>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>src/                          dist/</span></span>
+<span class="line"><span>├── config/                   ├── config/</span></span>
+<span class="line"><span>│   ├── default.ts      →     │   ├── default.js   + default.js.map</span></span>
+<span class="line"><span>│   └── production.ts   →     │   └── production.js + production.js.map</span></span>
+<span class="line"><span>├── routes/                   ├── routes/</span></span>
+<span class="line"><span>│   ├── users.ts        →     │   ├── users.js     + users.js.map</span></span>
+<span class="line"><span>│   └── posts.ts        →     │   └── posts.js     + posts.js.map</span></span>
+<span class="line"><span>├── services/                 ├── services/</span></span>
+<span class="line"><span>│   ├── user.ts         →     │   ├── user.js      + user.js.map</span></span>
+<span class="line"><span>│   └── auth.ts         →     │   └── auth.js      + auth.js.map</span></span>
+<span class="line"><span>├── plugins/                  ├── plugins/</span></span>
+<span class="line"><span>│   └── redis.ts        →     │   └── redis.js     + redis.js.map</span></span>
+<span class="line"><span>├── middlewares/              └── middlewares/</span></span>
+<span class="line"><span>│   └── auth.ts         →         └── auth.js       + auth.js.map</span></span>
+<span class="line"><span>└── models/                   └── models/</span></span>
+<span class="line"><span>    └── user.ts         →         └── user.js       + user.js.map</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>By default, the build also produces matching <code>.js.map</code> files, an output directory <code>package.json</code> declaring CommonJS, and build identity files. Business JSON retains its relative path; project preloads use a separate ESM build. When frontend is enabled, resolved frontend role paths are handled by browser/SSR builds and excluded from backend scanning. When it is disabled, a directory named <code>frontend</code> or <code>client</code> alone does not prove it is excluded.</p>
+<h3 class="rp-toc-include" id="why-not-bundle"><a href="#why-not-bundle" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Why not Bundle?</h3>
+<p>“File by file” describes the final module boundaries. The implementation uses esbuild <code>bundle: true</code> to resolve and rewrite local references, while marking local modules and npm packages external so business modules are not combined into one backend bundle.</p>
+<p>This preserves the directory and module identity needed by loaders and works with development module replacement. An ordinary bundle can also produce accurate source maps and does not necessarily require a custom runtime; debugging and hot reload cannot be reduced to a blanket claim that bundling makes them impossible.</p>
+<h2 class="rp-toc-include" id="compile-options"><a href="#compile-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Compile options</h2>
+<h3 class="rp-toc-include" id="cli-parameters"><a href="#cli-parameters" class="rp-header-anchor rp-link" aria-hidden="true">#</a>CLI parameters</h3>
+<p><code>vext build</code> does not support positional arguments. Value options such as <code>--outdir</code> and <code>--config</code> must be followed by a non-option value, for example <code>--outdir dist</code>; <code>--outdir --minify</code> or <code>--config --clean</code> fails as a missing-value error.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Parameters</th><th>Description</th><th>Default value</th></tr></thead><tbody><tr><td><code>--outdir &lt;path&gt;</code></td><td>Explicit output directory</td><td>See precedence above</td></tr><tr><td><code>--config &lt;name&gt;</code></td><td>Select the build-time config profile</td><td><code>production</code></td></tr><tr><td><code>--clean</code></td><td>Clean recorded stale outputs after successful compilation</td><td><code>false</code></td></tr><tr><td><code>--sourcemap</code></td><td>Generate source map</td><td><code>true</code></td></tr><tr><td><code>--no-sourcemap</code></td><td>Disable source map</td><td>—</td></tr><tr><td><code>--minify</code></td><td>Compress output code (enabled by default; retained for compatibility)</td><td><code>true</code></td></tr><tr><td><code>--no-minify</code></td><td>Disable output compression</td><td>—</td></tr><tr><td><code>--typecheck</code></td><td>Execute <code>tsc --noEmit</code> after refreshing generated / manifest</td><td><code>false</code></td></tr><tr><td><code>--upload-assets</code></td><td>Upload frontend static assets after the frontend build</td><td><code>false</code></td></tr><tr><td><code>--deploy-dry-run</code></td><td>Simulate upload with <code>--upload-assets</code>; local build still writes files</td><td><code>false</code></td></tr><tr><td><code>-h, --help</code></td><td>Show build command help</td><td>—</td></tr></tbody></table></div>
+<p>Production CLI builds minify backend output by default. Use <code>--no-minify</code> for a readable local inspection, or set <code>VEXT_BUILD_MINIFY=false</code> when that opt-out must be supplied by the environment. Frontend production minification uses <code>frontend.build.client.minify</code>, falling back to <code>frontend.build.minify</code> only when unset. Backend source maps can also be disabled with <code>VEXT_BUILD_SOURCEMAP=false</code>; explicit CLI switches take precedence.</p>
+<p>Repeated builds remove obsolete outputs only after candidate compilation succeeds, using <code>.vext/freshness/v1/artifacts.json</code>. Backend JavaScript, source maps, project preloads, and business JSON commit together; compilation failures preserve the previous files. <code>--clean</code> follows the same ownership records: it does not recursively empty the output before compilation or delete unrecorded files.</p>
+<p>Nested JSON data, such as <code>src/locales/account/security/zh-CN.json</code>, keeps its directory and original bytes and supports backend imports. Frontend role directories, tests, and compilation metadata (<code>package.json</code> / <code>tsconfig*.json</code>) are excluded from business JSON copying. MCP structure and build guidance must use this same contract.</p>
+<p>Externally edited outputs or conflicting legacy files without ownership evidence produce <code>VEXT_OUTPUT_CONFLICT</code> with the affected path. Preserve, move, or verify those files before retrying, or choose a fresh <code>--outdir</code>. Existing files identical to the generated candidate can be adopted without rewriting.</p>
+<p>Growth, replacement, or deletion of ownership and build records during a read produces an unverified-state error, rather than being treated as an initially missing record. Wait for the modification to finish, then inspect or recover as directed. Single-file verification does not provide a simultaneous atomic snapshot of the entire directory tree.</p>
+<p>After an interrupted process registration, the next registration recovers verifiable temporary records in bounded batches under the registry mutex. Partial writes, external changes, and legacy files are preserved with their paths in diagnostics; inspect those paths instead of clearing the registry directory. Temporary records never automatically replace the authoritative records.</p>
+<p>One writer owns a service root and its nested roots at a time. Competing <code>build</code> or <code>typegen</code> commands while <code>dev</code> is running return <code>VEXT_OWNER_BUSY</code>; separate service roots can run concurrently. Recovery metadata supports interrupted processes. Per-file atomic replacement does not imply simultaneous atomic visibility across all files; consumers must wait for successful completion.</p>
+<p>After configuration preparation, <code>.vext-build.json</code> inside the output records <code>building</code>. All artifact stages and optional upload must succeed before it and <code>.vext/build-location.json</code> commit together as <code>ready</code>. A failed generation becomes <code>failed</code>, blocking startup from that output. Startup rejects pending transactions and externally modified recorded identities. Producers retain their individual transaction boundaries: failure in the frontend or remote upload after a backend commit does not roll back every build file or remote resource. See <a href="/guide/cli.html" class="rp-link">CLI build behavior</a> for identity and portable deployment details.</p>
+<h2 class="rp-toc-include" id="frontend-build"><a href="#frontend-build" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Frontend build</h2>
+<p>The frontend first generates candidate sources and assets. Browser compilation, SSR, media, static pages, SEO, and budgets must all succeed before <code>.vext/generated/frontend/</code> and the configured <code>frontend.outDir</code> commit together. A failed rebuild preserves the previous generation; development keeps serving its valid static assets until a corrected rebuild succeeds. Identical candidates are not rewritten. Only recorded obsolete files are removed, and unrecorded files are not automatically served or uploaded.</p>
+<p>JSCSS retains native ESM and top-level <code>await</code> in a disposable build worker. Its module directory keeps the final logical location for relative imports. The worker and temporary module are cleaned up after execution, including the worker&#x27;s module cache; parent-process globals are not shared. Recovery uses receipts and content hashes for interrupted temporary files and preserves externally modified files as conflicts.</p>
+<p>When <code>config.frontend.enabled</code> is true, the browser pipeline uses esbuild in bundle mode:</p>
+<div class="rp-codeblock language-text"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="text"><code><span class="line"><span>.vext/generated/frontend/browser-entry.tsx → dist/client/assets/browser-entry-&lt;hash&gt;.js</span></span>
+<span class="line"><span>.vext/generated/frontend/vendor-entry.tsx  → dist/client/assets/vext-vendor-&lt;hash&gt;.js (when enabled)</span></span>
+<span class="line"><span>dynamic imports from src/frontend/pages/**  → dist/client/assets/&lt;page-or-layout-chunk&gt;-&lt;hash&gt;.js</span></span>
+<span class="line"><span>src/frontend/pages/_document.html           → dist/client/index.html</span></span>
+<span class="line"><span>src/frontend/styles/index.css                → dist/client/assets/browser-entry-&lt;hash&gt;.css</span></span>
+<span class="line"><span>public/**                                    → dist/client/**</span></span>
+<span class="line"><span>.vext/manifest/routes.json                  → client-contract.json + route-contract.json + api.generated.ts (when apiClient is enabled)</span></span>
+<span class="line"><span>.vext/generated/frontend/server-renderer.ts → dist/client/server/renderer.cjs</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>The frontend build writes:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>File</th><th>Description</th></tr></thead><tbody><tr><td><code>dist/client/index.html</code></td><td>HTML entry served by <code>vext start</code></td></tr><tr><td><code>dist/client/assets/*</code></td><td>Bundled JavaScript, CSS, and imported assets</td></tr><tr><td><code>dist/client/manifest.json</code></td><td>Frontend asset manifest</td></tr><tr><td><code>dist/client/deploy-manifest.json</code></td><td>Uploadable static asset manifest with sha256, SRI, content type, and upload key</td></tr><tr><td><code>dist/client/render-manifest.json</code></td><td>SSR page, layout, error page, and renderer manifest</td></tr><tr><td><code>dist/client/messages-manifest.json</code></td><td>Frontend i18n message manifest; it may contain no locale entries when i18n is disabled</td></tr><tr><td><code>dist/client/media-manifest.json</code></td><td>Local image/font artifact manifest</td></tr><tr><td><code>dist/client/static-manifest.json</code></td><td>Static and freshness artifact manifest</td></tr><tr><td><code>dist/client/server/renderer.cjs</code></td><td>SSR renderer bundle</td></tr><tr><td><code>dist/client/size-report.json</code></td><td>Size summary for generated frontend assets; written when <code>build.diagnostics.sizeReport</code> is enabled (default)</td></tr><tr><td><code>dist/client/client-contract.json</code></td><td>Route contract generated from route manifest when <code>apiClient.enabled</code> is enabled (default)</td></tr><tr><td><code>dist/client/route-contract.json</code></td><td>Route response-schema contract when <code>apiClient.enabled</code> is enabled (default)</td></tr><tr><td><code>dist/client/api.generated.ts</code></td><td>Lightweight typed API client module when <code>apiClient.enabled</code> is enabled (default)</td></tr></tbody></table></div>
+<p><code>size-report.json</code> reports top-level <code>initialJs*</code> values as the largest complete page first-load closure, including chunks imported by the browser entry. Deferred route and error-page chunks are excluded until the browser requests them. Inspect <code>routes[]</code> for each route&#x27;s exact closure; this prevents direct entry-file bytes from understating the default performance budgets.</p>
+<p><code>vext start</code> fails fast when frontend is enabled but <code>index.html</code> is missing from the configured frontend output. Run <code>vext build</code> before production start.</p>
+<p>Browser pages, layouts, error pages, and locale entries are loaded through dynamic imports so page-level chunks are emitted by default. React and other shared packages are pulled into a Vext-managed vendor entry and split through esbuild. <code>frontend.build.client.external</code> can exclude a module from the browser bundle, but the browser must receive it through <code>frontend.build.client.externalRuntime</code>, which Vext writes into an import map.</p>
+<p>When <code>frontend.deploy.integrity=true</code>, Vext injects build-time SRI into generated JS/CSS tags. <code>deploy-manifest.json</code> includes esbuild output and copied <code>public/**</code> files for <code>vext deploy assets</code>; it intentionally excludes <code>index.html</code> and source maps because HTML is rendered and cached by the Vext server path, while source maps should stay on the server debugging path unless explicitly published.</p>
+<h2 class="rp-toc-include" id="backend-output-format-and-compiler-options"><a href="#backend-output-format-and-compiler-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Backend output format and compiler options</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Options</th><th>Values</th><th>Description</th></tr></thead><tbody><tr><td>Format</td><td><code>cjs</code> (CommonJS)</td><td>Backend modules use CommonJS; project preloads separately emit ESM <code>.mjs</code></td></tr><tr><td>Target</td><td><code>node20</code></td><td>Align with <code>engines.node ^20.19.0 || &gt;=22.12.0</code></td></tr><tr><td>Platform</td><td><code>node</code></td><td>Node.js runtime</td></tr><tr><td>Charset</td><td><code>utf8</code></td><td>Force UTF-8, avoid Chinese escaping</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="optimization-options"><a href="#optimization-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Optimization options</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Options</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td>Source Map</td><td><code>external</code> (<code>.js.map</code> file)</td><td>Generates separate maps; runtime association has limits described below</td></tr><tr><td>Tree Shaking</td><td>Enable</td><td>Eliminate provably dead code; independent module exports are not all removed merely because other files do not import them</td></tr><tr><td>Keep Names</td><td>On</td><td>Try to preserve function/class names</td></tr><tr><td>Minify</td><td>On by default</td><td>Minifies backend output; use <code>--no-minify</code> or <code>VEXT_BUILD_MINIFY=false</code> only for local diagnostics</td></tr><tr><td>packages</td><td><code>external</code></td><td>External dependencies are not packaged and are resolved by Node.js at runtime</td></tr></tbody></table></div>
+<p>These tables describe the backend CLI compiler. Its production default is minified output with external source maps. Frontend defaults are separate: <code>frontend.build.client.minify</code> is true in production, client <code>sourcemap</code> is false, and SSR <code>frontend.build.server.minify</code> is false unless enabled. Browser output is an ESM bundle, unlike backend CJS. See <a href="/frontend/build-and-deploy.html" class="rp-link">Frontend Build and Deploy</a>.</p>
+<h3 class="rp-toc-include" id="automatic-injection"><a href="#automatic-injection" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Automatic injection</h3>
+<p>The backend compiler uses this definition:</p>
+<div class="rp-codeblock language-typescript"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="typescript"><code><span class="line"><span style="color:var(--shiki-foreground)">define</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">  &#x27;process.env.NODE_ENV&#x27;</span><span style="color:var(--shiki-foreground)">: </span><span style="color:var(--shiki-token-string-expression)">&#x27;&quot;production&quot;&#x27;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Branches in user source based on <code>process.env.NODE_ENV</code> may be folded during compilation. This does not force the runtime to load only the production profile. For example, <code>npx vextjs start --config sg-sit</code> loads <code>config/sg-sit.js</code> from the selected output directory. External npm dependencies are not rebuilt by this backend compilation step, so the static replacement cannot be promised for all dependency code.</p>
+<p>Add a startup script for a profile when needed:</p>
+<div class="rp-codeblock language-json"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="json"><code><span class="line"><span style="color:var(--shiki-foreground)">{</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  &quot;scripts&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext start&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">    &quot;start:sg-sit&quot;</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;vext start --config sg-sit&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="file-scanning-rules"><a href="#file-scanning-rules" class="rp-header-anchor rp-link" aria-hidden="true">#</a>File scanning rules</h2>
+<h3 class="rp-toc-include" id="included-files"><a href="#included-files" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Included files</h3>
+<p><code>vext build</code> scans the <code>src/</code> directory for all files matching the following patterns:</p>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>**/*.{ts,mts,cts,js,mjs,cjs}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>This pattern applies to a TypeScript project&#x27;s backend build. Ordinary business <code>.json</code> files are scanned, validated, and copied separately; other static files are not automatically copied into the output.</p>
+<h3 class="rp-toc-include" id="excluded-files"><a href="#excluded-files" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Excluded files</h3>
+<p>Compilation automatically excludes the following files (two-level exclusion rules):</p>
+<h4 class="rp-toc-include" id="universal-exclusions-shared-with-development-mode"><a href="#universal-exclusions-shared-with-development-mode" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Universal exclusions (shared with development mode)</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Pattern</th><th>Description</th></tr></thead><tbody><tr><td><code>**/*.d.ts</code>, <code>**/*.d.mts</code>, <code>**/*.d.cts</code></td><td>Type declarations</td></tr><tr><td><code>**/*.test.*</code>, <code>**/*.spec.*</code></td><td>Test files</td></tr><tr><td><code>**/__tests__/**</code></td><td>Test directories</td></tr><tr><td><code>**/*.__vext_compiled__*</code></td><td>Tool-generated temporary modules</td></tr><tr><td>Resolved frontend role directories/files when frontend is enabled</td><td>Excluded by project layout, not by every directory named client</td></tr></tbody></table></div>
+<h4 class="rp-toc-include" id="additional-exclusions-for-production-compilation"><a href="#additional-exclusions-for-production-compilation" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Additional exclusions for production compilation</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Pattern</th><th>Description</th></tr></thead><tbody><tr><td><code>**/config/development.{ts,js,mts,mjs,cts,cjs,json}</code></td><td>Development config is not emitted to production backend output</td></tr><tr><td><code>**/config/local.{ts,js,mts,mjs,cts,cjs,json}</code></td><td>Local override is not emitted</td></tr><tr><td><code>**/config/test.{ts,js,mts,mjs,cts,cjs,json}</code></td><td>Test config is not emitted</td></tr><tr><td><code>preload/**</code></td><td>Project preload uses a separate ESM build into <code>preload/*.mjs</code></td></tr></tbody></table></div>
+<p>These exclusions do not scan for and remove all sensitive content, and they do not deploy an excluded profile. Include application-owned templates, files, or other runtime resources explicitly; the framework cannot infer copies from arbitrary <code>fs.readFile</code> expressions. See <a href="/guide/preload.html" class="rp-link">Preload</a>.</p>
+<h2 class="rp-toc-include" id="source-map"><a href="#source-map" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Source Map</h2>
+<h3 class="rp-toc-include" id="external-source-map"><a href="#external-source-map" class="rp-header-anchor rp-link" aria-hidden="true">#</a>External Source Map</h3>
+<p>The backend production build creates a <code>.js.map</code> next to each <code>.js</code> by default:</p>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>dist/</span></span>
+<span class="line"><span>└── services/</span></span>
+<span class="line"><span>    ├── user.js</span></span>
+<span class="line"><span>    └── user.js.map</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>The current esbuild <code>external</code> mode generates a map <strong>without adding a <code>sourceMappingURL</code> comment</strong> at the end of JavaScript. This differs from <code>linked</code> mode; see <a href="https://esbuild.github.io/api/#sourcemap" target="_blank" rel="noopener noreferrer" class="rp-link">esbuild Source Maps</a>.</p>
+<h3 class="rp-toc-include" id="enable-source-map-support"><a href="#enable-source-map-support" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Enable Source Map support</h3>
+<p>Node&#x27;s <a href="https://nodejs.org/api/cli.html#--enable-source-maps" target="_blank" rel="noopener noreferrer" class="rp-link"><code>--enable-source-maps</code></a> enables stack mapping only when the runtime can discover the map. <strong>For current Vext backend production output, this flag alone does not guarantee TypeScript line numbers.</strong> Use a debugger or APM with explicit map loading/upload, and verify against deployed output. These commands only show how to pass the Node option:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-foreground)">NODE_OPTIONS</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string)">--enable-source-maps</span><span style="color:var(--shiki-token-function)"> npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<div class="rp-codeblock language-powershell"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="powershell"><code><span class="line"><span style="color:var(--shiki-token-comment)"># PowerShell; remove this setting afterward when appropriate</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">$</span><span style="color:var(--shiki-token-constant)">env:</span><span style="color:var(--shiki-foreground)">NODE_OPTIONS </span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)"> &quot;--enable-source-maps&quot;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">npx vextjs start</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">Remove-Item</span><span style="color:var(--shiki-foreground)"> Env:NODE_OPTIONS</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>vext start --enable-source-maps</code> is not a valid Vext option. Do not modify a recorded production JS file to append a comment: that changes its owned hash. For more readable output, rebuild with <code>npx vextjs build --no-minify</code>.</p>
+<h3 class="rp-toc-include" id="source-map-purpose"><a href="#source-map-purpose" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Source Map Purpose</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Use</th><th>Condition</th></tr></thead><tbody><tr><td>Error stack</td><td>Map and JS come from the same build, and the runtime/tool associates them correctly</td></tr><tr><td>APM analysis</td><td>Upload and associate versions according to that platform; Vext does not set this up automatically</td></tr><tr><td>Local debugging</td><td>Use a debugger that supports external maps and verify actual breakpoint locations</td></tr></tbody></table></div>
+<p>Backend maps are not automatically frontend static assets, but a reverse proxy or custom static server may expose them. Maps can contain source; define access boundaries when deploying.</p>
+<h2 class="rp-toc-include" id="comparison-with-devcompiler"><a href="#comparison-with-devcompiler" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Comparison with DevCompiler</h2>
+<p><code>vext build</code> and <code>vext dev</code> share base esbuild configuration (<code>createBaseEsbuildConfig()</code>) for module semantics, while development rebuilds and production delivery differ:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Features</th><th><code>vext dev</code> (DevCompiler)</th><th><code>vext build</code> (BuildCompiler)</th></tr></thead><tbody><tr><td><strong>Output directory</strong></td><td><code>.vext/dev/</code> (temporary, gitignored)</td><td><code>dist/</code> (persistent, deployable)</td></tr><tr><td><strong>Compilation mode</strong></td><td>Incremental + single-file compilation</td><td>Full compilation</td></tr><tr><td><strong>Source Map</strong></td><td>Linked on full compile; external on single-file compile</td><td>External (<code>.js.map</code>, no link comment)</td></tr><tr><td><strong>Hot reload</strong></td><td>Supported (Tier 1/2/3)</td><td>Not supported (one-time compilation)</td></tr><tr><td><strong>Extra exclusions</strong></td><td>None</td><td>config/development, local, test</td></tr><tr><td><strong>NODE_ENV injection</strong></td><td>None</td><td><code>&quot;production&quot;</code></td></tr><tr><td><strong>MetaFile</strong></td><td>None</td><td>Yes (compile statistics)</td></tr></tbody></table></div>
+<p>Elapsed time depends on project size, machine, cache, and frontend pipeline. This comparison concerns the TypeScript backend compiler.</p>
+<h3 class="rp-toc-include" id="shared-configuration"><a href="#shared-configuration" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Shared configuration</h3>
+<p>The esbuild configuration shared by both includes:</p>
+<ul>
+<li><code>platform: &#x27;node&#x27;</code> — Node.js runtime</li>
+<li><code>target: &#x27;node20&#x27;</code> — Minimum support for Node.js 20.19.0</li>
+<li><code>format: &#x27;cjs&#x27;</code> — CommonJS output</li>
+<li>Each backend source retains its own CommonJS <code>.js</code> output. esbuild resolves local references and marks modules external so hot reload keeps separate module identities.</li>
+<li>Static local references, literal <code>import()</code>, and <code>require.resolve()</code> for <code>.ts/.js/.mts/.cts/.mjs/.cjs</code> map to their emitted <code>.js</code> files. Full and incremental compilation share JSONC, extends, and paths resolution.</li>
+<li>Imports of excluded frontend files, out-of-root sources, or files without independent backend outputs produce diagnostics. A supported source extension does not imply that arbitrary runtime path expressions can be rewritten.</li>
+<li><code>treeShaking: true</code> — dead code elimination</li>
+<li><code>keepNames: true</code> — keep function names</li>
+<li><code>charset: &#x27;utf8&#x27;</code> — UTF-8 encoding</li>
+<li><code>loader</code> — <code>.ts</code>/<code>.js</code>/<code>.json</code> and other file type mappings</li>
+</ul>
+<h2 class="rp-toc-include" id="compilation-results"><a href="#compilation-results" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Compilation results</h2>
+<p>On success, the command prints backend statistics and a final completion marker. This excerpt is from one API scaffold build; count, time, and path vary by project:</p>
+<div class="rp-codeblock language-text"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="text"><code><span class="line"><span>[vextjs] backend compiled</span></span>
+<span class="line"><span>[vextjs]    files:   5</span></span>
+<span class="line"><span>[vextjs]    time:    134ms</span></span>
+<span class="line"><span>[vextjs]    output:  &lt;project&gt;/dist/</span></span>
+<span class="line"><span>[vextjs] ✅ build complete</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>With frontend enabled, frontend and optional upload stages follow the backend success log. Deploy only after the whole command exits successfully; <code>backend compiled</code> alone does not mean the complete build succeeded.</p>
+<h3 class="rp-toc-include" id="buildresult-structure"><a href="#buildresult-structure" class="rp-header-anchor rp-link" aria-hidden="true">#</a>BuildResult structure</h3>
+<p>This is the internal backend compiler result for understanding logs and implementation, <strong>not a public call API exported from the <code>vextjs</code> package root</strong>, and not the frontend upload result.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Type</th><th>Meaning</th></tr></thead><tbody><tr><td><code>success</code></td><td><code>boolean</code></td><td>Whether this backend compile succeeded</td></tr><tr><td><code>fileCount</code></td><td><code>number</code></td><td>Count of backend JS, copied business JSON, and project preloads, excluding maps</td></tr><tr><td><code>totalFiles</code></td><td><code>number</code></td><td>Count of backend source, business JSON, and preload inputs</td></tr><tr><td><code>elapsed</code></td><td><code>number</code></td><td>Backend compile time in milliseconds</td></tr><tr><td><code>outDir</code></td><td><code>string</code></td><td>Output directory</td></tr><tr><td><code>warnings</code> / <code>errors</code></td><td><code>Message[]</code></td><td>esbuild diagnostics</td></tr><tr><td><code>metafile</code></td><td><code>Metafile | undefined</code></td><td>Backend compile metadata, possibly absent on failure</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="run-the-compiled-product"><a href="#run-the-compiled-product" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Run the compiled product</h2>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Explicitly select an output directory from a completed build</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --outdir</span><span style="color:var(--shiki-token-string)"> dist</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>TypeScript startup rejects missing, failed, or identity-mismatched build output. Use <code>vext dev</code> for development source startup; a pure JavaScript backend continues to load source in production.</p>
+<p>With frontend enabled, startup checks <code>index.html</code> in the configured frontend output and serves static files according to the public resource manifest. Page rendering depends on routes using <code>res.render()</code> and related configuration. <strong>Without configured <code>spaFallback</code>, its default scopes are empty; non-API requests do not automatically fall back to the SPA home.</strong> Enable <code>spaFallback: true</code> or set scopes explicitly; see <a href="/frontend/csr-and-spa-fallback.html" class="rp-link">CSR and SPA Fallback</a>.</p>
+<p>General scaffolds have no fixed <code>dist/index.js</code> startup entry. Use <code>vext start</code>; do not infer a directly executable entry from the directory mapping above.</p>
+<h3 class="rp-toc-include" id="vext_built-tag"><a href="#vext_built-tag" class="rp-header-anchor rp-link" aria-hidden="true">#</a>VEXT_BUILT tag</h3>
+<p>For a compiled backend, the CLI sets <code>VEXT_BUILT=1</code> and passes the actual build directory. Routes, services, plugins, middleware, and models load from that output; explicitly configured paths still follow each module&#x27;s resolution rules. Pure JavaScript source mode continues using <code>src/</code>. The CLI owns these markers. Setting <code>VEXT_BUILT=1</code> manually does not replace a successful build or identity verification.</p>
+<h2 class="rp-toc-include" id="deployment-manifest"><a href="#deployment-manifest" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Deployment manifest</h2>
+<p>In a build environment with an existing project and lockfile, run:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> ci</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> build</span><span style="color:var(--shiki-token-string)"> --typecheck</span><span style="color:var(--shiki-token-string)"> --outdir</span><span style="color:var(--shiki-token-string)"> dist</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>After a successful build, deliver the following to the runtime environment:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Content</th><th>Purpose</th></tr></thead><tbody><tr><td><code>package.json</code> and lockfile</td><td>Install production dependencies; <code>vextjs</code> and runtime imports belong in dependencies</td></tr><tr><td>Complete <code>dist/</code></td><td>Backend output, <code>dist/package.json</code>, <code>.vext-build.json</code>, default frontend client output</td></tr><tr><td>Custom frontend output</td><td>Deploy it too when configured outside dist</td></tr><tr><td><code>.vext/build-location.json</code></td><td>Keep when startup discovers output from the build record; <code>start --outdir dist</code> selects it explicitly</td></tr><tr><td>Additional runtime resources</td><td>Application-read files and host preloads according to actual paths</td></tr><tr><td><code>src/</code></td><td>Needed in JavaScript source mode; usually not needed for a compiled backend</td></tr></tbody></table></div>
+<p>In the runtime environment, run <code>npm ci --omit=dev</code> and <code>npx vextjs start --outdir dist</code>. Check health and key business routes before directing traffic. Do not remove build-time TypeScript before building; a build in place does not require reinstalling all dependencies each time.</p>
+<h3 class="rp-toc-include" id="docker-multi-stage-build"><a href="#docker-multi-stage-build" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Docker multi-stage build</h3>
+<p>This template is for a <strong>TypeScript API project</strong> without extra runtime resources, with a <code>start</code> script of <code>vext start</code> and source/configuration under <code>src</code>. Frontend projects also need their public and other build inputs; projects extending tsconfig or using workspace packages need their own additional files.</p>
+<div class="rp-codeblock language-dockerfile"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="dockerfile"><code><span class="line"><span style="color:var(--shiki-token-keyword)">FROM</span><span style="color:var(--shiki-foreground)"> node:22-alpine </span><span style="color:var(--shiki-token-keyword)">AS</span><span style="color:var(--shiki-foreground)"> builder</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">WORKDIR</span><span style="color:var(--shiki-foreground)"> /app</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">COPY</span><span style="color:var(--shiki-foreground)"> package.json package-lock.json ./</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">RUN</span><span style="color:var(--shiki-foreground)"> npm ci</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">COPY</span><span style="color:var(--shiki-foreground)"> src/ src/</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">COPY</span><span style="color:var(--shiki-foreground)"> tsconfig.json ./</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">RUN</span><span style="color:var(--shiki-foreground)"> npx vextjs build --typecheck --outdir dist</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">FROM</span><span style="color:var(--shiki-foreground)"> node:22-alpine</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">WORKDIR</span><span style="color:var(--shiki-foreground)"> /app</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">COPY</span><span style="color:var(--shiki-foreground)"> package.json package-lock.json ./</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">RUN</span><span style="color:var(--shiki-foreground)"> npm ci --omit=dev</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">COPY</span><span style="color:var(--shiki-foreground)"> --from=builder /app/dist ./dist</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">CMD</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;npm&quot;</span><span style="color:var(--shiki-foreground)">, </span><span style="color:var(--shiki-token-string-expression)">&quot;start&quot;</span><span style="color:var(--shiki-foreground)">, </span><span style="color:var(--shiki-token-string-expression)">&quot;--&quot;</span><span style="color:var(--shiki-foreground)">, </span><span style="color:var(--shiki-token-string-expression)">&quot;--outdir&quot;</span><span style="color:var(--shiki-foreground)">, </span><span style="color:var(--shiki-token-string-expression)">&quot;dist&quot;</span><span style="color:var(--shiki-foreground)">]</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>The runtime stage selects dist explicitly and retains its identity files, not just a few JS files. Choose base image, port, and mounted resources for the deployment. See <a href="/guide/deployment.html" class="rp-link">Deployment</a> for the complete release process.</p>
+<h3 class="rp-toc-include" id="gitignore"><a href="#gitignore" class="rp-header-anchor rp-link" aria-hidden="true">#</a>.gitignore</h3>
+<p>Make sure the <code>dist/</code> directory is in <code>.gitignore</code> (the compiled product should not be committed to Git):</p>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>dist/</span></span>
+<span class="line"><span>.vext/</span></span>
+<span class="line"><span>node_modules/</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="troubleshooting"><a href="#troubleshooting" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Troubleshooting</h2>
+<h3 class="rp-toc-include" id="compilation-failed"><a href="#compilation-failed" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Compilation failed</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>Error: [vextjs] No source files found in /project/src</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Check the project root, source directory, language detection, and exclusion rules; a TypeScript backend needs actual compilable input. Fix specific type diagnostics instead of treating removal of <code>--typecheck</code> as a type fix.</p>
+<h3 class="rp-toc-include" id="module-not-found-during-runtime"><a href="#module-not-found-during-runtime" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Module not found during runtime</h3>
+<div class="rp-codeblock language-txt"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="txt"><code><span class="line"><span>Error: Cannot find module &#x27;./routes/users.js&#x27;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Distinguish the missing module type:</p>
+<ol>
+<li>Bare package name such as <code>redis</code>: check package.json production dependencies and runtime installation.</li>
+<li>Relative module path: check exclusions, complete deployment, and whether the reference points to real output.</li>
+<li>Dynamically constructed business path or extra file read: check the working directory and deployed resources; the compiler cannot infer arbitrary expressions.</li>
+<li>Declaration-only <code>.d.ts</code>: reference a real runtime module instead of copying a type declaration as an implementation.</li>
+</ol>
+<p>Do not attribute every missing module to a forgotten reinstall after build.</p>
+<h3 class="rp-toc-include" id="source-map-does-not-take-effect"><a href="#source-map-does-not-take-effect" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Source Map does not take effect</h3>
+<p>Check that a map was generated, that JS has a discoverable link, and that map and JS match the deployed build. The backend production build uses external mode; <code>NODE_OPTIONS=--enable-source-maps</code> alone cannot automatically associate these maps. See <a href="#source-map" class="rp-link">Source Map</a> for the boundary and command syntax.</p>
+<h3 class="rp-toc-include" id="build-succeeds-but-startup-fails"><a href="#build-succeeds-but-startup-fails" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build succeeds but startup fails</h3>
+<p>Check the output directory and profile actually selected by start, build identity, and frontend directory. Carry complete output when switching machines. Failed build stages, unrecovered transactions, and externally modified recorded files cannot be fixed by editing a ready marker. Repair inputs or rebuild based on the reported path; see <a href="/guide/cli.html" class="rp-link">CLI</a>.</p>
+<h2 class="rp-toc-include" id="next-step"><a href="#next-step" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Next step</h2>
+<ul>
+<li>Learn about the complete deployment guide at <a href="/guide/deployment.html" class="rp-link">Deployment and Production</a></li>
+<li>See <a href="/guide/hot-reload.html" class="rp-link">Hot Reload</a> to learn about development mode compilation strategies</li>
+<li>Learn the full parameters of <code>vext build</code> in <a href="/guide/cli.html" class="rp-link">CLI Commands</a></li>
+<li>Explore <a href="/guide/cluster.html" class="rp-link">Cluster Multi-Processing</a> to take full advantage of multi-core CPUs</li>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>9/27/2026, 12:46:28 PM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/guide/frontend.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Frontend Integration</span></span></a><a href="/guide/deployment.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>Deployment</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#quick-start" class="rp-toc-item rp-link" title="Quick Start" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Quick Start</span></a><a href="#prerequisites-and-project-types" class="rp-toc-item rp-link" title="Prerequisites and project types" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Prerequisites and project types</span></a><a href="#output-directory-and-configuration-profile" class="rp-toc-item rp-link" title="Output directory and configuration profile" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Output directory and configuration profile</span></a><a href="#refresh-generated-files-before-building" class="rp-toc-item rp-link" title="Refresh generated files before building" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Refresh generated files before building</span></a><a href="#compilation-strategy" class="rp-toc-item rp-link" title="Compilation strategy" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Compilation strategy</span></a><a href="#file-by-file-transform" class="rp-toc-item rp-link" title="File-by-File Transform" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">File-by-File Transform</span></a><a href="#why-not-bundle" class="rp-toc-item rp-link" title="Why not Bundle?" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Why not Bundle?</span></a><a href="#compile-options" class="rp-toc-item rp-link" title="Compile options" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Compile options</span></a><a href="#cli-parameters" class="rp-toc-item rp-link" title="CLI parameters" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">CLI parameters</span></a><a href="#frontend-build" class="rp-toc-item rp-link" title="Frontend build" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Frontend build</span></a><a href="#backend-output-format-and-compiler-options" class="rp-toc-item rp-link" title="Backend output format and compiler options" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Backend output format and compiler options</span></a><a href="#optimization-options" class="rp-toc-item rp-link" title="Optimization options" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Optimization options</span></a><a href="#automatic-injection" class="rp-toc-item rp-link" title="Automatic injection" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Automatic injection</span></a><a href="#file-scanning-rules" class="rp-toc-item rp-link" title="File scanning rules" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">File scanning rules</span></a><a href="#included-files" class="rp-toc-item rp-link" title="Included files" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Included files</span></a><a href="#excluded-files" class="rp-toc-item rp-link" title="Excluded files" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Excluded files</span></a><a href="#universal-exclusions-shared-with-development-mode" class="rp-toc-item rp-link" title="Universal exclusions (shared with development mode)" style="padding-left:24px" data-depth="2"><span class="rp-toc-item__text rp-doc">Universal exclusions (shared with development mode)</span></a><a href="#additional-exclusions-for-production-compilation" class="rp-toc-item rp-link" title="Additional exclusions for production compilation" style="padding-left:24px" data-depth="2"><span class="rp-toc-item__text rp-doc">Additional exclusions for production compilation</span></a><a href="#source-map" class="rp-toc-item rp-link" title="Source Map" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Source Map</span></a><a href="#external-source-map" class="rp-toc-item rp-link" title="External Source Map" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">External Source Map</span></a><a href="#enable-source-map-support" class="rp-toc-item rp-link" title="Enable Source Map support" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Enable Source Map support</span></a><a href="#source-map-purpose" class="rp-toc-item rp-link" title="Source Map Purpose" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Source Map Purpose</span></a><a href="#comparison-with-devcompiler" class="rp-toc-item rp-link" title="Comparison with DevCompiler" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Comparison with DevCompiler</span></a><a href="#shared-configuration" class="rp-toc-item rp-link" title="Shared configuration" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Shared configuration</span></a><a href="#compilation-results" class="rp-toc-item rp-link" title="Compilation results" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Compilation results</span></a><a href="#buildresult-structure" class="rp-toc-item rp-link" title="BuildResult structure" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">BuildResult structure</span></a><a href="#run-the-compiled-product" class="rp-toc-item rp-link" title="Run the compiled product" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Run the compiled product</span></a><a href="#vext_built-tag" class="rp-toc-item rp-link" title="VEXT_BUILT tag" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">VEXT_BUILT tag</span></a><a href="#deployment-manifest" class="rp-toc-item rp-link" title="Deployment manifest" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deployment manifest</span></a><a href="#docker-multi-stage-build" class="rp-toc-item rp-link" title="Docker multi-stage build" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Docker multi-stage build</span></a><a href="#gitignore" class="rp-toc-item rp-link" title=".gitignore" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">.gitignore</span></a><a href="#troubleshooting" class="rp-toc-item rp-link" title="Troubleshooting" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Troubleshooting</span></a><a href="#compilation-failed" class="rp-toc-item rp-link" title="Compilation failed" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Compilation failed</span></a><a href="#module-not-found-during-runtime" class="rp-toc-item rp-link" title="Module not found during runtime" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Module not found during runtime</span></a><a href="#source-map-does-not-take-effect" class="rp-toc-item rp-link" title="Source Map does not take effect" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Source Map does not take effect</span></a><a href="#build-succeeds-but-startup-fails" class="rp-toc-item rp-link" title="Build succeeds but startup fails" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Build succeeds but startup fails</span></a><a href="#next-step" class="rp-toc-item rp-link" title="Next step" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Next step</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

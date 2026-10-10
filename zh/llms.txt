@@ -1,0 +1,45 @@
+# VextJS 简体中文文档
+
+> VextJS 的简体中文机器可读文档入口。当前前端模型是路由拥有的 SSR 与 hydration、可选 Streaming SSR，以及 esbuild 构建链；本版本明确不包含 React Server Components、Server Functions 和 PPR。
+
+这是精简的简体中文索引。全部中文页面请使用完整中文索引；权威双语清单请使用文档 manifest。
+
+## 从这里开始
+
+- [介绍](https://vextjs.github.io/zh/guide/introduction): VextJS 是一个面向 API、服务端渲染 React 页面或两者并存场景的 AI-first Node.js 全栈框架。应用的 API 与 SSR 页面由 src/routes/** 定义路由，handler 可以调用服务、返回 JSON 或渲染页面。路由上的校验和响应声明可用于生成 OpenAPI 与类型客户端；授权、业务规则和缓存策略仍需按各自职责配置。你可以从默认全栈脚手架起步，也可以保持 API-only。
+- [快速开始](https://vextjs.github.io/zh/guide/quick-start): :::tip 发布版本与源码范围
+- [项目结构](https://vextjs.github.io/zh/guide/project-structure): VextJS 提供默认目录约定及自动加载入口。用户可以沿用自己的架构和公共目录规范；有自动扫描语义的入口与普通 import 目录需要区分，支持配置的角色可使用实际配置覆盖。
+
+## 前端运行时
+
+- [前端总览](https://vextjs.github.io/zh/frontend/overview): Vext Frontend 是 Vext 内置的 React 19 全栈页面能力。URL 入口仍然由 src/routes/** 定义；route handler 准备服务端数据后，通过 res.render() 渲染 src/frontend/pages/** 中的页面。
+- [渲染模式](https://vextjs.github.io/zh/frontend/rendering-modes): Vext 支持混合全栈前端模型，同时避免服务端文件进入浏览器 bundle。
+- [边界与路线图](https://vextjs.github.io/zh/frontend/boundaries-and-roadmap): 本页规定当前前端的能力边界，并区分已实现、显式开启和待评估方向。适用于前端页面、服务端路由、构建和部署的维护者；操作步骤见前端快速开始，问题定位见排错。规则等级沿用规范说明。
+- [数据流](https://vextjs.github.io/zh/frontend/data-flow): Vext 前端数据从服务端开始。Route handler 调用 services，准备 JSON-safe 数据，再传给 res.render()。
+- [性能预算](https://vextjs.github.io/zh/frontend/performance-budgets): 性能预算在构建时限制前端产物字节数。它不测量真实设备的 hydration 耗时、网络延迟或交互性能；这些仍需浏览器验证。以下以已启用前端的应用为前提。
+
+## 运行时与运维
+
+- [路由](https://vextjs.github.io/zh/guide/routing): VextJS 采用 约定式文件路由 + 三段式路由定义，将文件路径自动映射为 URL 前缀，在文件内部通过 defineRoutes() 声明具体路由。
+- [服务层](https://vextjs.github.io/zh/guide/services): 服务层（Service Layer）用于集中业务逻辑。把默认导出的服务类放在 src/services/，框架会自动扫描、实例化并挂载到 app.services，路由 handler 通过 app.services.xxx 调用。本页先完成一个不依赖数据库的示例，再说明命名、依赖和生命周期。
+- [构建 (vext build)](https://vextjs.github.io/zh/guide/build): vext build 为生产运行准备应用产物。TypeScript 后端编译为 JavaScript；纯 JavaScript 后端直接使用源码。启用前端时，还会构建浏览器资源、服务端 renderer 和相关 manifest。
+- [部署与生产环境](https://vextjs.github.io/zh/guide/deployment): 本页按“准备交付物 → 启动并检查 → 接入进程管理与反向代理 → 发布和回退”说明生产部署。先完成 CLI 最小项目流程和构建，再选择适合环境的部署方式。
+- [OpenAPI 文档](https://vextjs.github.io/zh/guide/openapi): VextJS 内置 OpenAPI 文档自动生成功能。基于路由的 validate 和 docs 配置，框架自动生成 OpenAPI 3.0 规范 JSON，并通过 Vext Docs Renderer 提供默认 /docs 文档页。第三方文档工具请直接消费 /openapi.json。
+
+## 支持与机器可读文档
+
+- [支持与服务](https://vextjs.github.io/zh/resources/support-and-services): 使用咨询、问题反馈、生产评审和迁移协作的沟通入口与服务边界。
+- [文档数据与 AI](https://vextjs.github.io/zh/resources/documentation-data-and-ai): 文档身份、规则索引、语言与快照合同，以及未来知识图谱的文档引用边界。
+
+## 机器可读资产
+
+- [文档 manifest](https://vextjs.github.io/docs-manifest.json): 权威双语页面元数据，包含 locale、适用面、关联页面和 source hash。
+- [能力边界](https://vextjs.github.io/capabilities.json): 已支持的 frontend/runtime 能力与明确排除项。
+- [AI 参考问题](https://vextjs.github.io/ai-gold-questions.json): 要求引用来源的评测问题。
+- [事件合同](https://vextjs.github.io/docs-events.schema.json): 可选的隐私保护文档事件 schema；默认不启用 collector。
+- [度量定义](https://vextjs.github.io/docs-dashboard-definition.json): 指标定义与采集边界。
+- [完整简体中文文档索引](https://vextjs.github.io/zh/llms-full.txt): 由 manifest 生成的全部公开中文页面 URL 与摘要。
+
+## 可选语言
+
+- [英文索引](https://vextjs.github.io/llms.txt): 需要以英文文档为依据回答时，请使用英文 locale 的索引。

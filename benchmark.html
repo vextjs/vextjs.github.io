@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance benchmarks - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-f1ef86f9cef7.a69010aaa0.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Performance benchmarks - VextJS">
+<meta property="og:description" content="These benchmarks help you choose a Vext HTTP adapter. They keep the Vext application fixed and compare the five supported adapters under the same light Normal workload. They are an input to adapter selection—not a substitute for load-testing your application with its real middleware, authentication, logging, database access, and deployment topology.">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/benchmark.html">
+<link rel="alternate" hreflang="zh" href="/zh/benchmark.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="These benchmarks help you choose a Vext HTTP adapter. They keep the Vext application fixed and compare the five supported adapters under the same light Normal workload. They are an input to adapter selection—not a substitute for load-testing your application with its real middleware, authentication, logging, database access, and deployment topology."><link rel="canonical" href="https://vextjs.github.io/benchmark"><meta property="og:url" content="https://vextjs.github.io/benchmark"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">Search</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/guide/introduction.html" class="rp-nav-menu__item__container rp-link">Guide</a></li><li class="rp-nav-menu__item"><a href="/frontend/overview.html" class="rp-nav-menu__item__container rp-link">Frontend</a></li><li class="rp-nav-menu__item"><a href="/guide/routing.html" class="rp-nav-menu__item__container rp-link">Runtime</a></li><li class="rp-nav-menu__item"><a href="/guide/validation.html" class="rp-nav-menu__item__container rp-link">Data</a></li><li class="rp-nav-menu__item"><a href="/guide/deployment.html" class="rp-nav-menu__item__container rp-link">Tooling &amp; Operations</a></li><li class="rp-nav-menu__item"><a href="/api/config.html" class="rp-nav-menu__item__container rp-link">API Reference</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">Resources<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="Examples">Examples</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><a href="/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="Benchmark">Benchmark</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Contributing">Contributing</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="Support &amp; Services">Support &amp; Services</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="Docs Data &amp; AI">Docs Data &amp; AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Changelog">Changelog</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="en">English</div></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="简体中文" lang="zh" hrefLang="zh" rel="alternate">简体中文</a></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">Languages</div><div class="rp-nav-screen-langs__right">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">English</span><a href="/zh/benchmark.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="zh" lang="zh" rel="alternate">简体中文</a></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>Menu</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">ON THIS PAGE</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Start</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/introduction.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Introduction</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/quick-start.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Quick Start</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Project Structure</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Runtime</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Routing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Services</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/middleware.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Middleware</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/plugins.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Plugins</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/hooks.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Runtime Hooks</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/request-context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Request Context</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/configuration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Configuration</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/adapters.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Adapter Architecture</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Specifications</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/specification/index.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Development Specifications</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/architecture.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Architecture and Responsibilities</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/http-and-routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP and Routing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/validation-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Validation and Data Contracts</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/data-access.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Data Access</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/security-and-resources.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Security and Resources</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs and Scheduling</span></div><div class="rp-sidebar-item__right"></div></a><a href="/specification/operations.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Build and Operations</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Data and APIs</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Validation</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/security.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Authentication and Security</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/rate-limit.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Rate Limiting</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/uploads.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">File Uploads</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cookies-session.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cookies &amp; Sessions</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Response Cache</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/database.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Database</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP Client</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/openapi.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenAPI</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/guide/frontend.html" class="rp-sidebar-item rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Frontend Integration</span></div><div class="rp-sidebar-item__right"></div></a><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Tooling &amp; Operations</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/guide/build.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Build</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/deployment.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Deployment</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/testing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Testing</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cli.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CLI Commands</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/mcp-generation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">MCP Code Generation</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/hot-reload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hot Reload</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/preload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Preload</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/cluster.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cluster</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Internationalization (i18n)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/logger.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Logger</span></div><div class="rp-sidebar-item__right"></div></a><a href="/guide/error-handling.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Error Handling</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">API Reference</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/api/config.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Config</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/route-definition.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Route Definition</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Request and Response</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/app.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">App</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fetch API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/plugin-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Plugin API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/testing-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Testing API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/api/access-log.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Access Log</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Examples</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/examples/hello-world.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hello World</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/crud-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CRUD API</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Ecosystem Integrations</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/examples/permission-core-auth.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">permission-core Auth</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/nacos-integration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Nacos</span></div><div class="rp-sidebar-item__right"></div></a><a href="/examples/opentelemetry.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenTelemetry</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/benchmark.html" class="rp-sidebar-item rp-sidebar-item--active rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Benchmarking</span></div><div class="rp-sidebar-item__right"></div></a></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="performance-benchmarks"><a href="#performance-benchmarks" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Performance benchmarks<!-- --> </h1>
+<p>These benchmarks help you choose a Vext HTTP adapter. They keep the Vext application fixed and compare the five supported adapters under the same light Normal workload. They are an input to adapter selection—not a substitute for load-testing your application with its real middleware, authentication, logging, database access, and deployment topology.</p>
+<h2 class="rp-toc-include" id="applicable-version-and-evidence"><a href="#applicable-version-and-evidence" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Applicable version and evidence</h2>
+<p>This page preserves a historical measurement from 2026-08-15 using Vext 1.0.1 at the specified source revision. <strong>It is not a performance baseline for the current Vext 2.0.0 code.</strong> “Current results” in the generated section below means the most recent sample retained in this repository; it does not mean the current code was measured again.</p>
+<p>The sample values correspond to the run described in the repository&#x27;s <a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/RESULTS.md" target="_blank" rel="noopener noreferrer" class="rp-link">RESULTS.md</a>. This working copy contains the results Markdown but lacks the original <code>adapter-matrix-formal-release.json</code>. This documentation review did not rerun the benchmark or verify the generated section against that original JSON. When citing these numbers, retain the date, version, workload, and evidence limits; do not turn them into cross-version performance guarantees.</p>
+<h2 class="rp-toc-include" id="at-a-glance"><a href="#at-a-glance" class="rp-header-anchor rp-link" aria-hidden="true">#</a>At a glance</h2>
+<ul>
+<li><strong>This is an adapter comparison, not a cross-framework league table.</strong> Each row runs the same Vext routes, Normal bootstrap, handler mode, HTTP contract, middleware fixture, and load protocol; only the adapter changes.</li>
+<li><strong>Native has the highest throughput in this historical sample&#x27;s host and workload.</strong> That is a local observation, not a claim that it is universally best.</li>
+<li><strong>Fastify and Koa are the next fastest adapters in this sample; Hono and Express trade throughput for their own programming and ecosystem choices.</strong> Use the detailed CV and latency data before treating small differences as meaningful.</li>
+<li><strong>Choose for integration and migration needs first, then reproduce with your workload.</strong> Native is the dependency-light default. Select Fastify, Express, Koa, or Hono when their ecosystem is the better fit.</li>
+</ul>
+<blockquote>
+<p><strong>Scope:</strong> This page compares the cost of the same Vext Normal application through different Vext adapters. The <code>Fastify</code>, <code>Hono</code>, <code>Express</code>, and <code>Koa</code> columns are not standalone/raw-framework results and do not represent performance under each framework&#x27;s recommended production configuration. Make production decisions from benchmarks of your application, real middleware, and deployment configuration.</p>
+</blockquote>
+<!-- -->
+<h2 class="rp-toc-include" id="current-results"><a href="#current-results" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Current results</h2>
+<p>This formal run was recorded at <strong>2026-08-15T00:07:37.413Z</strong> from clean Vext source <code>main@772d3eab9f3826a55526deaf2ad6b1c128bda446</code> (Vext 1.0.1; Node.js v20.20.2). Every value is the median requests per second from <strong>7</strong> rounds; higher is better for that scenario.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Scenario</th><th style="text-align:right">Native</th><th style="text-align:right">Hono</th><th style="text-align:right">Fastify</th><th style="text-align:right">Express</th><th style="text-align:right">Koa</th></tr></thead><tbody><tr><td>JSON response</td><td style="text-align:right">25,085.82</td><td style="text-align:right">11,158.19</td><td style="text-align:right">22,191.28</td><td style="text-align:right">7,651.82</td><td style="text-align:right">19,017.46</td></tr><tr><td>Route parameters</td><td style="text-align:right">24,773.1</td><td style="text-align:right">10,652</td><td style="text-align:right">21,961.46</td><td style="text-align:right">7,554.37</td><td style="text-align:right">18,678.55</td></tr><tr><td>Handler business chain</td><td style="text-align:right">21,802.91</td><td style="text-align:right">9,387</td><td style="text-align:right">18,865.6</td><td style="text-align:right">7,155.2</td><td style="text-align:right">16,527.64</td></tr><tr><td>Route middleware chain</td><td style="text-align:right">21,584.73</td><td style="text-align:right">9,383</td><td style="text-align:right">18,729.1</td><td style="text-align:right">7,137.64</td><td style="text-align:right">16,219.64</td></tr></tbody></table></div>
+<p>All 20 adapter/scenario measurements completed with zero errors, timeouts, and non-2xx responses. Per-scenario CV ranged from 0.2%–1.4%. The full per-round sample, P50/P99, exact versions, provenance, and route-lifecycle telemetry appear below on this page.</p>
+<!-- -->
+<h2 class="rp-toc-include" id="why-this-comparison"><a href="#why-this-comparison" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Why this comparison</h2>
+<p>The user-facing choice is <strong>which Vext adapter to use</strong>, so every target runs the same Vext Normal application. The routes, <code>defineRoutes()</code> loading, route matching, request/response objects, middleware fixture, handler mode, response contract, process priority, and Autocannon protocol are fixed. Only the adapter changes.</p>
+<p>The fixture deliberately turns off optional request features that these GET scenarios do not use: access logging, generated request IDs, CORS, rate limiting, response wrapping, body parsing, request context, session, CSRF, security headers, frontend rendering, and application logging. It retains the Normal bootstrap and route lifecycle. This makes the comparison focused and repeatable; it is not an all-features production or database/I/O benchmark.</p>
+<h3 class="rp-toc-include" id="why-not-publish-production-stack-or-bare-path-rankings"><a href="#why-not-publish-production-stack-or-bare-path-rankings" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Why not publish “production-stack” or “bare-path” rankings?</h3>
+<p>Production load tests are essential before release, but authentication, logging, security, middleware, data and external I/O, deployment topology, hardware, and business complexity all vary. Put those results in one cross-framework RPS table and you measure the full application stack; you cannot reliably attribute the result to the framework or adapter.</p>
+<p>At the other extreme, bare paths or the shortest HTTP path are useful maintainer diagnostics, but they omit the Normal bootstrap, route lifecycle, request/response adaptation, and middleware integration that Vext users actually select. They should not rank user-facing adapter choices.</p>
+<p>This page fixes the same Vext Normal application and load protocol, then changes only the adapter. It measures the <strong>Vext adapter integration-path cost</strong> under a fixed, reproducible workload, not the independent performance of Fastify, Hono, Express, or Koa. Production decisions should still use load tests of your real application.</p>
+<h3 class="rp-toc-include" id="choosing-an-adapter"><a href="#choosing-an-adapter" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Choosing an adapter</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Need</th><th>Suggested starting point</th><th>Check before committing</th></tr></thead><tbody><tr><td>A new project with fewer HTTP framework dependencies</td><td>Native (default)</td><td>Measure the real workload against your latency and throughput targets</td></tr><tr><td>A requirement for Fastify-related capabilities</td><td>Fastify</td><td>Vext middleware and native framework middleware have different signatures; verify the integration boundary</td></tr><tr><td>An Express or Koa migration and existing team expertise</td><td>Matching adapter</td><td>Validate how existing middleware will be adapted instead of choosing by overhead percentage alone</td></tr><tr><td>Hono or Web Standards style in a Node.js service</td><td>Hono</td><td>This is a Node.js adapter, not an Edge-runtime guarantee; measure any bridge-sensitive workload</td></tr></tbody></table></div>
+<p>See the <a href="/guide/adapters.html" class="rp-link">Adapter guide</a> for installation and configuration details.</p>
+<h2 class="rp-toc-include" id="methodology"><a href="#methodology" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Methodology</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Item</th><th>Current formal sample</th></tr></thead><tbody><tr><td>Environment</td><td>Node.js 20.20.2, Windows x64, Intel i7-9700, 32 GiB RAM</td></tr><tr><td>Load</td><td>50 connections, pipelining 10, 10 seconds per measurement</td></tr><tr><td>Stability</td><td>5-second warmup, median of 7 rounds, rotating round order, CV ≤ 20%</td></tr><tr><td>Processes</td><td>The runner and measured child processes use the same normal priority, 0</td></tr><tr><td>Dependencies</td><td>Fastify 5.12.0, Hono 4.13.2, <code>@hono/node-server</code> 2.1.1, Express 5.2.1, Koa 3.2.1, <code>@koa/router</code> 15.7.0, Autocannon 8.0.0</td></tr></tbody></table></div>
+<p>Before a formal run, the runner checks these dependencies against npm <code>latest</code> for that date. It refuses citable output when versions or source identity drift, or when any response is non-2xx, a connection fails or times out, a result is missing, or the CV gate fails. Targets are interleaved by round to reduce time drift that would otherwise consistently favor one implementation.</p>
+<!-- -->
+<!-- -->
+<h2 class="rp-toc-include" id="full-formal-sample"><a href="#full-formal-sample" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Full formal sample</h2>
+<p>This complete formal sample is generated from the same artifact as the current-result summary above. It remains on this page so the conclusion, method, and every measurement can be reviewed together.</p>
+<h3 class="rp-toc-include" id="run-identity"><a href="#run-identity" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Run identity</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Recorded at (UTC)</td><td>2026-08-15T00:07:37.413Z</td></tr><tr><td>Source revision</td><td><code>main@772d3eab9f3826a55526deaf2ad6b1c128bda446</code></td></tr><tr><td>Source state</td><td>clean (required for formal publication)</td></tr><tr><td>Vext</td><td>1.0.1</td></tr><tr><td>Node.js</td><td>v20.20.2</td></tr><tr><td>Protocol</td><td>10s × 7 rounds; 50 connections; pipelining 10; 5s warmup; sync handler; CV ≤ 20%</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="scenarios"><a href="#scenarios" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Scenarios</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Path</th><th>Scenario</th><th>What it exercises</th></tr></thead><tbody><tr><td><code>/json</code></td><td>JSON response</td><td>Route matching and JSON serialization.</td></tr><tr><td><code>/users/42</code></td><td>Route parameters</td><td>Dynamic route matching and parameter extraction.</td></tr><tr><td><code>/chain</code></td><td>Handler business chain</td><td>Three layers of handler business logic and a JSON response.</td></tr><tr><td><code>/middleware-chain</code></td><td>Route middleware chain</td><td>Three route-level middleware layers and a JSON response.</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="every-measured-sample"><a href="#every-measured-sample" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Every measured sample</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Scenario</th><th>Adapter</th><th>RPS samples (every round)</th><th style="text-align:right">Median</th><th style="text-align:right">P50</th><th style="text-align:right">P99</th><th style="text-align:right">Errors / timeouts / non-2xx</th><th style="text-align:right">CV</th></tr></thead><tbody><tr><td>JSON response</td><td>Native</td><td>25,688, 25,085.82, 25,208, 25,256, 24,720, 24,908.37, 24,882.19</td><td style="text-align:right">25,085.82</td><td style="text-align:right">19 ms</td><td style="text-align:right">25 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.2%</td></tr><tr><td>JSON response</td><td>Hono</td><td>11,269.46, 11,145.6, 11,156, 11,209.1, 11,214.4, 10,998.4, 11,158.19</td><td style="text-align:right">11,158.19</td><td style="text-align:right">43 ms</td><td style="text-align:right">71 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>JSON response</td><td>Fastify</td><td>22,609.6, 22,004.8, 22,227.64, 22,191.28, 21,988.8, 22,170.91, 22,329.6</td><td style="text-align:right">22,191.28</td><td style="text-align:right">22 ms</td><td style="text-align:right">27 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.9%</td></tr><tr><td>JSON response</td><td>Express</td><td>7,668.8, 7,657.64, 7,635.6, 7,651.82, 7,677.64, 7,610.37, 7,636.19</td><td style="text-align:right">7,651.82</td><td style="text-align:right">64 ms</td><td style="text-align:right">78 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.3%</td></tr><tr><td>JSON response</td><td>Koa</td><td>19,080, 19,008.73, 19,257.46, 18,901.1, 19,017.46, 18,864, 19,206.55</td><td style="text-align:right">19,017.46</td><td style="text-align:right">25 ms</td><td style="text-align:right">32 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>Route parameters</td><td>Native</td><td>24,690.19, 24,688, 24,938.91, 25,001.46, 24,773.1, 24,784.73, 24,419.64</td><td style="text-align:right">24,773.1</td><td style="text-align:right">19 ms</td><td style="text-align:right">26 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>Route parameters</td><td>Hono</td><td>10,735.64, 10,555.28, 10,652, 10,564.73, 10,725.46, 10,541.46, 10,668.73</td><td style="text-align:right">10,652</td><td style="text-align:right">46 ms</td><td style="text-align:right">77 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>Route parameters</td><td>Fastify</td><td>21,961.46, 21,808, 21,654.4, 22,191.28, 22,123.2, 22,031.28, 21,868.8</td><td style="text-align:right">21,961.46</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.8%</td></tr><tr><td>Route parameters</td><td>Express</td><td>7,572.8, 7,572.91, 7,518, 7,554.37, 7,507.82, 7,567.46, 7,553.28</td><td style="text-align:right">7,554.37</td><td style="text-align:right">65 ms</td><td style="text-align:right">86 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.3%</td></tr><tr><td>Route parameters</td><td>Koa</td><td>18,960.41, 18,535.64, 18,687.28, 18,348, 18,707.64, 18,625.2, 18,678.55</td><td style="text-align:right">18,678.55</td><td style="text-align:right">25 ms</td><td style="text-align:right">31 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.9%</td></tr><tr><td>Handler business chain</td><td>Native</td><td>21,933.82, 22,182.4, 22,205.82, 21,493.1, 21,670.55, 21,802.91, 21,582.4</td><td style="text-align:right">21,802.91</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.2%</td></tr><tr><td>Handler business chain</td><td>Hono</td><td>9,404.21, 9,437, 9,313.8, 9,495.4, 9,276.21, 9,331.46, 9,387</td><td style="text-align:right">9,387</td><td style="text-align:right">52 ms</td><td style="text-align:right">88 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.8%</td></tr><tr><td>Handler business chain</td><td>Fastify</td><td>18,973.82, 18,865.6, 19,245.82, 18,819.2, 19,152, 18,590, 18,853.2</td><td style="text-align:right">18,865.6</td><td style="text-align:right">25 ms</td><td style="text-align:right">31 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.1%</td></tr><tr><td>Handler business chain</td><td>Express</td><td>7,130.73, 7,159.1, 7,150.8, 7,152.4, 7,194.4, 7,155.2, 7,164.4</td><td style="text-align:right">7,155.2</td><td style="text-align:right">69 ms</td><td style="text-align:right">91 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.2%</td></tr><tr><td>Handler business chain</td><td>Koa</td><td>16,711.6, 16,630.8, 16,662.8, 16,527.64, 16,469.6, 16,524, 16,351.64</td><td style="text-align:right">16,527.64</td><td style="text-align:right">29 ms</td><td style="text-align:right">38 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>Route middleware chain</td><td>Native</td><td>21,670.55, 21,548.37, 21,654.4, 21,584.73, 21,545.46, 21,513.6, 21,957.1</td><td style="text-align:right">21,584.73</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.6%</td></tr><tr><td>Route middleware chain</td><td>Hono</td><td>9,401.4, 9,203.4, 9,389.64, 9,204.21, 9,397.4, 9,224.21, 9,383</td><td style="text-align:right">9,383</td><td style="text-align:right">51 ms</td><td style="text-align:right">88 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.0%</td></tr><tr><td>Route middleware chain</td><td>Fastify</td><td>18,635.28, 18,576.41, 18,729.1, 18,825.46, 18,776, 18,462.91, 18,806.55</td><td style="text-align:right">18,729.1</td><td style="text-align:right">25 ms</td><td style="text-align:right">32 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>Route middleware chain</td><td>Express</td><td>7,418.4, 7,117.64, 7,137.64, 7,159.46, 7,114, 7,156.4, 7,126</td><td style="text-align:right">7,137.64</td><td style="text-align:right">69 ms</td><td style="text-align:right">90 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.4%</td></tr><tr><td>Route middleware chain</td><td>Koa</td><td>16,374.91, 16,171.28, 16,281.1, 16,132, 16,358.19, 16,219.64, 16,080</td><td style="text-align:right">16,219.64</td><td style="text-align:right">29 ms</td><td style="text-align:right">40 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.6%</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="normal-route-lifecycle-telemetry"><a href="#normal-route-lifecycle-telemetry" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Normal route-lifecycle telemetry</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Scenario</th><th>Adapter</th><th style="text-align:right">Global middleware</th><th style="text-align:right">Route registration chain</th><th>Status</th></tr></thead><tbody><tr><td>JSON response</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>JSON response</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>JSON response</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>JSON response</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>JSON response</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route parameters</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route parameters</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route parameters</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route parameters</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route parameters</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Handler business chain</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Handler business chain</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Handler business chain</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Handler business chain</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Handler business chain</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>asserted</td></tr><tr><td>Route middleware chain</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>asserted</td></tr><tr><td>Route middleware chain</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>asserted</td></tr><tr><td>Route middleware chain</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>asserted</td></tr><tr><td>Route middleware chain</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>asserted</td></tr><tr><td>Route middleware chain</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>asserted</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="exact-environment-and-versions"><a href="#exact-environment-and-versions" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Exact environment and versions</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Item</th><th>Exact value</th></tr></thead><tbody><tr><td>Platform</td><td>win32 x64</td></tr><tr><td>CPU</td><td>Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz</td></tr><tr><td>Memory</td><td>32 GiB</td></tr><tr><td>Process priority</td><td>0</td></tr><tr><td>Vext</td><td>1.0.1</td></tr><tr><td>Hono</td><td>4.13.2</td></tr><tr><td>@hono/node-server</td><td>2.1.1</td></tr><tr><td>Fastify</td><td>5.12.0</td></tr><tr><td>Express</td><td>5.2.1</td></tr><tr><td>Koa</td><td>3.2.1</td></tr><tr><td>@koa/router</td><td>15.7.0</td></tr><tr><td>Autocannon</td><td>8.0.0</td></tr><tr><td>npm latest verification</td><td>2026-08-14T23:36:04.874Z (<a href="https://registry.npmjs.org" target="_blank" rel="noopener noreferrer" class="rp-link">https://registry.npmjs.org</a>)</td></tr></tbody></table></div>
+<!-- -->
+<h2 class="rp-toc-include" id="reproduce-the-results"><a href="#reproduce-the-results" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Reproduce the results</h2>
+<p>Install the lockfile and confirm that the benchmark dependencies still match npm <code>latest</code>:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> ci</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> verify:benchmark-deps</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>From the repository root, run the adapter comparison from clean source with the same protocol. Today&#x27;s code and dependencies produce a <strong>new</strong> baseline. The historical lockfile and today&#x27;s <code>latest</code> can differ; if the <code>latest</code> gate fails, do not skip it and still call the run formal:</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">node</span><span style="color:var(--shiki-token-string)"> --expose-gc</span><span style="color:var(--shiki-token-string)"> --max-old-space-size=512</span><span style="color:var(--shiki-token-string)"> test/benchmark/run-adapter-matrix.mjs</span><span style="color:var(--shiki-token-string)"> --formal</span><span style="color:var(--shiki-token-string)"> --scenario</span><span style="color:var(--shiki-token-string)"> all</span><span style="color:var(--shiki-token-string)"> --duration</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-string)"> --connections</span><span style="color:var(--shiki-token-constant)"> 50</span><span style="color:var(--shiki-token-string)"> --pipelining</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-string)"> --warmup</span><span style="color:var(--shiki-token-constant)"> 5</span><span style="color:var(--shiki-token-string)"> --rounds</span><span style="color:var(--shiki-token-constant)"> 7</span><span style="color:var(--shiki-token-string)"> --max-cv</span><span style="color:var(--shiki-token-constant)"> 20</span><span style="color:var(--shiki-token-string)"> --process-priority</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-string)"> --handler-mode</span><span style="color:var(--shiki-token-string)"> sync</span><span style="color:var(--shiki-token-string)"> --results-json</span><span style="color:var(--shiki-token-string)"> test/benchmark/.artifacts/adapter-matrix-formal-release.json</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>The full formal matrix takes about 55 minutes and uses local resources; prepare an idle environment first. The command updates test reports and starts/stops local benchmark targets. If interrupted, check for leftover measured processes. Maintainers should update the site with the existing generator only after the new result passes all gates. Without the raw JSON, <code>verify:benchmark-docs</code> fails; do not reconstruct an original artifact from the displayed table.</p>
+<p>This sample uses synchronous handlers. If your platform or permissions require a different priority, choose an available value and treat the result as a new environment baseline rather than comparing absolute numbers with this page.</p>
+<p>The runner uses the local Autocannon <strong>programmatic API</strong> and starts and stops its targets automatically. This page includes every sample, P50/P99, exact versions, provenance, and route-lifecycle telemetry. See the <a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/README.md" target="_blank" rel="noopener noreferrer" class="rp-link">benchmark README</a> for all runner options, the adapter matrix command, and artifact merge rules.</p>
+<h3 class="rp-toc-include" id="test-your-application"><a href="#test-your-application" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Test your application</h3>
+<p>A framework microbenchmark answers only “what does the core HTTP path cost?” Before production, run a workload that includes at least:</p>
+<ol>
+<li>your authentication, logging, response wrapping, and middleware;</li>
+<li>real or controlled substitutes for databases, caches, and external APIs;</li>
+<li>warmup, multiple rounds, throughput, P95/P99 latency, error rate, and resource use;</li>
+<li>the production Node.js version, process count, container limits, and reverse proxy.</li>
+</ol>
+<h2 class="rp-toc-include" id="limitations"><a href="#limitations" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Limitations</h2>
+<ul>
+<li>P50/P99 come from the round corresponding to the median RPS, rather than percentiles across requests from all seven rounds. CV describes relative variation in throughput across rounds; it is not a confidence interval.</li>
+<li>The current results come from one Windows host; they do not represent Linux, containers, or cloud platforms.</li>
+<li>These are small HTTP microbenchmarks. They do not measure developer experience, plugin quality, maintainability, or complete business latency.</li>
+<li>Do not combine absolute values from different dates, machines, dependency versions, handler modes, or load protocols into one ranking.</li>
+<li>The table compares Vext adapters only. Raw and shortest-path diagnostics are maintained separately and are not user-facing adapter rankings.</li>
+</ul>
+<h2 class="rp-toc-include" id="related-links"><a href="#related-links" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Related links</h2>
+<ul>
+<li><a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/README.md" target="_blank" rel="noopener noreferrer" class="rp-link">Benchmark reproduction guide</a></li>
+<li><a href="/guide/adapters.html" class="rp-link">Adapter selection and configuration</a></li>
+<li><a href="/guide/deployment.html" class="rp-link">Production deployment</a></li>
+<li><a href="/api/config.html" class="rp-link">Configuration reference</a></li>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>9/27/2026, 12:46:28 PM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/examples/opentelemetry.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>OpenTelemetry</span></span></a><div class="rp-prev-next-page__placeholder"></div></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#applicable-version-and-evidence" class="rp-toc-item rp-link" title="Applicable version and evidence" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Applicable version and evidence</span></a><a href="#at-a-glance" class="rp-toc-item rp-link" title="At a glance" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">At a glance</span></a><a href="#current-results" class="rp-toc-item rp-link" title="Current results" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Current results</span></a><a href="#why-this-comparison" class="rp-toc-item rp-link" title="Why this comparison" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Why this comparison</span></a><a href="#why-not-publish-production-stack-or-bare-path-rankings" class="rp-toc-item rp-link" title="Why not publish “production-stack” or “bare-path” rankings?" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Why not publish “production-stack” or “bare-path” rankings?</span></a><a href="#choosing-an-adapter" class="rp-toc-item rp-link" title="Choosing an adapter" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Choosing an adapter</span></a><a href="#methodology" class="rp-toc-item rp-link" title="Methodology" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Methodology</span></a><a href="#full-formal-sample" class="rp-toc-item rp-link" title="Full formal sample" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Full formal sample</span></a><a href="#run-identity" class="rp-toc-item rp-link" title="Run identity" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Run identity</span></a><a href="#scenarios" class="rp-toc-item rp-link" title="Scenarios" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Scenarios</span></a><a href="#every-measured-sample" class="rp-toc-item rp-link" title="Every measured sample" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Every measured sample</span></a><a href="#normal-route-lifecycle-telemetry" class="rp-toc-item rp-link" title="Normal route-lifecycle telemetry" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Normal route-lifecycle telemetry</span></a><a href="#exact-environment-and-versions" class="rp-toc-item rp-link" title="Exact environment and versions" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Exact environment and versions</span></a><a href="#reproduce-the-results" class="rp-toc-item rp-link" title="Reproduce the results" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Reproduce the results</span></a><a href="#test-your-application" class="rp-toc-item rp-link" title="Test your application" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Test your application</span></a><a href="#limitations" class="rp-toc-item rp-link" title="Limitations" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Limitations</span></a><a href="#related-links" class="rp-toc-item rp-link" title="Related links" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Related links</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

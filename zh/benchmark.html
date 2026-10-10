@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="zh">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>性能基准 - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-d1c64f254f22.c02badad67.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="性能基准 - VextJS">
+<meta property="og:description" content="这份基准用于帮助你选择 Vext HTTP Adapter。它固定同一个 Vext 应用，在相同的轻量 Normal 负载下比较五个受支持的 Adapter。它适合作为 Adapter 选型输入，不替代你的应用在真实中间件、鉴权、日志、数据库和部署环境下的压测。">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/benchmark.html">
+<link rel="alternate" hreflang="zh" href="/zh/benchmark.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="这份基准用于帮助你选择 Vext HTTP Adapter。它固定同一个 Vext 应用，在相同的轻量 Normal 负载下比较五个受支持的 Adapter。它适合作为 Adapter 选型输入，不替代你的应用在真实中间件、鉴权、日志、数据库和部署环境下的压测。"><link rel="canonical" href="https://vextjs.github.io/zh/benchmark"><meta property="og:url" content="https://vextjs.github.io/zh/benchmark"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/zh/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">搜索</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/zh/guide/introduction.html" class="rp-nav-menu__item__container rp-link">指南</a></li><li class="rp-nav-menu__item"><a href="/zh/frontend/overview.html" class="rp-nav-menu__item__container rp-link">前端</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/routing.html" class="rp-nav-menu__item__container rp-link">运行时</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/validation.html" class="rp-nav-menu__item__container rp-link">数据</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/deployment.html" class="rp-nav-menu__item__container rp-link">工具与运维</a></li><li class="rp-nav-menu__item"><a href="/zh/api/config.html" class="rp-nav-menu__item__container rp-link">API 参考</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">资源<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="示例">示例</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><a href="/zh/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="基准测试">基准测试</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="贡献指南">贡献指南</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="支持与服务">支持与服务</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="文档数据与 AI">文档数据与 AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="更新日志">更新日志</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="English" lang="en" hrefLang="en" rel="alternate">English</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="zh">简体中文</div></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">语言</div><div class="rp-nav-screen-langs__right">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><a href="/benchmark.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="en" lang="en" rel="alternate">English</a><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">简体中文</span></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>菜单</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">目录</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">开始</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/introduction.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">介绍</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/quick-start.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">快速开始</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">项目结构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">运行时</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">路由</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">服务层</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">任务与 Jobs</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/middleware.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">中间件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/plugins.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">插件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hooks.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">运行时 Hooks</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/request-context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求上下文</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/configuration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">配置</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/adapters.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Adapter 架构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">规范</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/specification/index.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">开发规范概览</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/architecture.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">架构与职责规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/http-and-routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP 与路由规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/validation-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">校验与数据契约规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/data-access.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">数据访问规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/security-and-resources.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">安全与资源规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">任务与调度规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/operations.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">构建与运行规范</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">数据与接口</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">参数校验</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/security.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">认证与安全</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/rate-limit.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求限流</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/uploads.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">文件上传</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cookies-session.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cookies 与 Sessions</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">响应缓存</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/database.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">数据库 (MonSQLize)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">内置 HTTP 客户端</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/openapi.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenAPI 文档</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/zh/guide/frontend.html" class="rp-sidebar-item rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">前端集成</span></div><div class="rp-sidebar-item__right"></div></a><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">工具与运维</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/build.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">构建</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/deployment.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">部署与生产环境</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/testing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">测试</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cli.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CLI 命令</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/mcp-generation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">MCP 代码生成</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hot-reload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">热重载</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/preload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">预加载 (Preload)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cluster.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cluster 多进程</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">国际化 (i18n)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/logger.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">日志</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/error-handling.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">错误处理</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">API 参考</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/api/config.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">配置项</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/route-definition.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">路由定义</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求与响应</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/app.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">应用实例</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fetch API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/plugin-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">插件 API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/testing-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">测试工具</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/access-log.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Access Log 中间件</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">示例</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/hello-world.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hello World</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/crud-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CRUD API</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">生态集成</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/permission-core-auth.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">permission-core Auth 接入</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/nacos-integration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Nacos 接入</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/opentelemetry.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenTelemetry 可观测性</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">资源</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/benchmark.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">基准测试</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/resources/documentation-data-and-ai.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">文档数据与 AI</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/resources/support-and-services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">支持与服务</span></div><div class="rp-sidebar-item__right"></div></a></div></div></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="性能基准"><a href="#性能基准" class="rp-header-anchor rp-link" aria-hidden="true">#</a>性能基准<!-- --> </h1>
+<p>这份基准用于帮助你选择 Vext HTTP Adapter。它固定同一个 Vext 应用，在相同的轻量 Normal 负载下比较五个受支持的 Adapter。它适合作为 Adapter 选型输入，不替代你的应用在真实中间件、鉴权、日志、数据库和部署环境下的压测。</p>
+<h2 class="rp-toc-include" id="适用版本与证据"><a href="#适用版本与证据" class="rp-header-anchor rp-link" aria-hidden="true">#</a>适用版本与证据</h2>
+<p>本页保留 2026-08-15、Vext 1.0.1 / 指定源码提交的历史测量，<strong>不是当前 Vext 2.0.0 的性能基线</strong>。下方生成区的“当前结果”表示仓库最近保留的样本，不表示重新测量了当前代码。</p>
+<p>样本数值与仓库 <a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/RESULTS.md" target="_blank" rel="noopener noreferrer" class="rp-link">RESULTS.md</a> 所述运行对应；当前工作副本保存了结果 Markdown，但没有原始 adapter-matrix-formal-release.json。本次文档核对没有重跑压测，也没有完成原始 JSON 到生成区的一致性校验。引用时保留时间、版本、负载和证据限制，不能把数字转成跨版本的能力保证。</p>
+<h2 class="rp-toc-include" id="先看结论"><a href="#先看结论" class="rp-header-anchor rp-link" aria-hidden="true">#</a>先看结论</h2>
+<ul>
+<li><strong>这是 Adapter 对比，不是跨框架排行榜。</strong> 每一行均使用相同的 Vext routes、Normal bootstrap、handler 模式、HTTP 契约、中间件 fixture 和压测协议；唯一变量是 Adapter。</li>
+<li><strong>历史样本的机器和负载下 Native 的吞吐最高。</strong> 这是当前环境观测，不是它在所有环境中都最优的承诺。</li>
+<li><strong>本样本中 Fastify 与 Koa 的吞吐随后，Hono 与 Express 则取舍各自的编程模型和生态。</strong> 对于较小差异，请结合 CV 和延迟数据判断。</li>
+<li><strong>先按集成和迁移需求选择，再用你的业务复测。</strong> Native 是依赖更轻的默认路径；需要相应生态时选择 Fastify、Express、Koa 或 Hono。</li>
+</ul>
+<blockquote>
+<p><strong>范围说明：</strong> 本页比较同一个 Vext Normal 应用通过不同 Vext Adapter 的开销。表中的 <code>Fastify</code>、<code>Hono</code>、<code>Express</code> 和 <code>Koa</code> 列不是这些框架的独立或裸性能，也不代表它们各自推荐生产配置的性能。生产选型请以你的应用、实际中间件与部署配置的压测为准。</p>
+</blockquote>
+<!-- -->
+<h2 class="rp-toc-include" id="当前结果"><a href="#当前结果" class="rp-header-anchor rp-link" aria-hidden="true">#</a>当前结果</h2>
+<p>本次正式运行记录于 <strong>2026-08-15T00:07:37.413Z</strong>，使用干净的 Vext 源码 <code>main@772d3eab9f3826a55526deaf2ad6b1c128bda446</code>（Vext 1.0.1；Node.js v20.20.2）。所有数字均为 <strong>7</strong> 轮 req/s 的中位数，数值越高表示该测试场景中的吞吐越高。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>场景</th><th style="text-align:right">Native</th><th style="text-align:right">Hono</th><th style="text-align:right">Fastify</th><th style="text-align:right">Express</th><th style="text-align:right">Koa</th></tr></thead><tbody><tr><td>JSON 响应</td><td style="text-align:right">25,085.82</td><td style="text-align:right">11,158.19</td><td style="text-align:right">22,191.28</td><td style="text-align:right">7,651.82</td><td style="text-align:right">19,017.46</td></tr><tr><td>参数路由</td><td style="text-align:right">24,773.1</td><td style="text-align:right">10,652</td><td style="text-align:right">21,961.46</td><td style="text-align:right">7,554.37</td><td style="text-align:right">18,678.55</td></tr><tr><td>处理器业务链</td><td style="text-align:right">21,802.91</td><td style="text-align:right">9,387</td><td style="text-align:right">18,865.6</td><td style="text-align:right">7,155.2</td><td style="text-align:right">16,527.64</td></tr><tr><td>route middleware 链</td><td style="text-align:right">21,584.73</td><td style="text-align:right">9,383</td><td style="text-align:right">18,729.1</td><td style="text-align:right">7,137.64</td><td style="text-align:right">16,219.64</td></tr></tbody></table></div>
+<p>全部 20 个 Adapter/场景测量均为零错误、零超时、零非 2xx 响应。每个场景的 CV 在 0.2%–1.4% 之间。完整的逐轮样本、P50/P99、精确版本、provenance 和路由生命周期 telemetry 均在本页下方。</p>
+<!-- -->
+<h2 class="rp-toc-include" id="为什么这样对比"><a href="#为什么这样对比" class="rp-header-anchor rp-link" aria-hidden="true">#</a>为什么这样对比</h2>
+<p>面向使用者的决策是<strong>选择哪个 Vext Adapter</strong>，所以每个目标均运行同一个 Vext Normal 应用。routes、<code>defineRoutes()</code> 加载、路由匹配、请求/响应对象、中间件 fixture、handler 模式、响应契约、进程优先级和 Autocannon 协议均保持不变，唯一变量是 Adapter。</p>
+<p>fixture 有意关闭这些 GET 场景不使用的可选请求能力：access log、生成的 request ID、CORS、rate limit、response wrap、body parser、request context、session、CSRF、security headers、frontend render 和应用日志。它仍保留 Normal bootstrap 与路由生命周期。因此比较具有聚焦性和可复现性，但它不是全能力生产负载，也不是数据库/I/O 基准。</p>
+<h3 class="rp-toc-include" id="为什么不发布生产栈排行或裸路径排行"><a href="#为什么不发布生产栈排行或裸路径排行" class="rp-header-anchor rp-link" aria-hidden="true">#</a>为什么不发布“生产栈排行”或“裸路径排行”？</h3>
+<p>生产压测是上线前的必要步骤，但认证、日志、安全、中间件、数据与外部 I/O、部署拓扑、硬件和业务复杂度都会不同。把这些结果放进一张跨框架 RPS 表，测到的是整套应用组合，不能可靠归因为框架或 Adapter。</p>
+<p>另一端的裸路径或最短 HTTP 路径对维护者有诊断价值，但会省略 Vext 使用者实际选择的 Normal bootstrap、路由生命周期、请求/响应适配和中间件集成，因此不应用作用户选型排名。</p>
+<p>本页固定同一个 Vext Normal 应用与压测协议，只更换 Adapter。它衡量的是固定、可复现负载下的 <strong>Vext Adapter 集成路径开销</strong>，不是 Fastify、Hono、Express 或 Koa 的独立性能。生产选型仍应以你的真实应用压测为准。</p>
+<h3 class="rp-toc-include" id="如何选择"><a href="#如何选择" class="rp-header-anchor rp-link" aria-hidden="true">#</a>如何选择</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>需求</th><th>建议起点</th><th>需要注意</th></tr></thead><tbody><tr><td>新项目、希望减少 HTTP 框架依赖</td><td>Native（默认）</td><td>用真实业务负载确认吞吐与延迟目标</td></tr><tr><td>已确定需要 Fastify 相关能力</td><td>Fastify</td><td>Vext middleware 与底层原生 middleware 的签名不同，先核对集成边界</td></tr><tr><td>从 Express 或 Koa 迁移、团队已有经验</td><td>对应 adapter</td><td>不要仅依据开销百分比选择，先验证现有中间件的迁移方式</td></tr><tr><td>Node.js 服务中需要 Hono / Web Standards 风格</td><td>Hono</td><td>当前是 Node.js adapter，不是 Edge 运行时承诺；对 bridge 敏感负载应实测</td></tr></tbody></table></div>
+<p>详细安装和配置请参见 <a href="/zh/guide/adapters.html" class="rp-link">Adapter 指南</a>。</p>
+<h2 class="rp-toc-include" id="测试口径"><a href="#测试口径" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试口径</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>项目</th><th>当前正式样本</th></tr></thead><tbody><tr><td>环境</td><td>Node.js 20.20.2、Windows x64、Intel i7-9700、32 GiB RAM</td></tr><tr><td>负载</td><td>50 connections、pipelining 10、每次测量 10 秒</td></tr><tr><td>稳定性</td><td>5 秒预热、7 轮中位数、轮次顺序轮转、CV ≤ 20%</td></tr><tr><td>进程</td><td>runner 与被测子进程使用相同 normal 优先级 0</td></tr><tr><td>依赖</td><td>Fastify 5.12.0、Hono 4.13.2、<code>@hono/node-server</code> 2.1.1、Express 5.2.1、Koa 3.2.1、<code>@koa/router</code> 15.7.0、Autocannon 8.0.0</td></tr></tbody></table></div>
+<p>正式运行前，runner 会将这些依赖与当日 npm <code>latest</code> 核对；任一版本、源码身份、非 2xx、连接错误、超时、缺失结果或 CV 门禁失败都会拒绝生成可引用报告。目标按轮次交错执行，减少时间漂移固定偏向某一实现。</p>
+<!-- -->
+<!-- -->
+<h2 class="rp-toc-include" id="完整正式样本"><a href="#完整正式样本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>完整正式样本</h2>
+<p>此完整正式样本与上方当前结果摘要由同一 artifact 生成，并保留在本页中，使结论、方法和每一条测量数据可以一起审阅。</p>
+<h3 class="rp-toc-include" id="运行身份"><a href="#运行身份" class="rp-header-anchor rp-link" aria-hidden="true">#</a>运行身份</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>值</th></tr></thead><tbody><tr><td>记录时间（UTC）</td><td>2026-08-15T00:07:37.413Z</td></tr><tr><td>源码版本</td><td><code>main@772d3eab9f3826a55526deaf2ad6b1c128bda446</code></td></tr><tr><td>源码状态</td><td>clean（正式公开的必需条件）</td></tr><tr><td>Vext</td><td>1.0.1</td></tr><tr><td>Node.js</td><td>v20.20.2</td></tr><tr><td>协议</td><td>10s × 7 rounds; 50 connections; pipelining 10; 5s warmup; sync handler; CV ≤ 20%</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="场景"><a href="#场景" class="rp-header-anchor rp-link" aria-hidden="true">#</a>场景</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>路径</th><th>场景</th><th>覆盖内容</th></tr></thead><tbody><tr><td><code>/json</code></td><td>JSON 响应</td><td>路由匹配与 JSON 序列化。</td></tr><tr><td><code>/users/42</code></td><td>参数路由</td><td>动态路由匹配与参数提取。</td></tr><tr><td><code>/chain</code></td><td>处理器业务链</td><td>三层 handler 业务逻辑与 JSON 响应。</td></tr><tr><td><code>/middleware-chain</code></td><td>route middleware 链</td><td>三层 route-level middleware 与 JSON 响应。</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="每一个测量样本"><a href="#每一个测量样本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>每一个测量样本</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>场景</th><th>Adapter</th><th>RPS 样本（所有轮次）</th><th style="text-align:right">中位数</th><th style="text-align:right">P50</th><th style="text-align:right">P99</th><th style="text-align:right">错误 / 超时 / 非 2xx</th><th style="text-align:right">CV</th></tr></thead><tbody><tr><td>JSON 响应</td><td>Native</td><td>25,688, 25,085.82, 25,208, 25,256, 24,720, 24,908.37, 24,882.19</td><td style="text-align:right">25,085.82</td><td style="text-align:right">19 ms</td><td style="text-align:right">25 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.2%</td></tr><tr><td>JSON 响应</td><td>Hono</td><td>11,269.46, 11,145.6, 11,156, 11,209.1, 11,214.4, 10,998.4, 11,158.19</td><td style="text-align:right">11,158.19</td><td style="text-align:right">43 ms</td><td style="text-align:right">71 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>JSON 响应</td><td>Fastify</td><td>22,609.6, 22,004.8, 22,227.64, 22,191.28, 21,988.8, 22,170.91, 22,329.6</td><td style="text-align:right">22,191.28</td><td style="text-align:right">22 ms</td><td style="text-align:right">27 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.9%</td></tr><tr><td>JSON 响应</td><td>Express</td><td>7,668.8, 7,657.64, 7,635.6, 7,651.82, 7,677.64, 7,610.37, 7,636.19</td><td style="text-align:right">7,651.82</td><td style="text-align:right">64 ms</td><td style="text-align:right">78 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.3%</td></tr><tr><td>JSON 响应</td><td>Koa</td><td>19,080, 19,008.73, 19,257.46, 18,901.1, 19,017.46, 18,864, 19,206.55</td><td style="text-align:right">19,017.46</td><td style="text-align:right">25 ms</td><td style="text-align:right">32 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>参数路由</td><td>Native</td><td>24,690.19, 24,688, 24,938.91, 25,001.46, 24,773.1, 24,784.73, 24,419.64</td><td style="text-align:right">24,773.1</td><td style="text-align:right">19 ms</td><td style="text-align:right">26 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>参数路由</td><td>Hono</td><td>10,735.64, 10,555.28, 10,652, 10,564.73, 10,725.46, 10,541.46, 10,668.73</td><td style="text-align:right">10,652</td><td style="text-align:right">46 ms</td><td style="text-align:right">77 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>参数路由</td><td>Fastify</td><td>21,961.46, 21,808, 21,654.4, 22,191.28, 22,123.2, 22,031.28, 21,868.8</td><td style="text-align:right">21,961.46</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.8%</td></tr><tr><td>参数路由</td><td>Express</td><td>7,572.8, 7,572.91, 7,518, 7,554.37, 7,507.82, 7,567.46, 7,553.28</td><td style="text-align:right">7,554.37</td><td style="text-align:right">65 ms</td><td style="text-align:right">86 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.3%</td></tr><tr><td>参数路由</td><td>Koa</td><td>18,960.41, 18,535.64, 18,687.28, 18,348, 18,707.64, 18,625.2, 18,678.55</td><td style="text-align:right">18,678.55</td><td style="text-align:right">25 ms</td><td style="text-align:right">31 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.9%</td></tr><tr><td>处理器业务链</td><td>Native</td><td>21,933.82, 22,182.4, 22,205.82, 21,493.1, 21,670.55, 21,802.91, 21,582.4</td><td style="text-align:right">21,802.91</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.2%</td></tr><tr><td>处理器业务链</td><td>Hono</td><td>9,404.21, 9,437, 9,313.8, 9,495.4, 9,276.21, 9,331.46, 9,387</td><td style="text-align:right">9,387</td><td style="text-align:right">52 ms</td><td style="text-align:right">88 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.8%</td></tr><tr><td>处理器业务链</td><td>Fastify</td><td>18,973.82, 18,865.6, 19,245.82, 18,819.2, 19,152, 18,590, 18,853.2</td><td style="text-align:right">18,865.6</td><td style="text-align:right">25 ms</td><td style="text-align:right">31 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.1%</td></tr><tr><td>处理器业务链</td><td>Express</td><td>7,130.73, 7,159.1, 7,150.8, 7,152.4, 7,194.4, 7,155.2, 7,164.4</td><td style="text-align:right">7,155.2</td><td style="text-align:right">69 ms</td><td style="text-align:right">91 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.2%</td></tr><tr><td>处理器业务链</td><td>Koa</td><td>16,711.6, 16,630.8, 16,662.8, 16,527.64, 16,469.6, 16,524, 16,351.64</td><td style="text-align:right">16,527.64</td><td style="text-align:right">29 ms</td><td style="text-align:right">38 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>route middleware 链</td><td>Native</td><td>21,670.55, 21,548.37, 21,654.4, 21,584.73, 21,545.46, 21,513.6, 21,957.1</td><td style="text-align:right">21,584.73</td><td style="text-align:right">22 ms</td><td style="text-align:right">28 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.6%</td></tr><tr><td>route middleware 链</td><td>Hono</td><td>9,401.4, 9,203.4, 9,389.64, 9,204.21, 9,397.4, 9,224.21, 9,383</td><td style="text-align:right">9,383</td><td style="text-align:right">51 ms</td><td style="text-align:right">88 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.0%</td></tr><tr><td>route middleware 链</td><td>Fastify</td><td>18,635.28, 18,576.41, 18,729.1, 18,825.46, 18,776, 18,462.91, 18,806.55</td><td style="text-align:right">18,729.1</td><td style="text-align:right">25 ms</td><td style="text-align:right">32 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.7%</td></tr><tr><td>route middleware 链</td><td>Express</td><td>7,418.4, 7,117.64, 7,137.64, 7,159.46, 7,114, 7,156.4, 7,126</td><td style="text-align:right">7,137.64</td><td style="text-align:right">69 ms</td><td style="text-align:right">90 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">1.4%</td></tr><tr><td>route middleware 链</td><td>Koa</td><td>16,374.91, 16,171.28, 16,281.1, 16,132, 16,358.19, 16,219.64, 16,080</td><td style="text-align:right">16,219.64</td><td style="text-align:right">29 ms</td><td style="text-align:right">40 ms</td><td style="text-align:right">0 / 0 / 0</td><td style="text-align:right">0.6%</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="normal-路由生命周期-telemetry"><a href="#normal-路由生命周期-telemetry" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Normal 路由生命周期 telemetry</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>场景</th><th>Adapter</th><th style="text-align:right">全局 middleware</th><th style="text-align:right">路由注册链</th><th>状态</th></tr></thead><tbody><tr><td>JSON 响应</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>JSON 响应</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>JSON 响应</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>JSON 响应</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>JSON 响应</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>参数路由</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>参数路由</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>参数路由</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>参数路由</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>参数路由</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>处理器业务链</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>处理器业务链</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>处理器业务链</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>处理器业务链</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>处理器业务链</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">2</td><td>已断言</td></tr><tr><td>route middleware 链</td><td>Native</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>已断言</td></tr><tr><td>route middleware 链</td><td>Hono</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>已断言</td></tr><tr><td>route middleware 链</td><td>Fastify</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>已断言</td></tr><tr><td>route middleware 链</td><td>Express</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>已断言</td></tr><tr><td>route middleware 链</td><td>Koa</td><td style="text-align:right">1</td><td style="text-align:right">5</td><td>已断言</td></tr></tbody></table></div>
+<h3 class="rp-toc-include" id="精确环境与版本"><a href="#精确环境与版本" class="rp-header-anchor rp-link" aria-hidden="true">#</a>精确环境与版本</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>项目</th><th>精确值</th></tr></thead><tbody><tr><td>平台</td><td>win32 x64</td></tr><tr><td>CPU</td><td>Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz</td></tr><tr><td>内存</td><td>32 GiB</td></tr><tr><td>进程优先级</td><td>0</td></tr><tr><td>Vext</td><td>1.0.1</td></tr><tr><td>Hono</td><td>4.13.2</td></tr><tr><td>@hono/node-server</td><td>2.1.1</td></tr><tr><td>Fastify</td><td>5.12.0</td></tr><tr><td>Express</td><td>5.2.1</td></tr><tr><td>Koa</td><td>3.2.1</td></tr><tr><td>@koa/router</td><td>15.7.0</td></tr><tr><td>Autocannon</td><td>8.0.0</td></tr><tr><td>npm latest 核验</td><td>2026-08-14T23:36:04.874Z (<a href="https://registry.npmjs.org" target="_blank" rel="noopener noreferrer" class="rp-link">https://registry.npmjs.org</a>)</td></tr></tbody></table></div>
+<!-- -->
+<h2 class="rp-toc-include" id="自己复现"><a href="#自己复现" class="rp-header-anchor rp-link" aria-hidden="true">#</a>自己复现</h2>
+<p>先安装锁文件中的依赖并确认 benchmark 版本仍是当前 npm <code>latest</code>：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> ci</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> verify:benchmark-deps</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>在仓库根目录使用干净源码执行相同协议的 Adapter 对照；当前代码与依赖生成的是新基线。历史锁文件与今日 latest 可能不同，latest 门禁失败时不要跳过它后仍称为正式结果：</p>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">node</span><span style="color:var(--shiki-token-string)"> --expose-gc</span><span style="color:var(--shiki-token-string)"> --max-old-space-size=512</span><span style="color:var(--shiki-token-string)"> test/benchmark/run-adapter-matrix.mjs</span><span style="color:var(--shiki-token-string)"> --formal</span><span style="color:var(--shiki-token-string)"> --scenario</span><span style="color:var(--shiki-token-string)"> all</span><span style="color:var(--shiki-token-string)"> --duration</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-string)"> --connections</span><span style="color:var(--shiki-token-constant)"> 50</span><span style="color:var(--shiki-token-string)"> --pipelining</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-string)"> --warmup</span><span style="color:var(--shiki-token-constant)"> 5</span><span style="color:var(--shiki-token-string)"> --rounds</span><span style="color:var(--shiki-token-constant)"> 7</span><span style="color:var(--shiki-token-string)"> --max-cv</span><span style="color:var(--shiki-token-constant)"> 20</span><span style="color:var(--shiki-token-string)"> --process-priority</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-string)"> --handler-mode</span><span style="color:var(--shiki-token-string)"> sync</span><span style="color:var(--shiki-token-string)"> --results-json</span><span style="color:var(--shiki-token-string)"> test/benchmark/.artifacts/adapter-matrix-formal-release.json</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>正式完整矩阵耗时约55分钟且会占用本机资源，运行前准备空闲环境。命令会更新测试报告并启动/停止本地测试目标；若中断，应确认没有遗留被测进程。新结果通过完整门禁后，才由维护者使用现有生成器更新站点；缺原始 JSON 时，verify:benchmark-docs 会失败，不能从展示表反造原始 artifact。</p>
+<p>本样本使用同步 handler。如果你的平台或权限需要不同的优先级，请改用可用值，并将结果视为新的环境基线，不要直接与本页绝对数值比较。</p>
+<p>runner 使用本地 Autocannon <strong>programmatic API</strong>，会自动启动和停止测试目标。本页包含全部样本、P50/P99、精确版本、provenance 和路由生命周期 telemetry；完整参数、adapter matrix 命令和 artifact 合并规则见 <a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/README.md" target="_blank" rel="noopener noreferrer" class="rp-link">benchmark README</a>。</p>
+<h3 class="rp-toc-include" id="测试真实应用"><a href="#测试真实应用" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试真实应用</h3>
+<p>框架微基准只回答“核心 HTTP 路径的成本”。上线前至少应在与你的生产环境相近的机器上加入：</p>
+<ol>
+<li>实际认证、日志、响应包装和中间件；</li>
+<li>数据库、缓存和外部 API 的真实或可控替身；</li>
+<li>预热、多个轮次、吞吐、P95/P99、错误率和资源占用；</li>
+<li>与生产一致的 Node.js 版本、进程数、容器限额和反向代理。</li>
+</ol>
+<h2 class="rp-toc-include" id="限制"><a href="#限制" class="rp-header-anchor rp-link" aria-hidden="true">#</a>限制</h2>
+<ul>
+<li>
+<p>P50/P99 来自 RPS 中位数所对应的那一轮，不是汇总七轮全部请求后计算的分位数；CV 表达轮次吞吐的相对波动，不是置信区间。</p>
+</li>
+<li>
+<p>当前结果来自一台 Windows 主机，不代表 Linux、容器或云环境。</p>
+</li>
+<li>
+<p>这是轻量 HTTP 微基准，不衡量开发体验、插件质量、可维护性或完整业务延迟。</p>
+</li>
+<li>
+<p>不同日期、机器、依赖版本、handler 模式或压测协议的绝对数字不可直接合并排名。</p>
+</li>
+<li>
+<p>本表只比较 Vext Adapter。裸框架与最短路径诊断单独维护，不是面向使用者的 Adapter 排名。</p>
+</li>
+</ul>
+<h2 class="rp-toc-include" id="相关链接"><a href="#相关链接" class="rp-header-anchor rp-link" aria-hidden="true">#</a>相关链接</h2>
+<ul>
+<li><a href="https://github.com/devcodex-labs/vextjs/blob/main/test/benchmark/README.md" target="_blank" rel="noopener noreferrer" class="rp-link">Benchmark 复现说明</a></li>
+<li><a href="/zh/guide/adapters.html" class="rp-link">Adapter 选择与配置</a></li>
+<li><a href="/zh/guide/deployment.html" class="rp-link">生产部署</a></li>
+<li><a href="/zh/api/config.html" class="rp-link">配置参考</a></li>
+</ul><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/9/25 02:16:55</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/examples/opentelemetry.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>OpenTelemetry 可观测性</span></span></a><a href="/zh/resources/documentation-data-and-ai.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>文档数据与 AI</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#适用版本与证据" class="rp-toc-item rp-link" title="适用版本与证据" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">适用版本与证据</span></a><a href="#先看结论" class="rp-toc-item rp-link" title="先看结论" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">先看结论</span></a><a href="#当前结果" class="rp-toc-item rp-link" title="当前结果" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">当前结果</span></a><a href="#为什么这样对比" class="rp-toc-item rp-link" title="为什么这样对比" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">为什么这样对比</span></a><a href="#为什么不发布生产栈排行或裸路径排行" class="rp-toc-item rp-link" title="为什么不发布“生产栈排行”或“裸路径排行”？" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">为什么不发布“生产栈排行”或“裸路径排行”？</span></a><a href="#如何选择" class="rp-toc-item rp-link" title="如何选择" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">如何选择</span></a><a href="#测试口径" class="rp-toc-item rp-link" title="测试口径" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">测试口径</span></a><a href="#完整正式样本" class="rp-toc-item rp-link" title="完整正式样本" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">完整正式样本</span></a><a href="#运行身份" class="rp-toc-item rp-link" title="运行身份" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">运行身份</span></a><a href="#场景" class="rp-toc-item rp-link" title="场景" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">场景</span></a><a href="#每一个测量样本" class="rp-toc-item rp-link" title="每一个测量样本" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">每一个测量样本</span></a><a href="#normal-路由生命周期-telemetry" class="rp-toc-item rp-link" title="Normal 路由生命周期 telemetry" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Normal 路由生命周期 telemetry</span></a><a href="#精确环境与版本" class="rp-toc-item rp-link" title="精确环境与版本" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">精确环境与版本</span></a><a href="#自己复现" class="rp-toc-item rp-link" title="自己复现" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">自己复现</span></a><a href="#测试真实应用" class="rp-toc-item rp-link" title="测试真实应用" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">测试真实应用</span></a><a href="#限制" class="rp-toc-item rp-link" title="限制" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">限制</span></a><a href="#相关链接" class="rp-toc-item rp-link" title="相关链接" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">相关链接</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontend Configuration - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-2676dabe07e3.2d66076835.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Frontend Configuration - VextJS">
+<meta property="og:description" content="Use this page to change an existing full-stack app. Complete Getting Started first, then merge only needed fields into src/config/default.ts while retaining server settings. Start with defaults and configure behaviors the product actually changes; see the VextFrontendConfig API reference for all type members.">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/frontend/configuration.html">
+<link rel="alternate" hreflang="zh" href="/zh/frontend/configuration.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Use this page to change an existing full-stack app. Complete Getting Started first, then merge only needed fields into src/config/default.ts while retaining server settings. Start with defaults and configure behaviors the product actually changes; see the VextFrontendConfig API reference for all type members."><link rel="canonical" href="https://vextjs.github.io/frontend/configuration"><meta property="og:url" content="https://vextjs.github.io/frontend/configuration"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">Search</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/guide/introduction.html" class="rp-nav-menu__item__container rp-link">Guide</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/frontend/overview.html" class="rp-nav-menu__item__container rp-link">Frontend</a></li><li class="rp-nav-menu__item"><a href="/guide/routing.html" class="rp-nav-menu__item__container rp-link">Runtime</a></li><li class="rp-nav-menu__item"><a href="/guide/validation.html" class="rp-nav-menu__item__container rp-link">Data</a></li><li class="rp-nav-menu__item"><a href="/guide/deployment.html" class="rp-nav-menu__item__container rp-link">Tooling &amp; Operations</a></li><li class="rp-nav-menu__item"><a href="/api/config.html" class="rp-nav-menu__item__container rp-link">API Reference</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">Resources<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="Examples">Examples</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="Benchmark">Benchmark</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Contributing">Contributing</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="Support &amp; Services">Support &amp; Services</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="Docs Data &amp; AI">Docs Data &amp; AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="Changelog">Changelog</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="en">English</div></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/frontend/configuration.html" class="rp-hover-group__item__link rp-link" aria-label="简体中文" lang="zh" hrefLang="zh" rel="alternate">简体中文</a></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">Languages</div><div class="rp-nav-screen-langs__right">English<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">English</span><a href="/zh/frontend/configuration.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="zh" lang="zh" rel="alternate">简体中文</a></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>Menu</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">ON THIS PAGE</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Start</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/overview.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Overview</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/getting-started.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Getting Started</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Project Structure</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Core Concepts</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/routing-and-pages.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Routing and Pages</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/rendering-modes.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Rendering Modes</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/data-flow.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Data Flow</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/layouts-and-components.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Layouts and Components</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/styles-and-assets.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Styles and Assets</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/jscss.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Vext JSCSS</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Rendering Modes</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/ssr.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">SSR</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/hydration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hydration</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/seo-sitemap.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">SEO, Sitemap, and Robots</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/csr-and-spa-fallback.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CSR and SPA Fallback</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/render-data-and-cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Render Data and Cache</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Development</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/dev-workflow.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Dev Workflow</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/fast-refresh.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fast Refresh</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/render-refresh.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Render Refresh</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/diagnostics-and-leak-scan.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Diagnostics and Leak Scan</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Production</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/build-and-deploy.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Build and Deploy</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/code-splitting.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Code Splitting</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/static-assets-and-cdn.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Static Assets and CDN</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/performance-budgets.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Performance Budgets</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/hydration-validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hydration Validation</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">Reference</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/frontend/configuration.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Configuration</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/api-client-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">API Client and Contracts</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/errors-and-document.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Errors and Document</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">I18n</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/troubleshooting.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Troubleshooting</span></div><div class="rp-sidebar-item__right"></div></a><a href="/frontend/boundaries-and-roadmap.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Boundaries and Roadmap</span></div><div class="rp-sidebar-item__right"></div></a></div></div></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="frontend-configuration"><a href="#frontend-configuration" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Frontend Configuration<!-- --> </h1>
+<p>Use this page to change an existing full-stack app. Complete <a href="/frontend/getting-started.html" class="rp-link">Getting Started</a> first, then merge only needed fields into <code>src/config/default.ts</code> while retaining server settings. Start with defaults and configure behaviors the product actually changes; see the <a href="/api/config.html#vextfrontendconfig" class="rp-link">VextFrontendConfig API reference</a> for all type members.</p>
+<h2 class="rp-toc-include" id="table-of-contents"><a href="#table-of-contents" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Table of Contents</h2>
+<ul>
+<li><a href="#minimal-config" class="rp-link">Minimal Config</a></li>
+<li><a href="#choose-what-to-configure" class="rp-link">Choose What to Configure</a></li>
+<li><a href="#complete-example" class="rp-link">Complete Example</a></li>
+<li><a href="#production-delivery-profiles" class="rp-link">Production Delivery Profiles</a></li>
+<li><a href="#core-fields" class="rp-link">Core Fields</a></li>
+<li><a href="#render-fields" class="rp-link">Render Fields</a></li>
+<li><a href="#style-fields" class="rp-link">Style Fields</a></li>
+<li><a href="#build-fields" class="rp-link">Build Fields</a></li>
+<li><a href="#deploy-fields" class="rp-link">Deploy Fields</a></li>
+<li><a href="#seo-fields" class="rp-link">SEO Fields</a></li>
+<li><a href="#i18n-fields" class="rp-link">I18n Fields</a></li>
+<li><a href="#dev-fields" class="rp-link">Dev Fields</a></li>
+<li><a href="#spa-fallback-fields" class="rp-link">SPA Fallback Fields</a></li>
+<li><a href="#verify-a-configuration-change" class="rp-link">Verify a Configuration Change</a></li>
+</ul>
+<h2 class="rp-toc-include" id="minimal-config"><a href="#minimal-config" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Minimal Config</h2>
+<p>Enable frontend in the default config; page files and routes still need to follow Getting Started:</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>frontend: true</code> uses the <code>src/frontend</code>, <code>pages</code>, <code>components</code>, <code>styles/index.css</code>, and <code>public</code> conventions. When using an object, set <code>enabled: true</code> explicitly; the object alone does not enable frontend. Production output defaults to <code>dist/client</code> with browser minification on and source maps off; the separate Node SSR bundle is unminified by default.</p>
+<p>To disable frontend entirely, use <code>frontend: false</code> and remove or adapt handlers that call <code>res.render()</code>. Disabling the setting does not automatically delete old generated directories.</p>
+<h2 class="rp-toc-include" id="choose-what-to-configure"><a href="#choose-what-to-configure" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Choose What to Configure</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>If you need…</th><th>Start with</th><th>Configure</th><th>What changes</th><th>Verify</th></tr></thead><tbody><tr><td>Server-rendered React pages</td><td><code>frontend: true</code></td><td>Nothing else</td><td>Vext discovers <code>src/frontend</code>, builds browser + SSR output, and serves both at the application origin</td><td><code>vext build</code>, then <code>vext start</code></td></tr><tr><td>A different source layout</td><td>Built-in folders</td><td><code>root</code>, <code>pages</code>, <code>componentsDir</code>, <code>styles.entry</code>, or <code>assetsDir</code></td><td>Only discovery paths change; generated entries remain Vext-owned</td><td>Build and load one page plus its global style</td></tr><tr><td>A browser-size or compatibility target</td><td>Production defaults</td><td><code>build.target</code>, <code>build.vendorChunks</code>, or <code>build.budgets</code></td><td>esbuild output, report thresholds, or browser support changes</td><td>Inspect <code>size-report.json</code> and a production page</td></tr><tr><td>CDN-hosted immutable assets</td><td>Same-origin delivery</td><td><code>deploy.assetBaseUrl</code> and optionally <code>deploy.upload</code></td><td>Generated JS/CSS URLs point at the CDN; Node still owns HTML/SSR</td><td>Dry-run the upload and request an SSR page + hashed asset</td></tr><tr><td>Search-visible public pages</td><td>SEO disabled</td><td><code>seo</code>, plus route/render metadata</td><td>Canonical/meta output and optional sitemap/robots become framework-owned</td><td>Inspect two page canonicals and the selected SEO artifacts</td></tr><tr><td>A client-router island</td><td>No fallback capture</td><td><code>spaFallback.scopes</code></td><td>Only declared paths are served by the browser shell</td><td>Check an in-scope URL and an excluded <code>/api/**</code> URL</td></tr><tr><td>Multilingual page copy</td><td>Disabled</td><td><code>i18n</code></td><td>Request negotiation, HTML, page envelopes, and navigation share the effective language</td><td>Build and verify two languages and cache isolation</td></tr></tbody></table></div>
+<p>Avoid adding a field merely because it exists. Global defaults use React and esbuild, SSR on, buffered streaming, browser splitting and production minification on, and no CDN URL or upload. The full-stack starter separately configures <code>streaming: &quot;auto&quot;</code> and frontend i18n; inspect the app&#x27;s actual configuration.</p>
+<h2 class="rp-toc-include" id="complete-example"><a href="#complete-example" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Complete Example</h2>
+<p>This same-origin object illustrates the field hierarchy for the default full-stack starter. Most values match defaults and do not all need to be written. Budget values are examples: gather a baseline with <code>warnOnly: true</code>. The starter has an <code>en-US</code> dictionary, so this example enables frontend i18n explicitly.</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    framework</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;react&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    root</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;src/frontend&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    publicDir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;public&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    publicPath</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    styles</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      jscss</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    dev</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      hot</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      fastRefresh</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      renderRefresh</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;prompt&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    build</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      target</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;es2022&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      minify</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      sourcemap</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> false</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      client</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        external</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> []</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        externalRuntime</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      vendorChunks</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        packages</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;react&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;react-dom&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;react-dom/client&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      assets</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        inlineLimit</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      css</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        modules</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      budgets</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        warnOnly</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 60_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxRouteInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 80_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxAppOwnedInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 40_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      diagnostics</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        leakScan</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        performanceReport</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    i18n</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      defaultLocale</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;en-US&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      clientLoad</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;current&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    spaFallback</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      scopes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> []</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    apiClient</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="production-delivery-profiles"><a href="#production-delivery-profiles" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Production Delivery Profiles</h2>
+<h3 class="rp-toc-include" id="same-origin-default"><a href="#same-origin-default" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Same-origin (default)</h3>
+<p>Do not configure a CDN for the first production deployment:</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>vext build</code> writes the frontend closure to <code>dist/client</code>; <code>vext start</code>
+validates it and serves assets plus SSR from the same Node service. This is
+the baseline to keep when a separate static origin provides no material value.</p>
+<h3 class="rp-toc-include" id="cdn-plus-incremental-upload"><a href="#cdn-plus-incremental-upload" class="rp-header-anchor rp-link" aria-hidden="true">#</a>CDN plus incremental upload</h3>
+<p>Add these optional delivery fields only when a working CDN is available. Replace the example domain with the real asset address before using it:</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    deploy</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      assetBaseUrl</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;https://cdn.example.com/my-app/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      integrity</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      upload</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        adapter</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;filesystem&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        targetDir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;.vext/frontend-cdn&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        stateFile</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;.vext/deploy/frontend-assets-state.json&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        exclude</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;**/*.map&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>filesystem</code> stages selected assets locally; it does not publish them to the example domain. Use a custom adapter or existing release process for a cloud provider. Keep the state file outside <code>frontend.outDir</code>, build, inspect <code>vext deploy assets --dry-run</code>, then deploy the Node output from the same build once assets are available. See <a href="/frontend/static-assets-and-cdn.html" class="rp-link">Static Assets and CDN</a>.</p>
+<h2 class="rp-toc-include" id="core-fields"><a href="#core-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Core Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.enabled</code></td><td><code>false</code></td><td>Enable built-in frontend pipeline</td></tr><tr><td><code>frontend.framework</code></td><td><code>&quot;react&quot;</code></td><td>Framework label for built-in React support</td></tr><tr><td><code>frontend.root</code></td><td><code>&quot;src/frontend&quot;</code></td><td>User frontend source root</td></tr><tr><td><code>frontend.pages</code></td><td>Built-in page conventions</td><td>Page, document, and error-page discovery settings</td></tr><tr><td><code>frontend.componentsDir</code></td><td><code>&quot;components&quot;</code></td><td>Shared component directory resolved from <code>frontend.root</code></td></tr><tr><td><code>frontend.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>Imported image, font, and media source directory</td></tr><tr><td><code>frontend.indexHtml</code></td><td>Resolved <code>pages.document</code> (default <code>src/frontend/pages/_document.html</code>)</td><td>Document template; explicit path is relative to the project root</td></tr><tr><td><code>frontend.outDir</code></td><td><code>.vext/client</code> in dev, <code>dist/client</code> in build</td><td>Frontend output directory</td></tr><tr><td><code>frontend.publicDir</code></td><td><code>&quot;public&quot;</code></td><td>Static public directory</td></tr><tr><td><code>frontend.publicPath</code></td><td><code>&quot;/&quot;</code></td><td>Public asset URL prefix</td></tr><tr><td><code>frontend.alias</code></td><td>Built-in <code>@frontend/@pages/@components/@styles/@assets</code></td><td>Frontend-safe import aliases; do not alias all of <code>src</code> into browser code</td></tr><tr><td><code>frontend.apiClient</code></td><td><code>true</code></td><td>Emit route/client contract artifacts; set <code>false</code> only when no generated client artifact is wanted</td></tr><tr><td><code>frontend.errorPages</code></td><td>Built-in error page conventions</td><td>Map default or status-specific SSR errors to pages</td></tr><tr><td><code>frontend.adapter</code></td><td>none</td><td>Reserved and deprecated extension field; resolver emits an ignored-setting diagnostic. Use <code>build.client</code> / <code>build.server</code> for compiler options</td></tr></tbody></table></div>
+<p>Relative directory bases and TypeScript paths are covered in <a href="/frontend/project-structure.html" class="rp-link">Project Structure</a>. Supported image/font imports share public URLs in browser and SSR builds; aliases only change path resolution.</p>
+<h2 class="rp-toc-include" id="render-fields"><a href="#render-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Render Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.render.ssr</code></td><td><code>true</code></td><td>SSR default; a render option can override it, and route <code>clientOnly</code> disables server page content.</td></tr><tr><td><code>frontend.render.streaming</code></td><td><code>&quot;buffered&quot;</code></td><td><code>auto</code> streams when conditions allow; not every adapter/response path guarantees streaming.</td></tr><tr><td><code>frontend.render.fallback</code></td><td><code>&quot;client&quot;</code></td><td>Fallback after buffered SSR failure; may be <code>&quot;error&quot;</code>.</td></tr><tr><td><code>frontend.render.timeoutMs</code></td><td><code>3000</code></td><td>Render time budget in milliseconds.</td></tr><tr><td><code>frontend.render.layout</code></td><td><code>true</code></td><td>Global layout default; an explicit render <code>options.layout</code> takes priority, including false to disable layouts</td></tr></tbody></table></div>
+<p>See <a href="/frontend/ssr.html" class="rp-link">SSR</a> and <a href="/frontend/rendering-modes.html" class="rp-link">Rendering Modes</a>. A synchronous SSR timeout is checked after rendering returns and cannot preempt synchronous JavaScript. Once a streamed response starts, a failure cannot be rewritten like a normal buffered response. Disabling SSR and disabling browser hydration are separate settings; see <a href="/frontend/hydration.html" class="rp-link">Hydration</a>.</p>
+<h2 class="rp-toc-include" id="style-fields"><a href="#style-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Style Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.styles.entry</code></td><td><code>styles/index.css</code></td><td>Global CSS entry resolved from <code>frontend.root</code></td></tr><tr><td><code>frontend.styles.jscss.enabled</code></td><td><code>true</code></td><td>Enable Vext JSCSS extraction</td></tr><tr><td><code>frontend.styles.jscss.files</code></td><td><code>**/*.style.ts</code>, <code>**/*.style.js</code>, <code>**/*.css.ts</code></td><td>JSCSS source globs</td></tr><tr><td><code>frontend.styles.jscss.runtimeAdapter</code></td><td><code>css-variables</code></td><td>Emit dynamic variables as CSS custom properties; <code>none</code>/<code>false</code> uses fallback values</td></tr><tr><td><code>frontend.styles.jscss.dynamicVars</code></td><td><code>true</code></td><td>Emit custom property declarations and <code>var(...)</code> references</td></tr><tr><td><code>frontend.styles.jscss.recipes</code></td><td><code>true</code></td><td>Emit recipe variant classes and rules</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="build-fields"><a href="#build-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>Default browser target passed to esbuild; <code>build.client.target</code> overrides it</td></tr><tr><td><code>frontend.build.minify</code></td><td>production <code>true</code></td><td>Minify browser output; distinct from the server renderer setting</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>dev <code>true</code></td><td>Emit browser source maps; production defaults to <code>false</code></td></tr><tr><td><code>frontend.build.client.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>Browser bundle asset subdirectory</td></tr><tr><td><code>frontend.build.client.entryNames</code> / <code>chunkNames</code> / <code>assetNames</code></td><td><code>&quot;[name]-[hash]&quot;</code></td><td>Hashed filename patterns; preserve hashing for immutable caching</td></tr><tr><td><code>frontend.build.client.splitting</code></td><td><code>true</code></td><td>Enable browser code splitting</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>Browser external modules</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>Import-map URLs for browser externals</td></tr><tr><td><code>frontend.build.server.outFile</code></td><td><code>frontend.outDir/server/renderer.cjs</code></td><td>SSR bundle; an explicit path resolves from the project root and must stay inside <code>frontend.outDir</code>; server minify defaults to false</td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>Shared runtime chunk strategy; configure packages only for a measured reason</td></tr><tr><td><code>frontend.build.budgets</code></td><td>all limits <code>0</code></td><td>Enforce raw/gzip/brotli budget thresholds; use <code>warnOnly</code> while baselines settle</td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>Zero disables inlining; supported assets within the threshold use the same data URL in SSR and browser output</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>CSS Modules with shared SSR/browser class and composes mappings; see <a href="/frontend/styles-and-assets.html#css-modules" class="rp-link">Styles and Assets</a></td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>Block server-only imports from browser graph</td></tr><tr><td><code>frontend.build.diagnostics.sizeReport</code></td><td><code>true</code></td><td>Write <code>size-report.json</code></td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>Include route-level performance metrics</td></tr></tbody></table></div>
+<p>React-related browser externals must define <code>externalRuntime</code> mappings. Otherwise the build fails with a friendly diagnostic.</p>
+<p>Browser output is directory-based and uses <code>frontend.outDir</code>; <code>frontend.build.client.outFile</code> is not supported. Vext always emits the frontend manifest family required by SSR, preload, deploy, and verification, so <code>build.client.manifest</code> / <code>build.server.manifest</code> are not configuration fields.</p>
+<p>For a normal product, keep browser code splitting, hashed names, and the
+Vext-managed vendor entry enabled. Start with budgets as warnings, inspect the
+complete route closure in <code>size-report.json</code>, and only then turn the budget
+into a release-blocking gate.</p>
+<h2 class="rp-toc-include" id="deploy-fields"><a href="#deploy-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Deploy Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.deploy.assetBaseUrl</code></td><td>none</td><td>CDN/public base URL for assets</td></tr><tr><td><code>frontend.deploy.crossOrigin</code></td><td>none</td><td><code>crossorigin</code> value for generated tags</td></tr><tr><td><code>frontend.deploy.integrity</code></td><td><code>false</code></td><td>Add SRI integrity for generated JS/CSS</td></tr><tr><td><code>frontend.deploy.upload.enabled</code></td><td><code>false</code></td><td>Enable <code>vext build --upload-assets</code> / <code>vext deploy assets</code> upload</td></tr><tr><td><code>frontend.deploy.upload.adapter</code></td><td><code>&quot;filesystem&quot;</code></td><td><code>filesystem</code>, <code>mock</code>, or custom adapter</td></tr><tr><td><code>frontend.deploy.upload.targetDir</code></td><td>enabled: <code>.vext/deploy/frontend-assets</code></td><td>Local staging destination for <code>filesystem</code></td></tr><tr><td><code>frontend.deploy.upload.publicBaseUrl</code></td><td>none</td><td>Optional public URL reported by upload; filesystem falls back to <code>assetBaseUrl</code></td></tr><tr><td><code>frontend.deploy.upload.prefix</code> / <code>concurrency</code></td><td><code>&quot;&quot;</code> / <code>4</code></td><td>Upload key namespace and parallelism</td></tr><tr><td><code>frontend.deploy.upload.stateFile</code></td><td><code>.vext/deploy/frontend-assets-state.json</code></td><td>Incremental upload state</td></tr><tr><td><code>frontend.deploy.upload.exclude</code></td><td><code>[&quot;**/*.map&quot;]</code></td><td>Files excluded from upload</td></tr></tbody></table></div>
+<p>Glob configuration such as deploy include/exclude, media scans, and style includes is limited to 1024 patterns per group, 4096 characters per pattern, 100 nesting levels, and an estimated 4096 brace expansions per pattern. Excessive input fails before entering matchers. This input budget does not clear the upstream <code>braces</code> audit advisory.</p>
+<p><code>assetBaseUrl</code> must be an absolute URL. <code>deploy-manifest.json</code> describes deliverable JS, CSS, produced media, and selected public files; creating it does not upload anything. Source maps are excluded by default; SSR renderer and entry HTML are not CDN upload assets. Run <code>npx vextjs deploy assets --dry-run</code> before changing adapter, prefix, or include/exclude rules.</p>
+<h2 class="rp-toc-include" id="seo-fields"><a href="#seo-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SEO Fields</h2>
+<p><code>frontend.seo</code> is the global SEO entry. When the object is present, <code>enabled</code> defaults to <code>true</code>. Without that object, explicit route/render SEO can still work; sitemap and robots need their own configuration. Explicit <code>enabled: false</code> disables structured SEO while legacy head stays independent.</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    seo</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      publicOrigin</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> process</span><span style="color:var(--shiki-foreground)">.</span><span style="color:var(--shiki-token-constant)">env</span><span style="color:var(--shiki-foreground)">.</span><span style="color:var(--shiki-token-constant)">PUBLIC_ORIGIN</span><span style="color:var(--shiki-token-keyword)"> ??</span><span style="color:var(--shiki-token-string-expression)"> &quot;https://www.example.com&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      titleTemplate</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;%s | Example&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      defaults</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { description</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Example application&quot;</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      sitemap</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      robots</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Replace <code>publicOrigin</code> with the real deployment origin. Without an explicit canonical override, Vext combines it with the request pathname. Use route-level <code>frontend.seo</code> for static metadata and <code>res.render(..., { seo })</code> for metadata derived from page data. Sitemap and robots can use <code>&quot;build&quot;</code> or <code>&quot;runtime&quot;</code> mode; empty objects default to build. Named <code>origins</code> support a finite multi-domain deployment.</p>
+<p>See <a href="/frontend/seo-sitemap.html" class="rp-link">SEO, Sitemap, and Robots</a> for dynamic canonical,
+provider, host-selection, output, and no-hydration examples. The exact nested
+field list is in the <a href="/api/config.html#vextfrontendconfig" class="rp-link">API reference</a>.</p>
+<h2 class="rp-toc-include" id="i18n-fields"><a href="#i18n-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>I18n Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>false</code></td><td>Scan and bundle frontend page copy when explicitly enabled</td></tr><tr><td><code>frontend.i18n.source</code></td><td><code>locales</code></td><td>Locale source directory resolved from <code>frontend.root</code></td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td><code>&quot;inherit&quot;</code></td><td>Prefer matching req.locale; a concrete default is the fallback after detection</td></tr><tr><td><code>frontend.i18n.detect</code></td><td><code>[&quot;accept-language&quot;]</code></td><td>Ordered query.locale, header/X-Vext-Locale, cookie.locale, or accept-language detection; unsupported sources are rejected</td></tr><tr><td><code>frontend.i18n.inject</code></td><td><code>&quot;used&quot;</code></td><td>used is not trimmed per component and emits a diagnostic; the selected language&#x27;s full messages are loaded</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>Browser locale loading mode</td></tr><tr><td><code>frontend.i18n.clientSwitch</code></td><td><code>&quot;reload&quot;</code></td><td>Declared field; the app implements language choice and page navigation</td></tr><tr><td><code>frontend.i18n.htmlLang</code></td><td><code>true</code></td><td>Write request-aware <code>{vext.lang}</code> / <code>&lt;html lang&gt;</code></td></tr><tr><td><code>frontend.i18n.vary</code></td><td><code>true</code></td><td>Merge headers involved in detection into existing Vary; false leaves external cache isolation to the app</td></tr></tbody></table></div>
+<p>See <a href="/frontend/i18n.html" class="rp-link">Frontend I18n</a> for locale priority, complete examples, SSR/browser loading, caching, and the reserved inject/clientSwitch behavior.</p>
+<h2 class="rp-toc-include" id="dev-fields"><a href="#dev-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Dev Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>Enable frontend dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>Enable React Fast Refresh when possible</td></tr><tr><td><code>frontend.dev.transport</code></td><td><code>&quot;sse&quot;</code></td><td>Vext development event-bus transport; this is not a user-selectable WebSocket mode</td></tr><tr><td><code>frontend.dev.overlay</code></td><td><code>true</code></td><td>Show browser UI for frontend rebuild errors and render refresh prompts</td></tr><tr><td><code>frontend.dev.debounceMs</code></td><td><code>50</code></td><td>Coalesce rapid file-system changes before a rebuild</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>Browser behavior after render-data backend reload</td></tr></tbody></table></div>
+<p><code>frontend.dev.overlay</code> only controls frontend browser development UI. Backend exception HTML overlays are configured separately through top-level <code>dev.errorOverlay</code>.</p>
+<h2 class="rp-toc-include" id="spa-fallback-fields"><a href="#spa-fallback-fields" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SPA Fallback Fields</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>Field</th><th>Default</th><th>Meaning</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.enabled</code></td><td><code>true</code></td><td>Enables arbitration only; with no scopes it captures no page</td></tr><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>Explicit client-router sub-app fallback scopes</td></tr><tr><td><code>frontend.spaFallback.exclude</code></td><td><code>[&quot;/api/**&quot;, &quot;/openapi.json&quot;, &quot;/docs/**&quot;, &quot;/_vext/docs/**&quot;]</code></td><td>Global paths that fallback never captures</td></tr><tr><td><code>scopes[].basePath</code></td><td>required</td><td>URL prefix handled by the shell</td></tr><tr><td><code>scopes[].page</code></td><td>required</td><td>Shell page id from <code>src/frontend/pages/**</code></td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>Whether the shell should be SSR-rendered</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>Paths that must not be handled by fallback</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>HTTP status for matched fallback</td></tr></tbody></table></div>
+<p>Declare individual scopes instead of a site-wide catch-all. API, OpenAPI, and
+documentation routes stay excluded by default so a client-router shell cannot
+hide an operational endpoint.</p>
+<p><code>spaFallback: true</code> creates a root <code>/</code> scope for page <code>index</code>; it differs from omission. A custom global <code>exclude</code> replaces defaults, so retain required exclusions. Method, Accept, and existing routes also constrain fallback; see <a href="/frontend/csr-and-spa-fallback.html" class="rp-link">CSR and SPA Fallback</a>. Empty client shells use createRoot; completed SSR uses hydrateRoot.</p>
+<h2 class="rp-toc-include" id="verify-a-configuration-change"><a href="#verify-a-configuration-change" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Verify a Configuration Change</h2>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># The default TypeScript starter runs typecheck and builds backend, browser, and SSR.</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Only when upload is configured: inspect without uploading.</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> deploy</span><span style="color:var(--shiki-token-string)"> assets</span><span style="color:var(--shiki-token-string)"> --dry-run</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Start the matching production output.</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 3000</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="Toggle code wrap" aria-label="Toggle code wrap"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>Stop a development server using the same port before this check, and skip dry run when upload is not configured. Same-origin output should retain page content and loadable resources from Getting Started. For build or budget changes, inspect <code>size-report.json</code> in the actual output directory; <code>warnOnly: true</code> permits budget warnings, while exceeding an enabled budget without it fails the build. For CDN changes, request an SSR page and the browser asset it actually references; real CDN reachability needs deployment-environment verification. For SPA fallback, request both an in-scope URL and an excluded API path. Stop the server with Ctrl+C. See the <a href="/api/config.html#vextfrontendconfig" class="rp-link">API reference</a> for less common nested fields.</p><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>Last Updated<!-- -->: <span>10/9/2026, 9:24:02 AM</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">Previous page</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration Validation</span></span></a><a href="/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">Next page</span><span class="rp-prev-next-page__item__title"><span>API Client and Contracts</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">ON THIS PAGE<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#table-of-contents" class="rp-toc-item rp-link" title="Table of Contents" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Table of Contents</span></a><a href="#minimal-config" class="rp-toc-item rp-link" title="Minimal Config" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Minimal Config</span></a><a href="#choose-what-to-configure" class="rp-toc-item rp-link" title="Choose What to Configure" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Choose What to Configure</span></a><a href="#complete-example" class="rp-toc-item rp-link" title="Complete Example" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Complete Example</span></a><a href="#production-delivery-profiles" class="rp-toc-item rp-link" title="Production Delivery Profiles" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Production Delivery Profiles</span></a><a href="#same-origin-default" class="rp-toc-item rp-link" title="Same-origin (default)" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Same-origin (default)</span></a><a href="#cdn-plus-incremental-upload" class="rp-toc-item rp-link" title="CDN plus incremental upload" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">CDN plus incremental upload</span></a><a href="#core-fields" class="rp-toc-item rp-link" title="Core Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Core Fields</span></a><a href="#render-fields" class="rp-toc-item rp-link" title="Render Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Render Fields</span></a><a href="#style-fields" class="rp-toc-item rp-link" title="Style Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Style Fields</span></a><a href="#build-fields" class="rp-toc-item rp-link" title="Build Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build Fields</span></a><a href="#deploy-fields" class="rp-toc-item rp-link" title="Deploy Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy Fields</span></a><a href="#seo-fields" class="rp-toc-item rp-link" title="SEO Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SEO Fields</span></a><a href="#i18n-fields" class="rp-toc-item rp-link" title="I18n Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n Fields</span></a><a href="#dev-fields" class="rp-toc-item rp-link" title="Dev Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev Fields</span></a><a href="#spa-fallback-fields" class="rp-toc-item rp-link" title="SPA Fallback Fields" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback Fields</span></a><a href="#verify-a-configuration-change" class="rp-toc-item rp-link" title="Verify a Configuration Change" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Verify a Configuration Change</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="zh">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jobs API - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-bc9403e7495c.7dabf0885f.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jobs API - VextJS">
+<meta property="og:description" content="本页查阅 Job 定义、执行、调度、Store 和测试接口。除测试工具来自 vextjs/testing，下列函数均由 vextjs 主入口导出。首次执行和完整命令见任务指南，行为约束见任务与调度规范。 参数表的“默认值”指正常应用配置合并后的有效默认。defineJob() 不会把所有默认配置复制进定义对象；直接构造低层 app/registry 时须自己提供所需配置。">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/api/jobs.html">
+<link rel="alternate" hreflang="zh" href="/zh/api/jobs.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="本页查阅 Job 定义、执行、调度、Store 和测试接口。除测试工具来自 vextjs/testing，下列函数均由 vextjs 主入口导出。首次执行和完整命令见任务指南，行为约束见任务与调度规范。 参数表的“默认值”指正常应用配置合并后的有效默认。defineJob() 不会把所有默认配置复制进定义对象；直接构造低层 app/registry 时须自己提供所需配置。"><link rel="canonical" href="https://vextjs.github.io/zh/api/jobs"><meta property="og:url" content="https://vextjs.github.io/zh/api/jobs"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/zh/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">搜索</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/zh/guide/introduction.html" class="rp-nav-menu__item__container rp-link">指南</a></li><li class="rp-nav-menu__item"><a href="/zh/frontend/overview.html" class="rp-nav-menu__item__container rp-link">前端</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/routing.html" class="rp-nav-menu__item__container rp-link">运行时</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/validation.html" class="rp-nav-menu__item__container rp-link">数据</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/deployment.html" class="rp-nav-menu__item__container rp-link">工具与运维</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/zh/api/config.html" class="rp-nav-menu__item__container rp-link">API 参考</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">资源<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="示例">示例</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="基准测试">基准测试</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="贡献指南">贡献指南</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="支持与服务">支持与服务</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="文档数据与 AI">文档数据与 AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="更新日志">更新日志</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/api/jobs.html" class="rp-hover-group__item__link rp-link" aria-label="English" lang="en" hrefLang="en" rel="alternate">English</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="zh">简体中文</div></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">语言</div><div class="rp-nav-screen-langs__right">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><a href="/api/jobs.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="en" lang="en" rel="alternate">English</a><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">简体中文</span></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>菜单</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">目录</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">开始</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/introduction.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">介绍</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/quick-start.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">快速开始</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">项目结构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">运行时</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">路由</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">服务层</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">任务与 Jobs</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/middleware.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">中间件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/plugins.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">插件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hooks.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">运行时 Hooks</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/request-context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求上下文</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/configuration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">配置</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/adapters.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Adapter 架构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">规范</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/specification/index.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">开发规范概览</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/architecture.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">架构与职责规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/http-and-routing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">HTTP 与路由规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/validation-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">校验与数据契约规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/data-access.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">数据访问规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/security-and-resources.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">安全与资源规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/jobs.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">任务与调度规范</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/specification/operations.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">构建与运行规范</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">数据与接口</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">参数校验</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/security.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">认证与安全</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/rate-limit.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求限流</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/uploads.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">文件上传</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cookies-session.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cookies 与 Sessions</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">响应缓存</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/database.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">数据库 (MonSQLize)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">内置 HTTP 客户端</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/openapi.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenAPI 文档</span></div><div class="rp-sidebar-item__right"></div></a></div></div><a href="/zh/guide/frontend.html" class="rp-sidebar-item rp-link" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">前端集成</span></div><div class="rp-sidebar-item__right"></div></a><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">工具与运维</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/guide/build.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">构建</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/deployment.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">部署与生产环境</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/testing.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">测试</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cli.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CLI 命令</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/mcp-generation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">MCP 代码生成</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/hot-reload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">热重载</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/preload.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">预加载 (Preload)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/cluster.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Cluster 多进程</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">国际化 (i18n)</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/logger.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">日志</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/guide/error-handling.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">错误处理</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">API 参考</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/api/config.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">配置项</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/route-definition.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">路由定义</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/context.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">请求与响应</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/app.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">应用实例</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/fetch.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fetch API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/jobs.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Jobs API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/plugin-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">插件 API</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/testing-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">测试工具</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/api/access-log.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Access Log 中间件</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">示例</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/hello-world.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hello World</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/crud-api.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CRUD API</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">生态集成</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/examples/permission-core-auth.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">permission-core Auth 接入</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/nacos-integration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Nacos 接入</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/examples/opentelemetry.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">OpenTelemetry 可观测性</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">资源</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/benchmark.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">基准测试</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/resources/documentation-data-and-ai.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">文档数据与 AI</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/resources/support-and-services.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">支持与服务</span></div><div class="rp-sidebar-item__right"></div></a></div></div></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="jobs-api"><a href="#jobs-api" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Jobs API<!-- --> </h1>
+<p>本页查阅 Job 定义、执行、调度、Store 和测试接口。除测试工具来自 <code>vextjs/testing</code>，下列函数均由 <code>vextjs</code> 主入口导出。首次执行和完整命令见<a href="/zh/guide/jobs.html" class="rp-link">任务指南</a>，行为约束见<a href="/zh/specification/jobs.html" class="rp-link">任务与调度规范</a>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>层次</th><th>入口</th><th>负责什么</th></tr></thead><tbody><tr><td>定义与发现</td><td>defineJob、loadJobs、createJobRegistry</td><td>描述任务、扫描模块、建立名称索引</td></tr><tr><td>执行</td><td>runJob、createJobRunner</td><td>输入校验、handler、重试与取消；不保存运行记录</td></tr><tr><td>应用运行时</td><td>bootstrapJobRuntime</td><td>初始化依赖，组合Store领取/续租/完成</td></tr><tr><td>调度与消费</td><td>startJobScheduler、startJobWorker</td><td>生成到期记录或领取队列；须显式启动</td></tr></tbody></table></div>
+<p>参数表的“默认值”指正常应用配置合并后的有效默认。<code>defineJob()</code> 不会把所有默认配置复制进定义对象；直接构造低层 app/registry 时须自己提供所需配置。</p>
+<h2 class="rp-toc-include" id="definejobdefinition"><a href="#definejobdefinition" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>defineJob(definition)</code></h2>
+<p>签名：<code>defineJob&lt;TPayload = unknown, TResult = unknown&gt;(definition: VextJobDefinitionInput&lt;TPayload, TResult&gt;): VextJobDefinition&lt;TPayload, TResult&gt;</code>。</p>
+<p>创建带识别标记的浅冻结定义，不执行handler、不入队。非法handler、名称、字段形态或互斥schedule会同步抛出Error；payload DSL在运行时编译，不以定义创建成功作为输入合同已验证的证明。静态Docs/MCP提取也不等于执行此函数。</p>
+<p>以下可作为独立任务文件<code>src/jobs/greet.ts</code>：</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-foreground)"> { defineJob } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-token-function)"> defineJob</span><span style="color:var(--shiki-foreground)">&lt;{ name</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> string</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> string</span><span style="color:var(--shiki-foreground)"> }&gt;({</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  name</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;greet&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  description</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;返回问候语。&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  tags</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;example&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  payload</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { name</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;string!&quot;</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  queue</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { priority</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 5</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  timeout</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  retry</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { attempts</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 3</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> delay</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 500</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> backoff</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;exponential&quot;</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">  handler</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> ({ payload }) </span><span style="color:var(--shiki-token-keyword)">=&gt;</span><span style="color:var(--shiki-foreground)"> ({ message</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> `Hello, </span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-token-constant)">payload</span><span style="color:var(--shiki-foreground)">.name</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">!`</span><span style="color:var(--shiki-foreground)"> })</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">});</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>name</code> 是可选字段。不声明时，Vext 会根据文件路径推导 Job 名称，例如 <code>src/jobs/billing/close.ts</code> 会成为 <code>billing.close</code>。</p>
+<p><code>isVextJobDefinition(value: unknown): value is VextJobDefinition</code> 只检查对象标记与handler函数，不重新校验所有字段。浅冻结不代表嵌套schedule/payload/retry对象不可变。</p>
+<p>带必填业务 payload 的 Job 应通过 <code>vext job run</code>、<code>vext job enqueue</code> 或业务代码显式入队。内置 scheduler 创建 scheduled run 时不会自动携带 payload；定时 Job 应在 handler 中自行查询待处理数据，或只把扫描任务定时化。</p>
+<h2 class="rp-toc-include" id="核心类型"><a href="#核心类型" class="rp-header-anchor rp-link" aria-hidden="true">#</a>核心类型</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>类型</th><th>用途</th></tr></thead><tbody><tr><td><code>VextJobDefinition</code></td><td>defineJob返回的任务定义；泛型描述payload/result，不生成运行时Schema。</td></tr><tr><td><code>VextJobContext</code></td><td>handler上下文，包含app/job/payload/logger/signal/attempt/runId。</td></tr><tr><td><code>VextJobRegistry</code></td><td>名称索引，提供list/get/has/toJSON；没有增删API，但返回对象不是深冻结副本。</td></tr><tr><td><code>VextJobRunnerAdapter</code></td><td>导出的扩展类型；当前没有通过jobs.runner自动注册/加载实现的机制。</td></tr><tr><td><code>VextJobRunRecord</code></td><td>store 中保存的运行记录，包含 trigger、status、attempts、duration 和错误摘要。</td></tr><tr><td><code>VextJobStore</code></td><td>scheduler、worker 与 CLI 共享运行状态的 store 合同。</td></tr><tr><td><code>VextJobRunResult</code></td><td><code>runJob</code> 和测试 helper 返回的执行结果。</td></tr><tr><td><code>VextJobsConfig</code></td><td><code>config.jobs</code> 配置形态。</td></tr></tbody></table></div>
+<p>VextJobRunnerAdapter类型含name、start(runtime)，可选stop()和enqueue(name,payload,options)；start接收的VextJobWorkerRuntime含app/registry/store/run/close/signal。这是供显式集成使用的类型合同，当前运行时没有自动实例化它的注册表。</p>
+<h3 class="rp-toc-include" id="发现与registry"><a href="#发现与registry" class="rp-header-anchor rp-link" aria-hidden="true">#</a>发现与Registry</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>函数</th><th>参数与返回</th><th>边界</th></tr></thead><tbody><tr><td><code>loadJobs(options)</code></td><td><code>{rootDir, srcDir, config?: VextJobsConfig}</code> → <code>Promise&lt;VextLoadedJob[]&gt;</code></td><td>enabled=false返回空；导入模块会执行顶层代码；导入失败或没有Job导出时抛VextJobDefinitionError</td></tr><tr><td><code>resolveJobsDirectory(sourceBase, directory?, projectRoot?)</code></td><td>字符串路径，directory默认jobs → <code>string</code></td><td>有projectRoot时按项目目录合同映射源码/构建目录；不创建目录</td></tr><tr><td><code>createJobRegistry(jobs)</code></td><td><code>VextLoadedJob[]</code> → <code>VextJobRegistry</code></td><td>重名抛VextJobDuplicateNameError；list按名称排序、返回新数组，成员引用仍共享</td></tr></tbody></table></div>
+<p><code>VextLoadedJob</code> 包含name、definition、sourceFile、sourcePath和exportName。registry.get不存在时返回undefined，has返回boolean；toJSON只投影元数据，不包含handler，hasPayloadSchema仅表示定义存在payload字段。发现规则和推导名见<a href="/zh/guide/jobs.html#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84" class="rp-link">目录结构</a>。</p>
+<h3 class="rp-toc-include" id="handler上下文"><a href="#handler上下文" class="rp-header-anchor rp-link" aria-hidden="true">#</a>handler上下文</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>类型/语义</th></tr></thead><tbody><tr><td>app</td><td>当前Job应用实例；没有HTTP请求或响应上下文</td></tr><tr><td>job</td><td>当前Job定义；推导名位于registry，job.name可能仍为undefined</td></tr><tr><td>payload</td><td>TPayload；有Schema时为校验结果数据，无Schema时为原输入</td></tr><tr><td>signal</td><td>每次尝试的AbortSignal，关联超时和调用方取消；须由handler/I/O配合</td></tr><tr><td>attempt</td><td>从1开始的当前尝试序号</td></tr><tr><td>runId</td><td>本次执行ID；重试共用同一ID</td></tr><tr><td>logger</td><td>应用logger的子logger，附带job名称与runId</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="bootstrapjobruntimeoptions"><a href="#bootstrapjobruntimeoptions" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>bootstrapJobRuntime(options)</code></h2>
+<p>启动 headless Job runtime。它会加载 config、i18n、内置数据库插件、用户插件、services、Job registry 和 Job store，但不会解析 HTTP adapter、注册路由或监听端口。</p>
+<p>签名：<code>bootstrapJobRuntime(options?: BootstrapJobRuntimeOptions): Promise&lt;VextJobRuntime&gt;</code>。数据库插件按配置决定是否加载；不会触发HTTP onReady。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>options</th><th>默认值</th><th>用途</th></tr></thead><tbody><tr><td>rootDir</td><td>process.cwd()</td><td>项目根</td></tr><tr><td>built</td><td>false</td><td>true时从构建目录加载；程序API不会自行检测有效dist</td></tr><tr><td>outDir</td><td>项目构建位置</td><td>自定义构建输出路径</td></tr><tr><td>configProfile</td><td>undefined</td><td>配置profile，独立于mode</td></tr><tr><td>mode</td><td>production</td><td>production/development/test；CLI固定production</td></tr><tr><td>store</td><td>按jobs.store创建</td><td>注入VextJobStore；runtime调用其init及close（若提供）</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>runtime成员</th><th>签名/返回</th><th>语义</th></tr></thead><tbody><tr><td>app/config/registry/store</td><td>对应应用、配置、索引与Store</td><td>配置已完成归一化/冻结</td></tr><tr><td>enqueue</td><td><code>(name, options?) → Promise&lt;VextJobRunRecord&gt;</code></td><td>校验名称存在后入队，不校验业务payload</td></tr><tr><td>run</td><td><code>(name, options?) → Promise&lt;VextJobRunResult&gt;</code></td><td>创建或复用记录、领取、续租、执行、提交结果</td></tr><tr><td>listRuns</td><td><code>(options?: VextJobListRunsOptions) → Promise&lt;VextJobRunRecord[]&gt;</code></td><td>可按jobName/status过滤及limit截取；内置Store默认limit50，CLI runs默认20</td></tr><tr><td>getRun</td><td><code>(runId: string) → Promise&lt;VextJobRunRecord | undefined&gt;</code></td><td>查询，不存在返回undefined</td></tr><tr><td>close</td><td><code>() → Promise&lt;void&gt;</code></td><td>先Store.close，再应用shutdown；须在任务停止/完成后由调用方安排</td></tr></tbody></table></div>
+<p>使用已有指南中的greet任务时，可在项目根新建<code>run-greet.mjs</code>，执行<code>node run-greet.mjs</code>；默认从src加载production配置：</p>
+<div class="rp-codeblock language-js"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="js"><code><span class="line"><span style="color:var(--shiki-token-comment)">// run-greet.mjs</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-foreground)"> { bootstrapJobRuntime } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> runtime</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-keyword)"> await</span><span style="color:var(--shiki-token-function)"> bootstrapJobRuntime</span><span style="color:var(--shiki-foreground)">({ rootDir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> process</span><span style="color:var(--shiki-token-function)">.cwd</span><span style="color:var(--shiki-foreground)">() });</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">try</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  const</span><span style="color:var(--shiki-token-constant)"> result</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-token-keyword)"> await</span><span style="color:var(--shiki-token-constant)"> runtime</span><span style="color:var(--shiki-token-function)">.run</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-string-expression)">&quot;greet&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { payload</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { name</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Vext&quot;</span><span style="color:var(--shiki-foreground)"> } });</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  console</span><span style="color:var(--shiki-token-function)">.log</span><span style="color:var(--shiki-foreground)">(</span><span style="color:var(--shiki-token-constant)">result</span><span style="color:var(--shiki-foreground)">.status</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> result</span><span style="color:var(--shiki-foreground)">.result);</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  if</span><span style="color:var(--shiki-foreground)"> (</span><span style="color:var(--shiki-token-constant)">result</span><span style="color:var(--shiki-foreground)">.status </span><span style="color:var(--shiki-token-keyword)">!==</span><span style="color:var(--shiki-token-string-expression)"> &quot;success&quot;</span><span style="color:var(--shiki-foreground)">) </span><span style="color:var(--shiki-token-constant)">process</span><span style="color:var(--shiki-foreground)">.exitCode </span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">finally</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  await</span><span style="color:var(--shiki-token-constant)"> runtime</span><span style="color:var(--shiki-token-function)">.close</span><span style="color:var(--shiki-foreground)">();</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>正常结果为success与问候对象。未知任务、领取失败或Store异常会拒绝Promise；普通handler失败通常作为result.status返回。run的handler返回与Store接受完成是两件事，失去owner时完成可能被拒绝并记录警告。close不是排空接口；Store.close抛错时当前实现不会继续应用shutdown，调用方需处理失败与资源回收。初始化过程失败也不能假定已打开的外部资源全部回滚。</p>
+<h2 class="rp-toc-include" id="runjobapp-registry-name-options"><a href="#runjobapp-registry-name-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>runJob(app, registry, name, options)</code></h2>
+<p>通过 inline runner 执行一个 Job。Job 声明 <code>payload</code> schema 时，会复用 app validator 做 payload 校验。底层 <code>runJob()</code> 不直接创建 store run record；CLI 和 <code>bootstrapJobRuntime()</code> 返回的 runtime 会在执行前后写入 store。</p>
+<p>签名：<code>runJob(app: VextApp, registry: VextJobRegistry, name: string, options?: VextJobRunOptions): Promise&lt;VextJobRunResult&gt;</code>。<code>createJobRunner({ app, registry })</code> 返回<code>{ run(name, options?) }</code>，只是绑定前两个参数；它不初始化应用、不加worker并发限制，也不取得run lease。</p>
+<h3 class="rp-toc-include" id="运行选项"><a href="#运行选项" class="rp-header-anchor rp-link" aria-hidden="true">#</a>运行选项</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>VextJobRunOptions字段</th><th>类型</th><th>适用边界</th></tr></thead><tbody><tr><td>payload</td><td>unknown</td><td>泛型不校验此入口；Runner按Job声明的Schema逐次校验</td></tr><tr><td>signal</td><td>AbortSignal</td><td>run时关联取消；enqueue不保存signal</td></tr><tr><td>runId</td><td>string</td><td>低层Runner默认UUID；runtime用作记录ID，已有记录会复用</td></tr><tr><td>trigger</td><td>manual/schedule/enqueue</td><td>记录来源；runtime.run默认manual、enqueue默认enqueue</td></tr><tr><td>scheduledAt</td><td>Date/string</td><td>记录的计划时间，不等于设置未来runAt</td></tr><tr><td>idempotencyKey</td><td>string</td><td>runtime选项优先于Job定义，Store去重；低层Runner不处理</td></tr><tr><td>ownerId</td><td>string</td><td>内部已领取路径使用；业务通常省略，不用于绕过Store所有权</td></tr></tbody></table></div>
+<p><code>runtime.enqueue()</code>没有runAt选项；需要指定未来可领取时间时使用Store.enqueueRun的runAt并承担低层合同。scheduledAt只是元数据。runtime.run通过runId复用记录时仍须选择相同任务，不要把一个Job的记录ID交给另一Job。</p>
+<h3 class="rp-toc-include" id="结果错误与取消"><a href="#结果错误与取消" class="rp-header-anchor rp-link" aria-hidden="true">#</a>结果、错误与取消</h3>
+<p><code>VextJobRunResult&lt;TResult&gt;</code> 包含jobName、runId、status、attempts、durationMs，以及可选result/error。durationMs包括本次调用的尝试和重试等待；记录中的error为字符串摘要，Runner结果的error为原生对象/包装错误。查询记录还有queued/running，执行结果只有以下四种状态：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>status</th><th>当前判断</th></tr></thead><tbody><tr><td>success</td><td>handler正常返回且signal未中止</td></tr><tr><td>cancelled</td><td>signal已中止，但handler正常返回；仍可能含result</td></tr><tr><td>timeout</td><td>signal已中止且执行抛错，也可能源于调用方取消</td></tr><tr><td>failed</td><td>最终错误且signal未中止</td></tr></tbody></table></div>
+<p>timeout按每次尝试计时，不强制终止handler；预先中止signal也不保证不进入handler。payload每次尝试重新校验，null/undefined输入在有Schema时以空对象校验。retry.attempts包括首次执行，retry=false只尝试1次；delay为数值时支持fixed/exponential，指数为<code>2 ** (attempt - 1)</code>，函数delay收到失败的attempt和error，不再叠加指数。</p>
+<p>Job声明的retry对象整体优先于jobs.defaults.retry，不逐字段继承。函数delay可用于defineJob；尽管配置类型复用同一retry类型，当前应用配置校验只接受数字形式的jobs.defaults.retry.delay，不能把函数放进该配置字段。</p>
+<p>payload失败结果带VextJobPayloadValidationError及errors；普通执行错误包装为VextJobExecutionError（jobName/runId/cause）。未知任务和重试delay函数自身抛错等路径仍可能直接reject。VextJobShutdownError虽已导出，当前关闭流程不会自动把所有关闭失败包装成它。</p>
+<h2 class="rp-toc-include" id="startjobschedulerruntime-options"><a href="#startjobschedulerruntime-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>startJobScheduler(runtime, options)</code></h2>
+<p>签名：<code>startJobScheduler(runtime: VextJobRuntime, options?: StartJobSchedulerOptions): Promise&lt;void&gt;</code>。先处理scheduler lease，再筛选有效schedule并计算到期时间、创建记录。<code>config.jobs.scheduler.mode = &quot;inline&quot;</code> 时直接执行并等待；<code>&quot;enqueue&quot;</code> 时只入队，由worker执行。</p>
+<p>Scheduler lease 通过 <code>jobs.scheduler.lease.ttl</code> 控制持有时间，通过 <code>jobs.scheduler.lease.renewInterval</code> 控制续期间隔。未拿到 lease 时不推进进程内窗口；游标不持久保存，不能据此承诺重启补齐。interval起点、cron秒边界与jitter限制见<a href="/zh/specification/jobs.html#vext-job-003" class="rp-link">任务与调度规范</a>。</p>
+<p>options支持<code>ownerId</code>、<code>signal</code>与<code>once</code>；once只进行一次调度循环。直接调用<code>tickJobScheduler()</code>不代替scheduler lease协调。</p>
+<p>ownerId省略时生成包含PID与UUID的标识；signal用于停止循环，once默认false。轮询、Store或inline执行错误可以使Promise拒绝；续租在循环内进行，长任务会拖延续租。租约与停止的详细边界见规范，不承诺异常路径一定释放租约。</p>
+<h3 class="rp-toc-include" id="调度计算与单次tick"><a href="#调度计算与单次tick" class="rp-header-anchor rp-link" aria-hidden="true">#</a>调度计算与单次tick</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>入口</th><th>参数与返回</th><th>限制</th></tr></thead><tbody><tr><td><code>tickJobScheduler(runtime, options?)</code></td><td>options含ownerId/now/previousTick → <code>Promise&lt;number&gt;</code></td><td>返回处理的到期次数，不一定是新增记录数；不取得scheduler lease</td></tr><tr><td><code>resolveJobDueTimes(options)</code></td><td>schedule必填，now/previousTick/defaultTimezone/defaultMisfirePolicy/defaultMaxCatchUp可选 → Date[]</td><td>纯到期计算，不执行；enabled=false或当前时间超出范围返回空；窗口及cron/interval限制仍适用</td></tr><tr><td><code>getNextJobRunTime(options)</code></td><td>schedule必填，from/defaultTimezone可选 → Date或undefined</td><td>预测下一次；无有效schedule或enabled=false返回undefined；不保证应用startAt/endAt的全部范围限制，不代表已调度</td></tr></tbody></table></div>
+<p>scheduled run没有业务payload，ID由任务名和到期时间组成；jitter调整runAt，singleton增加相同时间点的幂等键，不是整个Job的跨周期互斥锁。</p>
+<h2 class="rp-toc-include" id="startjobworkerruntime-options"><a href="#startjobworkerruntime-options" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>startJobWorker(runtime, options)</code></h2>
+<p>启动 worker 轮询循环。worker 会 heartbeat、领取到期queued记录、执行Job并写回结果。run lease协调所有权，过期接管可能与忽略取消信号的旧handler重叠，不能保证副作用只执行一次。</p>
+<p>签名：<code>startJobWorker(runtime: VextJobRuntime, options?: StartJobWorkerOptions): Promise&lt;void&gt;</code>。ownerId省略时生成PID/UUID标识，once默认false。正常返回表示循环及有期限等待结束，不保证所有外部工作均结束；领取、心跳等Store错误可使Promise拒绝。</p>
+<p>options支持<code>ownerId</code>、<code>signal</code>与<code>once</code>；once完成一轮按当前容量领取后等待，不保证排空整个队列。signal用于停止循环，不自动取消已领取handler。shutdownTimeout限定等待期限；CLI资源关闭顺序见<a href="/zh/specification/jobs.html#vext-job-005" class="rp-link">关闭边界</a>。</p>
+<p>Worker 认领 run 时会同时检查当前 worker 进程内并发和单 Job 并发：进程内上限来自 <code>jobs.worker.concurrency</code>，单 Job 上限来自 <code>defineJob({ concurrency })</code>，未声明时使用 <code>jobs.defaults.concurrency</code>，最低为 <code>1</code>。</p>
+<h2 class="rp-toc-include" id="createjobstoreoptions"><a href="#createjobstoreoptions" class="rp-header-anchor rp-link" aria-hidden="true">#</a><code>createJobStore(options)</code></h2>
+<p>根据 <code>config.jobs.store</code> 创建内置 store。<code>memory</code> 为进程内状态；<code>file</code> 默认持久化到<code>.vext/jobs</code>，共享使用须验证文件系统锁/重命名与错误处理。<code>redis</code>用于共享记录和租约。<code>auto</code>仍选择Redis，目标可由client、url/uri或<code>VEXT_REDIS_URL</code>/<code>REDIS_URL</code>提供；缺目标会报错，不回退File。</p>
+<p>签名：<code>createJobStore(options: CreateJobStoreOptions): VextJobStore</code>，options包含必填rootDir，以及可选config（VextJobsConfig，不是整个VextConfig）、configProfile、runtimeMode。工厂不自动await store.init；bootstrapJobRuntime负责调用。未知type抛错，自定义实现通过bootstrap的store参数注入。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>直接工厂</th><th>options</th></tr></thead><tbody><tr><td>createMemoryJobStore(options?)</td><td>可选now: () =&gt; Date；进程退出丢失</td></tr><tr><td>createFileJobStore(options)</td><td>必填rootDir，可选dir/now；dir相对rootDir，默认.vext/jobs</td></tr><tr><td>createRedisJobStore(options?)</td><td>可选rootDir/configProfile/runtimeMode/now及client/url/uri/namespace/keyPrefix；必须能解析Redis目标</td></tr></tbody></table></div>
+<p>Redis URL优先级为url→uri→VEXT_REDIS_URL→REDIS_URL，外部client优先使用；自行创建的客户端由Store.close关闭，外部client不关闭。使用同一目标且前缀一致才能共享队列。File/Redis记录不会自动过期清理，输入/结果应可JSON序列化；文件锁/写盘或Redis连接错误按实际调用抛出，不提供统一的自动恢复保证。</p>
+<h3 class="rp-toc-include" id="store合同与运行记录"><a href="#store合同与运行记录" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Store合同与运行记录</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>方法</th><th>参数与返回</th></tr></thead><tbody><tr><td>init/close（可选）</td><td><code>() → void或Promise&lt;void&gt;</code></td></tr><tr><td>acquireSchedulerLease/renewSchedulerLease</td><td><code>(ownerId, ttl, now?) → Promise&lt;boolean&gt;</code></td></tr><tr><td>releaseSchedulerLease</td><td><code>(ownerId) → Promise&lt;void&gt;</code></td></tr><tr><td>enqueueRun</td><td><code>(input: VextJobStoreEnqueueInput) → Promise&lt;VextJobRunRecord&gt;</code></td></tr><tr><td>claimNextRun</td><td><code>({ownerId, now?, leaseTtl?, jobNames?}) → Promise&lt;record或undefined&gt;</code></td></tr><tr><td>claimRun</td><td><code>(runId, {ownerId, now?, leaseTtl?}) → Promise&lt;record或undefined&gt;</code></td></tr><tr><td>renewRunLease</td><td><code>(runId, ownerId, leaseTtl, now?) → Promise&lt;boolean&gt;</code></td></tr><tr><td>completeRun</td><td><code>(runId, patch, {ownerId}?) → Promise&lt;boolean&gt;</code></td></tr><tr><td>getRun/listRuns</td><td>查询同runtime对应方法；list过滤jobName/status/limit</td></tr><tr><td>heartbeatWorker</td><td><code>(ownerId, now?) → Promise&lt;void&gt;</code></td></tr></tbody></table></div>
+<p>Store还有只读type字符串。enqueueRun的必填项为jobName和trigger；可选id、payload、runAt、scheduledAt、priority、idempotencyKey、source。它不检查registry或payload Schema。completeRun的patch可写status、attempts、durationMs、finishedAt、result、error、updatedAt；业务通常应使用runtime而非直接拼装终态。</p>
+<p>VextJobRunRecord包括id/jobName/status/trigger、runAt/createdAt/updatedAt、attempts；可选payload/priority、scheduledAt/startedAt/finishedAt/durationMs、result/error、leaseOwner/leaseUntil、idempotencyKey/source。时间戳为字符串，状态含queued/running及四种执行结果。内置Store的listRuns按createdAt倒序，默认limit50；不提供分页游标或删除/保留期API。</p>
+<p>同ID会复用原记录；同任务非空idempotencyKey会复用非failed/cancelled记录（包括success/timeout）。复用不能保证再次runtime.run可领取，更不等于缓存返回上次结果。Memory/File的claimRun会检查未来runAt，当前Redis的直接claimRun没有同样的未来时间等待保证；普通worker经claimNextRun领取，不能把两接口互换。</p>
+<p>内置 store 的 <code>completeRun(runId, patch, { ownerId })</code> 只接受当前 running 记录的非空 owner。完成后会清除 lease；缺失、queued、terminal、owner 不匹配或重复完成返回 <code>false</code>，不会覆盖已有终态。handler 本身仍按至少一次执行设计，外部副作用需要业务幂等。</p>
+<h2 class="rp-toc-include" id="测试-api"><a href="#测试-api" class="rp-header-anchor rp-link" aria-hidden="true">#</a>测试 API</h2>
+<p><code>vextjs/testing</code> 导出 <code>createTestJobRunner(options)</code>。它会创建测试 app，注册传入的 Job 定义，并提供 <code>run(name, options)</code> 与 <code>close()</code>。</p>
+<p>签名：<code>createTestJobRunner(options: CreateTestJobRunnerOptions): Promise&lt;TestJobRunner&gt;</code>。jobs必填，类型为名称→定义的对象或定义数组；数组无name时使用job1/job2等名称，对象优先使用定义自带name。其他选项沿用CreateTestAppOptions并排除routes；框架强制routes=false。</p>
+<p>返回app、registry、run与close。此helper使用传入的定义，不扫描src/jobs、不写运行记录或测试Store租约。可用services=false配合mockServices隔离业务依赖，完成后finally close。完整正负断言例见<a href="/zh/guide/jobs.html#%E6%B5%8B%E8%AF%95" class="rp-link">任务指南测试段</a>。</p>
+<h2 class="rp-toc-include" id="job-定义字段"><a href="#job-定义字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Job 定义字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>string</code></td><td>由文件路径推导</td><td>Job 名称，同一 service root 内必须唯一</td></tr><tr><td><code>description</code></td><td><code>string</code></td><td><code>undefined</code></td><td>文档说明</td></tr><tr><td><code>tags</code></td><td><code>string[]</code></td><td><code>undefined</code></td><td>文档和筛选标签</td></tr><tr><td><code>docs</code></td><td><code>object</code></td><td><code>undefined</code></td><td>面向 Vext Docs / MCP 的说明补充</td></tr><tr><td><code>payload</code></td><td><code>Record&lt;string, unknown&gt;</code></td><td><code>undefined</code></td><td>应用当前Validator校验，默认schema-dsl</td></tr><tr><td><code>schedule</code></td><td><code>VextJobScheduleConfig</code></td><td><code>undefined</code></td><td>内置 scheduler 配置</td></tr><tr><td><code>queue</code></td><td><code>VextJobQueueConfig</code></td><td><code>undefined</code></td><td>入队优先级等队列元数据</td></tr><tr><td><code>timeout</code></td><td><code>number</code></td><td><code>config.jobs.defaults.timeout</code></td><td>单次尝试超时，毫秒；协作式取消</td></tr><tr><td><code>retry</code></td><td><code>false | object</code></td><td><code>config.jobs.defaults.retry</code></td><td>重试次数、延迟和退避策略</td></tr><tr><td><code>concurrency</code></td><td><code>number</code></td><td><code>config.jobs.defaults.concurrency</code></td><td>单worker内Job并发上限；不限制直接run</td></tr><tr><td><code>idempotencyKey</code></td><td><code>string | function</code></td><td><code>undefined</code></td><td>手动/入队任务的业务幂等键</td></tr><tr><td><code>handler</code></td><td><code>function</code></td><td>必填</td><td>Job 执行函数</td></tr></tbody></table></div>
+<p>docs包含可选summary/description/tags，仅作为元数据。queue包含可选priority和enabled；priority为非负整数（数值越高越优先，仍受Store候选范围影响），enabled当前未被运行流程用作阻止入队开关。idempotencyKey函数接收<code>{ jobName, payload }</code>，可返回string/undefined/null；它不替代业务唯一约束。字段不适用时应省略，不用timeout=0或concurrency=0表达关闭（defineJob会拒绝）。</p>
+<h2 class="rp-toc-include" id="schedule-字段"><a href="#schedule-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Schedule 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead><tbody><tr><td><code>enabled</code></td><td><code>boolean</code></td><td><code>true</code></td><td>是否启用该 Job 的定时调度</td></tr><tr><td><code>cron</code></td><td><code>string</code></td><td><code>undefined</code></td><td>秒级 cron 表达式</td></tr><tr><td><code>interval</code></td><td><code>number</code></td><td><code>undefined</code></td><td>毫秒间隔；不能与 <code>cron</code> 同时配置</td></tr><tr><td><code>timezone</code></td><td><code>string</code></td><td><code>config.jobs.scheduler.timezone</code></td><td>cron 时区</td></tr><tr><td><code>startAt</code></td><td><code>string | Date</code></td><td><code>undefined</code></td><td>起始时间</td></tr><tr><td><code>endAt</code></td><td><code>string | Date</code></td><td><code>undefined</code></td><td>结束时间</td></tr><tr><td><code>misfirePolicy</code></td><td><code>&#x27;skip&#x27; | &#x27;fire-once&#x27; | &#x27;catch-up&#x27;</code></td><td><code>config.jobs.scheduler.misfirePolicy</code></td><td>错过 tick 后如何补偿</td></tr><tr><td><code>maxCatchUp</code></td><td><code>number</code></td><td><code>config.jobs.scheduler.maxCatchUp</code></td><td>最大补偿次数</td></tr><tr><td><code>jitter</code></td><td><code>number</code></td><td><code>config.jobs.scheduler.jitter</code></td><td>到点后的随机延迟毫秒数</td></tr><tr><td><code>singleton</code></td><td><code>boolean</code></td><td><code>false</code></td><td>同一 scheduled fire time 只允许一个 run</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="配置"><a href="#配置" class="rp-header-anchor rp-link" aria-hidden="true">#</a>配置</h2>
+<p>以下为合入<code>src/config/default.ts</code>的配置参考。runner、scheduler.enabled、worker.enabled和worker.heartbeatInterval目前只有类型/配置校验，没有在对应执行循环中发挥切换/独立心跳作用；设置enabled=true也不会随HTTP自动启动任务。用显式命令启动进程，用signal/进程管理停止，用jobs.enabled控制加载、schedule.enabled控制某任务调度。</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  jobs</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    dir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;jobs&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    include</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;**/*.{ts,js,mjs,cjs,mts,cts}&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    exclude</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;**/*.test.*&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;**/*.spec.*&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    runner</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;inline&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    store</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      type</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;file&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      dir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;.vext/jobs&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    scheduler</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      mode</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;inline&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      tickInterval</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      timezone</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;UTC&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      misfirePolicy</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;skip&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      maxCatchUp</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      jitter</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      lease</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        ttl</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 30000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        renewInterval</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    worker</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      concurrency</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 4</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      shutdownTimeout</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      pollInterval</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      heartbeatInterval</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      lease</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { ttl</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 30000</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> renewInterval</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 10000</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    defaults</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      timeout</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 30000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      retry</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { attempts</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> delay</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> backoff</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;fixed&quot;</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      concurrency</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>说明</th></tr></thead><tbody><tr><td><code>jobs.enabled</code></td><td><code>true</code></td><td>是否允许 Job 发现</td></tr><tr><td><code>jobs.dir</code></td><td><code>&#x27;jobs&#x27;</code></td><td>相对 <code>src/</code> 的 Job 目录</td></tr><tr><td><code>jobs.include</code></td><td>默认六类源码扩展名glob</td><td>替换发现范围；任务导出规则仍适用</td></tr><tr><td><code>jobs.exclude</code></td><td>无额外项</td><td>追加到内置下划线文件/声明文件/test/spec排除规则</td></tr><tr><td><code>jobs.runner</code></td><td><code>&#x27;inline&#x27;</code></td><td>当前不自动选择或加载runner</td></tr><tr><td><code>jobs.store.type</code></td><td><code>&#x27;file&#x27;</code></td><td><code>memory</code>、<code>file</code>、<code>redis</code> 或 <code>auto</code></td></tr><tr><td><code>jobs.store.url</code> / <code>uri</code></td><td><code>undefined</code></td><td><code>redis</code> store 的连接地址</td></tr><tr><td><code>jobs.store.client</code></td><td>undefined</td><td>外部Redis兼容客户端，优先于URL；连接生命周期由提供方管理</td></tr><tr><td><code>jobs.store.namespace</code> / <code>keyPrefix</code></td><td>自动生成</td><td>Redis key 隔离；默认按项目/profile/runtime/module 生成</td></tr><tr><td><code>jobs.store.dir</code></td><td><code>&#x27;.vext/jobs&#x27;</code></td><td>file store 数据目录，相对项目根</td></tr><tr><td><code>jobs.scheduler.mode</code></td><td><code>&#x27;inline&#x27;</code></td><td><code>inline</code> 到点直接执行，<code>enqueue</code> 只入队</td></tr><tr><td><code>jobs.scheduler.enabled</code></td><td>true</td><td>当前不作为startJobScheduler的执行开关</td></tr><tr><td><code>jobs.scheduler.tickInterval</code></td><td><code>1000</code></td><td>scheduler tick 间隔，毫秒</td></tr><tr><td><code>jobs.scheduler.timezone</code></td><td>UTC</td><td>Job未设置时的cron时区</td></tr><tr><td><code>jobs.scheduler.misfirePolicy</code></td><td>skip</td><td>进程内窗口策略，实际边界见规范003</td></tr><tr><td><code>jobs.scheduler.maxCatchUp</code></td><td>10</td><td>默认补跑上限</td></tr><tr><td><code>jobs.scheduler.jitter</code></td><td>0</td><td>默认随机延迟上界，毫秒；inline限制见规范003</td></tr><tr><td><code>jobs.scheduler.lease.enabled</code></td><td>true</td><td>false跳过scheduler lease协调</td></tr><tr><td><code>jobs.scheduler.lease.ttl</code></td><td><code>30000</code></td><td>scheduler lease 过期时间</td></tr><tr><td><code>jobs.scheduler.lease.renewInterval</code></td><td><code>10000</code></td><td>循环中续租间隔，运行时取与TTL的较小值；应给足续租余量</td></tr><tr><td><code>jobs.worker.enabled</code></td><td>true</td><td>当前不作为startJobWorker的执行开关</td></tr><tr><td><code>jobs.worker.concurrency</code></td><td><code>4</code></td><td>单个 worker 进程内并发</td></tr><tr><td><code>jobs.worker.pollInterval</code></td><td><code>1000</code></td><td>worker 轮询间隔，毫秒</td></tr><tr><td><code>jobs.worker.shutdownTimeout</code></td><td><code>10000</code></td><td>worker循环结束后的等待上限；不取消handler或延后CLI关闭</td></tr><tr><td><code>jobs.worker.heartbeatInterval</code></td><td>10000</td><td>当前未用作独立心跳周期，实际在worker轮询循环写入</td></tr><tr><td><code>jobs.worker.lease.ttl</code></td><td>30000</td><td>run lease持有时间，毫秒</td></tr><tr><td><code>jobs.worker.lease.renewInterval</code></td><td><code>10000</code></td><td>run续租计时器间隔，运行时取与TTL的较小值</td></tr><tr><td><code>jobs.defaults</code></td><td>见示例</td><td>Job 未声明 timeout/retry/concurrency 时的默认值</td></tr><tr><td><code>jobs.defaults.concurrency</code></td><td><code>1</code></td><td>单 Job 默认并发上限；worker 会按 Job 名称分别限制</td></tr></tbody></table></div>
+<p>调度/worker的数值时间单位均为毫秒；应用配置校验要求tick/poll/shutdown/lease和并发等为正整数，jitter为非负整数。字段合法不代表外部Store可连接、cron可靠触发或业务幂等已成立。详细操作、实际实现限制和恢复观察见<a href="/zh/guide/jobs.html" class="rp-link">任务指南</a>。</p><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/9/25 02:16:55</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/api/fetch.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Fetch API</span></span></a><a href="/zh/api/plugin-api.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>插件 API</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#definejobdefinition" class="rp-toc-item rp-link" title="defineJob(definition)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>defineJob(definition)</code></span></a><a href="#核心类型" class="rp-toc-item rp-link" title="核心类型" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心类型</span></a><a href="#发现与registry" class="rp-toc-item rp-link" title="发现与Registry" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">发现与Registry</span></a><a href="#handler上下文" class="rp-toc-item rp-link" title="handler上下文" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">handler上下文</span></a><a href="#bootstrapjobruntimeoptions" class="rp-toc-item rp-link" title="bootstrapJobRuntime(options)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>bootstrapJobRuntime(options)</code></span></a><a href="#runjobapp-registry-name-options" class="rp-toc-item rp-link" title="runJob(app, registry, name, options)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>runJob(app, registry, name, options)</code></span></a><a href="#运行选项" class="rp-toc-item rp-link" title="运行选项" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">运行选项</span></a><a href="#结果错误与取消" class="rp-toc-item rp-link" title="结果、错误与取消" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">结果、错误与取消</span></a><a href="#startjobschedulerruntime-options" class="rp-toc-item rp-link" title="startJobScheduler(runtime, options)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>startJobScheduler(runtime, options)</code></span></a><a href="#调度计算与单次tick" class="rp-toc-item rp-link" title="调度计算与单次tick" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">调度计算与单次tick</span></a><a href="#startjobworkerruntime-options" class="rp-toc-item rp-link" title="startJobWorker(runtime, options)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>startJobWorker(runtime, options)</code></span></a><a href="#createjobstoreoptions" class="rp-toc-item rp-link" title="createJobStore(options)" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc"><code>createJobStore(options)</code></span></a><a href="#store合同与运行记录" class="rp-toc-item rp-link" title="Store合同与运行记录" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">Store合同与运行记录</span></a><a href="#测试-api" class="rp-toc-item rp-link" title="测试 API" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">测试 API</span></a><a href="#job-定义字段" class="rp-toc-item rp-link" title="Job 定义字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Job 定义字段</span></a><a href="#schedule-字段" class="rp-toc-item rp-link" title="Schedule 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Schedule 字段</span></a><a href="#配置" class="rp-toc-item rp-link" title="配置" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">配置</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

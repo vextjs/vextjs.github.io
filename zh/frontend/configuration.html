@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="zh">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>前端配置 - VextJS</title>
+<script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
+<link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
+<link rel="preload" href="/static/js/async/route-aefdbcf6695b.72c72c3ece.js" as="script">
+<script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
+<script defer src="/static/js/lib-react.a6847cff74.js"></script>
+<script defer src="/static/js/lib-router.912839e191.js"></script>
+<script defer src="/static/js/3618.e765384e40.js"></script>
+<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Rspress v2.0.19">
+<meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前端配置 - VextJS">
+<meta property="og:description" content="本页帮助你在已有全栈应用中修改配置。先完成快速开始，再将所需字段合并到 src/config/default.ts，保留已有的服务端设置。先使用默认值，只为产品确实要改变的行为配置字段；完整类型成员见VextFrontendConfig API 参考。">
+<meta property="og:image" content="https://vextjs.github.io/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="/frontend/configuration.html">
+<link rel="alternate" hreflang="zh" href="/zh/frontend/configuration.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="本页帮助你在已有全栈应用中修改配置。先完成快速开始，再将所需字段合并到 src/config/default.ts，保留已有的服务端设置。先使用默认值，只为产品确实要改变的行为配置字段；完整类型成员见VextFrontendConfig API 参考。"><link rel="canonical" href="https://vextjs.github.io/zh/frontend/configuration"><meta property="og:url" content="https://vextjs.github.io/zh/frontend/configuration"></head>
+
+  <body>
+    <div id="__rspress_root"><link rel="preload" as="image" href="/logo.svg"/><div class="vext-motion-field" aria-hidden="true"></div><div class="vext-pointer-field" aria-hidden="true"></div><nav class="vext-ecosystem-menu" aria-label="VextJS ecosystem"><button class="vext-ecosystem-trigger" type="button" aria-haspopup="true" aria-label="Open VextJS ecosystem navigation" title="Ecosystem"><span class="vext-ecosystem-trigger__grid" aria-hidden="true"><span></span><span></span><span></span><span></span></span></button><div class="vext-ecosystem-panel"><div class="vext-ecosystem-panel__header"><span class="vext-ecosystem-panel__mark"><span>VX</span></span><div><strong>VextJS Ecosystem</strong><span>Docs, packages and integration surface</span></div></div><div class="vext-ecosystem-panel__grid"><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs/vextjs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>VX</span></span><span class="vext-ecosystem-card__text"><strong>vext</strong><span>High-performance API runtime</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/schema-dsl/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>S</span></span><span class="vext-ecosystem-card__text"><strong>schema-dsl</strong><span>Schema declaration and validation semantics</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/monSQLize/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>M</span></span><span class="vext-ecosystem-card__text"><strong>monSQLize</strong><span>MongoDB modeling for service projects</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/flex-rate-limit/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>FR</span></span><span class="vext-ecosystem-card__text"><strong>flex-rate-limit</strong><span>Flexible rate limiting for APIs</span></span></a><a class="vext-ecosystem-card" href="https://devcodex-labs.github.io/permission-core/" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>PC</span></span><span class="vext-ecosystem-card__text"><strong>permission-core</strong><span>Permission primitives for application guards</span></span></a><a class="vext-ecosystem-card" href="https://github.com/devcodex-labs" rel="noreferrer" target="_blank"><span class="vext-ecosystem-card__mark"><span>GH</span></span><span class="vext-ecosystem-card__text"><strong>GitHub Org</strong><span>Explore the vextjs organization</span></span></a></div></div></nav><header class="rp-nav"><div class="rp-nav__left"><div class="rp-nav__title"><a href="/zh/" class="rp-nav__title__link rp-link"><div class="rp-nav__title__logo"><img src="/logo.svg" alt="logo" id="logo" class="rspress-logo rp-nav__title__logo-image"/></div><span>VextJS</span></a></div></div><div class="rp-nav__right"><button class="rp-search-button"><div class="rp-search-button__content"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21" class="rp-search-button__icon"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg><span class="rp-search-button__word">搜索</span></div><div class="rp-search-button__hotkey" style="opacity:0"><span></span><span>K</span></div></button><div class="rp-search-button--mobile"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M8.333 1.913A6.667 6.667 0 0 1 15 8.58c0 1.54-.525 2.957-1.402 4.085l4.49 4.492a.834.834 0 0 1-1.177 1.178l-4.491-4.49a6.64 6.64 0 0 1-4.087 1.402 6.667 6.667 0 0 1 0-13.334m0 1.667a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></svg></div><ul class="rp-nav-menu rp-nav-menu--right"><li class="rp-nav-menu__item"><a href="/zh/guide/introduction.html" class="rp-nav-menu__item__container rp-link">指南</a></li><li class="rp-nav-menu__item rp-nav-menu__item--active"><a href="/zh/frontend/overview.html" class="rp-nav-menu__item__container rp-link">前端</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/routing.html" class="rp-nav-menu__item__container rp-link">运行时</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/validation.html" class="rp-nav-menu__item__container rp-link">数据</a></li><li class="rp-nav-menu__item"><a href="/zh/guide/deployment.html" class="rp-nav-menu__item__container rp-link">工具与运维</a></li><li class="rp-nav-menu__item"><a href="/zh/api/config.html" class="rp-nav-menu__item__container rp-link">API 参考</a></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">资源<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/examples/hello-world.html" class="rp-hover-group__item__link rp-link" aria-label="示例">示例</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/benchmark.html" class="rp-hover-group__item__link rp-link" aria-label="基准测试">基准测试</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CONTRIBUTING.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="贡献指南">贡献指南</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/support-and-services.html" class="rp-hover-group__item__link rp-link" aria-label="支持与服务">支持与服务</a></li><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/zh/resources/documentation-data-and-ai.html" class="rp-hover-group__item__link rp-link" aria-label="文档数据与 AI">文档数据与 AI</a></li></ul></li><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">v2.0.0<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" class="rp-hover-group__item__link rp-link" aria-label="更新日志">更新日志</a></li></ul></li></ul><div class="rp-nav__others"><div class="rp-nav-menu__divider"></div><li class="rp-nav-menu__item"><div class="rp-nav-menu__item__container">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-menu__item__icon"><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--center"><li class="rp-hover-group__item" style="padding-left:8px" data-depth="0"><a href="/frontend/configuration.html" class="rp-hover-group__item__link rp-link" aria-label="English" lang="en" hrefLang="en" rel="alternate">English</a></li><li class="rp-hover-group__item rp-hover-group__item--active" style="padding-left:8px" data-depth="0"><div class="rp-hover-group__item__link" lang="zh">简体中文</div></li></ul></li><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__sm"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg></button><button aria-label="mobile hamburger" class="rp-nav-hamburger rp-nav-hamburger__md"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 21 21"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667" d="M3.645 5.225h13.333M3.645 10.225h13.333M3.645 15.225h13.333"></path></svg><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"><div class="rp-nav-menu__others-mobile__container"><div class="rp-nav-hamburger__md__hover-group"><div class="rp-nav-screen-langs"><div class="rp-nav-screen-langs__left">语言</div><div class="rp-nav-screen-langs__right">简体中文<svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-nav-screen-langs__icon "><path fill="currentColor" d="M16 22 6 12l1.4-1.4 8.6 8.6 8.6-8.6L26 12z"></path></svg></div></div><div class="rp-nav-screen-langs-group" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.2s ease-out"><div class="rp-nav-screen-langs-group__inner"><a href="/frontend/configuration.html" class="rp-nav-screen-langs-group__item rp-link" hrefLang="en" lang="en" rel="alternate">English</a><span class="rp-nav-screen-langs-group__item rp-nav-screen-langs-group__item--active" aria-current="page" aria-disabled="true">简体中文</span></div></div><div class="rp-nav-screen-divider"></div><div class="rp-social-links"><a href="https://github.com/devcodex-labs/vextjs" target="_blank" rel="noopener noreferrer" class="rp-social-links__item"><div class="rp-social-links__icon"><div class="rp-social-links__icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div></div></a><ul class="rp-hover-group rp-hover-group--hidden rp-hover-group--right"></ul></div></div></div></ul></button></div></header><div class="rp-doc-layout__menu"><div class="rp-sidebar-menu"><button type="button" class="rp-sidebar-menu__left"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M4 6h24v2H4zm0 18h24v2H4zm0-12h24v2H4zm0 6h24v2H4z"></path></svg><span>菜单</span></button><button type="button" class="rp-sidebar-menu__right"><span class="rp-sidebar-menu__right__text">目录</span><svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-sidebar-menu__right__icon" style="transform:rotate(0deg);transition:transform 0.2s ease-out"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></button></div></div><div class="rp-doc-layout__container"><aside class="rp-doc-layout__sidebar rp-scrollbar"><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">开始</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/overview.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">总览</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/getting-started.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">快速开始</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/project-structure.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">项目结构</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">核心概念</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/routing-and-pages.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">路由与页面</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/rendering-modes.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">渲染模式</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/data-flow.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">数据流</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/layouts-and-components.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Layout 与组件</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/styles-and-assets.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">样式与资源</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/jscss.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Vext JSCSS</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">渲染模式</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/ssr.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">SSR</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/hydration.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hydration</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/seo-sitemap.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">SEO、Sitemap 与 Robots</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/csr-and-spa-fallback.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">CSR 与 SPA Fallback</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/render-data-and-cache.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Render Data 与缓存</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">开发体验</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/dev-workflow.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">开发工作流</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/fast-refresh.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Fast Refresh</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/render-refresh.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Render Refresh</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/diagnostics-and-leak-scan.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">诊断与 Leak Scan</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">生产交付</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/build-and-deploy.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">构建与发布</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/code-splitting.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">代码拆分</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/static-assets-and-cdn.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">静态资源与 CDN</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/performance-budgets.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">性能预算</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/hydration-validation.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">Hydration 验证</span></div><div class="rp-sidebar-item__right"></div></a></div></div><div class="rp-sidebar-item rp-sidebar-group" style="padding-left:12px" data-depth="0"><div class="rp-sidebar-item__left"><span class="rp-doc">参考</span></div><div class="rp-sidebar-item__right"><div style="cursor:pointer;transition:transform 0.2s ease-out;transform:rotate(90deg)"><svg width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></div></div></div><div style="display:grid;grid-template-rows:1fr;transition:grid-template-rows 0.2s ease-out"><div style="overflow:hidden"><a href="/zh/frontend/configuration.html" class="rp-sidebar-item rp-sidebar-item--active rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">配置</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/api-client-and-contracts.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">API Client 与契约</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/errors-and-document.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">错误页与 Document</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/i18n.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">多语言</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/troubleshooting.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">排错</span></div><div class="rp-sidebar-item__right"></div></a><a href="/zh/frontend/boundaries-and-roadmap.html" class="rp-sidebar-item rp-sidebar-item--group-item rp-link" style="padding-left:calc(12px * 1 + 12px)" data-depth="1"><div class="rp-sidebar-item__left"><span class="rp-doc">边界与路线图</span></div><div class="rp-sidebar-item__right"></div></a></div></div></aside><div class="rp-doc-layout__doc"><main class="rp-doc-layout__doc-container"><div class="rp-doc rspress-doc"><!--$--><h1 class="rp-toc-include" id="前端配置"><a href="#前端配置" class="rp-header-anchor rp-link" aria-hidden="true">#</a>前端配置<!-- --> </h1>
+<p>本页帮助你在已有全栈应用中修改配置。先完成<a href="/zh/frontend/getting-started.html" class="rp-link">快速开始</a>，再将所需字段合并到 <code>src/config/default.ts</code>，保留已有的服务端设置。先使用默认值，只为产品确实要改变的行为配置字段；完整类型成员见<a href="/zh/api/config.html#vextfrontendconfig" class="rp-link">VextFrontendConfig API 参考</a>。</p>
+<h2 class="rp-toc-include" id="目录导航"><a href="#目录导航" class="rp-header-anchor rp-link" aria-hidden="true">#</a>目录导航</h2>
+<ul>
+<li><a href="#%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE" class="rp-link">最小配置</a></li>
+<li><a href="#%E5%86%B3%E5%AE%9A%E8%A6%81%E9%85%8D%E7%BD%AE%E4%BB%80%E4%B9%88" class="rp-link">决定要配置什么</a></li>
+<li><a href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B" class="rp-link">完整示例</a></li>
+<li><a href="#%E7%94%9F%E4%BA%A7%E4%BA%A4%E4%BB%98%E9%85%8D%E7%BD%AE%E5%BD%A2%E6%80%81" class="rp-link">生产交付配置形态</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E5%AD%97%E6%AE%B5" class="rp-link">核心字段</a></li>
+<li><a href="#render-%E5%AD%97%E6%AE%B5" class="rp-link">Render 字段</a></li>
+<li><a href="#style-%E5%AD%97%E6%AE%B5" class="rp-link">Style 字段</a></li>
+<li><a href="#build-%E5%AD%97%E6%AE%B5" class="rp-link">Build 字段</a></li>
+<li><a href="#deploy-%E5%AD%97%E6%AE%B5" class="rp-link">Deploy 字段</a></li>
+<li><a href="#seo-%E5%AD%97%E6%AE%B5" class="rp-link">SEO 字段</a></li>
+<li><a href="#i18n-%E5%AD%97%E6%AE%B5" class="rp-link">I18n 字段</a></li>
+<li><a href="#dev-%E5%AD%97%E6%AE%B5" class="rp-link">Dev 字段</a></li>
+<li><a href="#spa-fallback-%E5%AD%97%E6%AE%B5" class="rp-link">SPA Fallback 字段</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4" class="rp-link">验证配置变更</a></li>
+</ul>
+<h2 class="rp-toc-include" id="最小配置"><a href="#最小配置" class="rp-header-anchor rp-link" aria-hidden="true">#</a>最小配置</h2>
+<p>在默认配置中启用前端；页面文件和路由仍需按快速开始准备：</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>frontend: true</code> 使用 <code>src/frontend</code>、<code>pages</code>、<code>components</code>、<code>styles/index.css</code> 与 <code>public</code> 约定。改成对象形式时，需要显式写 <code>enabled: true</code>；对象本身不表示启用。生产默认前端输出为 <code>dist/client</code>，浏览器压缩开启、source map 关闭；SSR renderer 是独立 Node bundle，默认不压缩。</p>
+<p>完全关闭前端可将字段改为 <code>frontend: false</code>。同时删除或调整依赖 <code>res.render()</code> 的 handler；关闭配置不会自动清除旧生成目录。</p>
+<h2 class="rp-toc-include" id="决定要配置什么"><a href="#决定要配置什么" class="rp-header-anchor rp-link" aria-hidden="true">#</a>决定要配置什么</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>需要什么</th><th>先从哪里开始</th><th>配置项</th><th>会发生什么</th><th>如何验证</th></tr></thead><tbody><tr><td>SSR React 页面</td><td><code>frontend: true</code></td><td>不需要其它字段</td><td>Vext 发现 <code>src/frontend</code>，构建 browser + SSR 输出，并从应用 origin 提供它们</td><td><code>vext build</code> 后执行 <code>vext start</code></td></tr><tr><td>不同的源码布局</td><td>内置目录约定</td><td><code>root</code>、<code>pages</code>、<code>componentsDir</code>、<code>styles.entry</code> 或 <code>assetsDir</code></td><td>只改变发现路径，生成 entry 仍由 Vext 管理</td><td>build 后加载一个页面和全局样式</td></tr><tr><td>浏览器兼容或体积目标</td><td>生产默认值</td><td><code>build.target</code>、<code>build.vendorChunks</code> 或 <code>build.budgets</code></td><td>改变 esbuild 输出、报告阈值或浏览器支持范围</td><td>检查 <code>size-report.json</code> 和生产页面</td></tr><tr><td>CDN 承担 immutable assets</td><td>同源交付</td><td><code>deploy.assetBaseUrl</code>，可选 <code>deploy.upload</code></td><td>生成的 JS/CSS URL 指向 CDN；HTML/SSR 仍由 Node 负责</td><td>dry-run upload，再请求 SSR 页面和 hash asset</td></tr><tr><td>可被搜索引擎发现的公开页面</td><td>未配置全局 SEO</td><td><code>seo</code>，以及路由/render 元数据</td><td>canonical/meta 与可选 sitemap/robots 由框架统一生成</td><td>检查两个页面 canonical 与选定 SEO 产物</td></tr><tr><td>client-router 子应用</td><td>不捕获 fallback</td><td><code>spaFallback.scopes</code></td><td>只有已声明路径会交给 browser shell</td><td>检查 scope 内 URL 与被排除的 <code>/api/**</code> URL</td></tr><tr><td>多语言页面文案</td><td>默认关闭</td><td><code>i18n</code></td><td>请求语言协商、HTML、页面 envelope 与导航共用有效语言</td><td>build 后验证两种语言及缓存隔离</td></tr></tbody></table></div>
+<p>不要因为字段存在就添加它。全局默认使用 React + esbuild、SSR 开启、buffered streaming、浏览器代码拆分开启、生产浏览器压缩开启，且没有 CDN 地址、上传默认关闭（默认上传 adapter 是 filesystem）。全栈模板另外显式配置了 streaming: auto 和前端国际化；以应用实际配置为准。</p>
+<h2 class="rp-toc-include" id="完整示例"><a href="#完整示例" class="rp-header-anchor rp-link" aria-hidden="true">#</a>完整示例</h2>
+<p>以下是可用于默认全栈模板的同源配置对象，展示各字段的层级；大多数值与默认一致，不要求全部手写。预算数字仅作演示，先以 <code>warnOnly: true</code> 收集数据。模板已有 <code>en-US</code> 词典，因此示例显式开启前端国际化。</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    framework</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;react&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    root</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;src/frontend&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    publicDir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;public&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    publicPath</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    styles</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      jscss</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    dev</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      hot</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      fastRefresh</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      renderRefresh</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;prompt&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    build</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      target</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;es2022&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      minify</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      sourcemap</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> false</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      client</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        external</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> []</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        externalRuntime</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      vendorChunks</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        packages</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;react&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;react-dom&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> &quot;react-dom/client&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      assets</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        inlineLimit</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 0</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      css</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        modules</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      budgets</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        warnOnly</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 60_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxRouteInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 80_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        maxAppOwnedInitialJsBrotliBytes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 40_000</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      diagnostics</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        leakScan</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        performanceReport</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    i18n</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      defaultLocale</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;en-US&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      clientLoad</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;current&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    spaFallback</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      scopes</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> []</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    apiClient</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<h2 class="rp-toc-include" id="生产交付配置形态"><a href="#生产交付配置形态" class="rp-header-anchor rp-link" aria-hidden="true">#</a>生产交付配置形态</h2>
+<h3 class="rp-toc-include" id="同源默认"><a href="#同源默认" class="rp-header-anchor rp-link" aria-hidden="true">#</a>同源（默认）</h3>
+<p>首次生产部署不需要配置 CDN：</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>vext build</code> 会写出配套的前端 manifest、浏览器资源和 SSR renderer；<code>vext start</code> 会检查这些生产产物，并由同一个 Node 服务同时提供资源与 SSR 页面。输出目录有定制时以解析后的路径为准，详见<a href="/zh/guide/build.html" class="rp-link">构建指南</a>。</p>
+<h3 class="rp-toc-include" id="cdn-与增量上传"><a href="#cdn-与增量上传" class="rp-header-anchor rp-link" aria-hidden="true">#</a>CDN 与增量上传</h3>
+<p>已经有可用 CDN 时，再合并下面的可选配置。先把示例域名替换为实际资源地址；直接复制示例域名会让浏览器无法加载所需资源。</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    deploy</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      assetBaseUrl</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;https://cdn.example.com/my-app/&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      integrity</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      upload</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        adapter</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;filesystem&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        targetDir</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;.vext/frontend-cdn&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        stateFile</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;.vext/deploy/frontend-assets-state.json&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">        exclude</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string-expression)">&quot;**/*.map&quot;</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">};</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p><code>filesystem</code> 只把选定资源复制到本地 staging 目录，不会把文件自动发布到示例域名；云端交付需使用自定义 adapter 或既有发布流程。把 state file 放在 <code>frontend.outDir</code> 外，先构建，再执行 <code>vext deploy assets --dry-run</code> 检查计划；dry-run 不上传资源。实际资源就绪后再部署同次构建的 Node 输出。完整步骤见<a href="/zh/frontend/static-assets-and-cdn.html" class="rp-link">静态资源与 CDN</a>。</p>
+<h2 class="rp-toc-include" id="核心字段"><a href="#核心字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>核心字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.enabled</code></td><td><code>false</code></td><td>启用内置前端流水线</td></tr><tr><td><code>frontend.framework</code></td><td><code>&quot;react&quot;</code></td><td>内置 React 支持的框架标签</td></tr><tr><td><code>frontend.root</code></td><td><code>&quot;src/frontend&quot;</code></td><td>用户前端源码根目录</td></tr><tr><td><code>frontend.pages</code></td><td>内置 page 约定</td><td>page、document 与 error-page 的发现配置</td></tr><tr><td><code>frontend.componentsDir</code></td><td><code>&quot;components&quot;</code></td><td>从 <code>frontend.root</code> 解析的共享组件目录</td></tr><tr><td><code>frontend.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>import 型图片、字体与媒体源目录</td></tr><tr><td><code>frontend.indexHtml</code></td><td>跟随解析后的 <code>pages.document</code>（默认 <code>src/frontend/pages/_document.html</code>）</td><td>Document 模板；显式配置相对项目根</td></tr><tr><td><code>frontend.outDir</code></td><td>dev 为 <code>.vext/client</code>，build 为 <code>dist/client</code></td><td>前端输出目录</td></tr><tr><td><code>frontend.publicDir</code></td><td><code>&quot;public&quot;</code></td><td>公共静态资源目录</td></tr><tr><td><code>frontend.publicPath</code></td><td><code>&quot;/&quot;</code></td><td>公开资源 URL 前缀</td></tr><tr><td><code>frontend.alias</code></td><td>内置 <code>@frontend/@pages/@components/@styles/@assets</code></td><td>前端安全 import alias；不要把整个 <code>src</code> alias 到浏览器代码</td></tr><tr><td><code>frontend.apiClient</code></td><td><code>true</code></td><td>输出 route/client contract artifacts；不需要生成 client artifact 时才设为 <code>false</code></td></tr><tr><td><code>frontend.errorPages</code></td><td>内置 error-page 约定</td><td>把默认或状态码特定 SSR 错误映射到 page</td></tr><tr><td><code>frontend.adapter</code></td><td>无</td><td>保留但已弃用的通用扩展字段；resolver 会发出未生效诊断，构建选项请使用 <code>build.client</code> / <code>build.server</code></td></tr></tbody></table></div>
+<p>目录字段的相对基准与 TypeScript paths 同步见<a href="/zh/frontend/project-structure.html" class="rp-link">项目结构</a>。支持的图片与字体 import 在浏览器和 SSR 构建中共用公开 URL；alias 只改变解析路径。</p>
+<h2 class="rp-toc-include" id="render-字段"><a href="#render-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Render 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.render.ssr</code></td><td><code>true</code></td><td>默认执行 SSR；本次 render 的 ssr 选项可覆盖，路由 clientOnly 也会关闭服务端页面正文</td></tr><tr><td><code>frontend.render.streaming</code></td><td><code>&quot;buffered&quot;</code></td><td><code>auto</code> 在条件允许时使用流式传输；不是所有 Adapter/响应路径都保证流式</td></tr><tr><td><code>frontend.render.fallback</code></td><td><code>&quot;client&quot;</code></td><td>buffered SSR 失败时的回退策略；可设为 <code>&quot;error&quot;</code></td></tr><tr><td><code>frontend.render.timeoutMs</code></td><td><code>3000</code></td><td>渲染超时预算，单位毫秒</td></tr><tr><td><code>frontend.render.layout</code></td><td><code>true</code></td><td>全局布局默认值；<code>res.render</code> 的显式 <code>options.layout</code> 优先，可设 <code>false</code> 禁用布局</td></tr></tbody></table></div>
+<p>渲染基础见<a href="/zh/frontend/ssr.html" class="rp-link">SSR</a>，模式选择见<a href="/zh/frontend/rendering-modes.html" class="rp-link">渲染模式</a>。同步 SSR 的超时是在渲染返回后检查，不会抢占同步 JavaScript 执行；流式响应开始发送后的失败也不能按普通 buffered 响应重写。关闭 SSR 与关闭浏览器 hydration 是不同设置，后者见<a href="/zh/frontend/hydration.html" class="rp-link">Hydration</a>。</p>
+<h2 class="rp-toc-include" id="style-字段"><a href="#style-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Style 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.styles.entry</code></td><td><code>styles/index.css</code></td><td>从 <code>frontend.root</code> 解析的全局 CSS 入口</td></tr><tr><td><code>frontend.styles.jscss.enabled</code></td><td><code>true</code></td><td>启用 Vext JSCSS 抽取</td></tr><tr><td><code>frontend.styles.jscss.files</code></td><td><code>**/*.style.ts</code>, <code>**/*.style.js</code>, <code>**/*.css.ts</code></td><td>JSCSS source globs</td></tr><tr><td><code>frontend.styles.jscss.runtimeAdapter</code></td><td><code>css-variables</code></td><td>以 CSS custom properties 输出动态变量；<code>none</code>/<code>false</code> 使用 fallback 值</td></tr><tr><td><code>frontend.styles.jscss.dynamicVars</code></td><td><code>true</code></td><td>输出 custom property 声明与 <code>var(...)</code> 引用</td></tr><tr><td><code>frontend.styles.jscss.recipes</code></td><td><code>true</code></td><td>输出 recipe variant class 与 rules</td></tr></tbody></table></div>
+<h2 class="rp-toc-include" id="build-字段"><a href="#build-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Build 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.build.target</code></td><td><code>&quot;es2022&quot;</code></td><td>传给 esbuild 的默认浏览器目标；<code>build.client.target</code> 可覆盖</td></tr><tr><td><code>frontend.build.minify</code></td><td>生产期 <code>true</code></td><td>压缩浏览器产物；与 server renderer 设置独立</td></tr><tr><td><code>frontend.build.sourcemap</code></td><td>开发期 <code>true</code></td><td>生成浏览器 source map；生产期默认 <code>false</code></td></tr><tr><td><code>frontend.build.client.assetsDir</code></td><td><code>&quot;assets&quot;</code></td><td>浏览器 bundle 资源子目录</td></tr><tr><td><code>frontend.build.client.entryNames</code> / <code>chunkNames</code> / <code>assetNames</code></td><td><code>&quot;[name]-[hash]&quot;</code></td><td>hash 文件名模式；应保留 hash 以使用 immutable cache</td></tr><tr><td><code>frontend.build.client.splitting</code></td><td><code>true</code></td><td>启用浏览器代码拆分</td></tr><tr><td><code>frontend.build.client.external</code></td><td><code>[]</code></td><td>浏览器 external 模块</td></tr><tr><td><code>frontend.build.client.externalRuntime</code></td><td><code>{}</code></td><td>浏览器 external 的 import-map URL</td></tr><tr><td><code>frontend.build.server.outFile</code></td><td><code>frontend.outDir/server/renderer.cjs</code></td><td>SSR bundle；显式值相对项目根解析，必须仍在 frontend.outDir 内。server.minify 默认 false</td></tr><tr><td><code>frontend.build.vendorChunks</code></td><td>enabled</td><td>共享 runtime chunk 策略；只在有测量依据时调整 packages</td></tr><tr><td><code>frontend.build.budgets</code></td><td>全部限制 <code>0</code></td><td>约束 raw/gzip/brotli 预算；baseline 稳定前使用 <code>warnOnly</code></td></tr><tr><td><code>frontend.build.assets.inlineLimit</code></td><td><code>0</code></td><td>0 不内联；支持的资源大小不超过阈值时使用 data URL，SSR 与浏览器取相同值</td></tr><tr><td><code>frontend.build.css.modules</code></td><td><code>true</code></td><td>启用 CSS Modules；SSR 与浏览器共享类名和 composes 映射，见<a href="/zh/frontend/styles-and-assets.html#css-modules" class="rp-link">样式与资源</a></td></tr><tr><td><code>frontend.build.diagnostics.leakScan</code></td><td><code>true</code></td><td>阻断服务端模块进入浏览器 graph</td></tr><tr><td><code>frontend.build.diagnostics.sizeReport</code></td><td><code>true</code></td><td>写入 <code>size-report.json</code></td></tr><tr><td><code>frontend.build.diagnostics.performanceReport</code></td><td><code>true</code></td><td>包含路由级性能指标</td></tr></tbody></table></div>
+<p>React 相关 browser external 必须提供 <code>externalRuntime</code> 映射，否则构建会用友好诊断失败。</p>
+<p>浏览器输出采用目录模式，通过 <code>frontend.outDir</code> 配置；不支持 <code>frontend.build.client.outFile</code>。Vext 始终生成 SSR、preload、deploy 和验证所需的 frontend manifest family，因此 <code>build.client.manifest</code> / <code>build.server.manifest</code> 不是配置字段。</p>
+<p>普通产品应保持浏览器代码拆分、hash 命名和 Vext-managed vendor entry 开启。先以 warning 形式配置预算，检查 <code>size-report.json</code> 中的完整 route closure，再把预算转成 release 阻断门禁。</p>
+<h2 class="rp-toc-include" id="deploy-字段"><a href="#deploy-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Deploy 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.deploy.assetBaseUrl</code></td><td>无</td><td>CDN / public asset base URL</td></tr><tr><td><code>frontend.deploy.crossOrigin</code></td><td>无</td><td>生成标签的 <code>crossorigin</code> 值</td></tr><tr><td><code>frontend.deploy.integrity</code></td><td><code>false</code></td><td>为生成 JS/CSS 添加 SRI integrity</td></tr><tr><td><code>frontend.deploy.upload.enabled</code></td><td><code>false</code></td><td>启用 <code>vext build --upload-assets</code> / <code>vext deploy assets</code> 上传</td></tr><tr><td><code>frontend.deploy.upload.adapter</code></td><td><code>&quot;filesystem&quot;</code></td><td><code>filesystem</code>、<code>mock</code> 或自定义 adapter</td></tr><tr><td><code>frontend.deploy.upload.targetDir</code></td><td>开启时为 <code>.vext/deploy/frontend-assets</code></td><td><code>filesystem</code> 的本地 staging 目标目录</td></tr><tr><td><code>frontend.deploy.upload.publicBaseUrl</code></td><td>无</td><td>upload 报告的可选公开 URL；filesystem 回退到 <code>assetBaseUrl</code></td></tr><tr><td><code>frontend.deploy.upload.prefix</code> / <code>concurrency</code></td><td><code>&quot;&quot;</code> / <code>4</code></td><td>upload key 命名空间与并行度</td></tr><tr><td><code>frontend.deploy.upload.stateFile</code></td><td><code>.vext/deploy/frontend-assets-state.json</code></td><td>增量上传状态文件</td></tr><tr><td><code>frontend.deploy.upload.exclude</code></td><td><code>[&quot;**/*.map&quot;]</code></td><td>不上传的文件</td></tr></tbody></table></div>
+<p>glob 配置（例如部署 include/exclude、媒体扫描与样式 include）统一限制为每组最多 1024 个 pattern、单个最长 4096 字符、括号嵌套最多 100 层、单个 brace 展开估计最多 4096 项。超出时在调用匹配器前报错；这是输入预算保护，上游 <code>braces</code> 的审计项仍需等待修复。</p>
+<p><code>assetBaseUrl</code> 必须是绝对 URL。<code>deploy-manifest.json</code> 描述本次可交付的 JS、CSS、已产出的媒体和选中的 public 文件；生成清单本身不会上传。默认排除 source map，SSR renderer 和入口 HTML 不作为 CDN 上传资源。每次更换 adapter、prefix 或 include/exclude 规则前，都要先执行 <code>npx vextjs deploy assets --dry-run</code>。</p>
+<h2 class="rp-toc-include" id="seo-字段"><a href="#seo-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SEO 字段</h2>
+<p><code>frontend.seo</code> 是全局 SEO 配置入口；配置该对象后，<code>enabled</code> 默认是 <code>true</code>。未配置该对象时，显式 route/render SEO 仍可生效；sitemap/robots 需要各自配置。显式 <code>enabled: false</code> 关闭结构化 SEO，legacy head 仍独立生效。</p>
+<div class="rp-codeblock language-ts"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="ts"><code><span class="line"><span style="color:var(--shiki-token-keyword)">import</span><span style="color:var(--shiki-token-keyword)"> type</span><span style="color:var(--shiki-foreground)"> { VextConfigOverride } </span><span style="color:var(--shiki-token-keyword)">from</span><span style="color:var(--shiki-token-string-expression)"> &quot;vextjs&quot;</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> default</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  frontend</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    enabled</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> true</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    seo</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      publicOrigin</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> process</span><span style="color:var(--shiki-foreground)">.</span><span style="color:var(--shiki-token-constant)">env</span><span style="color:var(--shiki-foreground)">.</span><span style="color:var(--shiki-token-constant)">PUBLIC_ORIGIN</span><span style="color:var(--shiki-token-keyword)"> ??</span><span style="color:var(--shiki-token-string-expression)"> &quot;https://www.example.com&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      titleTemplate</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;%s | Example&quot;</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      defaults</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> { description</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> &quot;Example 应用&quot;</span><span style="color:var(--shiki-foreground)"> }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      sitemap</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">      robots</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> {}</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">    }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">} </span><span style="color:var(--shiki-token-keyword)">satisfies</span><span style="color:var(--shiki-token-function)"> VextConfigOverride</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>使用前将 <code>publicOrigin</code> 换成真实公开 origin。未显式覆盖 canonical 时，Vext 会结合请求 pathname 生成页面 URL。静态元数据放在路由级 <code>frontend.seo</code>；依赖页面数据的元数据放在 <code>res.render(..., { seo })</code>。<code>sitemap</code> 与 <code>robots</code> 均可选择 <code>&quot;build&quot;</code> 或 <code>&quot;runtime&quot;</code> 模式，空对象默认 build；有限多域名部署使用命名 <code>origins</code>。</p>
+<p>动态 canonical、provider、Host 选择、产物与无 hydration 示例见 <a href="/zh/frontend/seo-sitemap.html" class="rp-link">SEO、Sitemap 与 Robots</a>，完整嵌套字段见 <a href="/zh/api/config.html#vextfrontendconfig" class="rp-link">API 参考</a>。</p>
+<h2 class="rp-toc-include" id="i18n-字段"><a href="#i18n-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>I18n 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.i18n.enabled</code></td><td><code>false</code></td><td>显式开启后扫描并打包前端页面文案</td></tr><tr><td><code>frontend.i18n.source</code></td><td><code>locales</code></td><td>从 <code>frontend.root</code> 解析的 locale 源目录</td></tr><tr><td><code>frontend.i18n.defaultLocale</code></td><td><code>&quot;inherit&quot;</code></td><td>优先继承匹配的 <code>req.locale</code>；具体默认值作为自动探测后的回退</td></tr><tr><td><code>frontend.i18n.detect</code></td><td><code>[&quot;accept-language&quot;]</code></td><td>按顺序探测 query.locale、header（X-Vext-Locale）、cookie.locale 或 accept-language；不支持的来源会被拒绝</td></tr><tr><td><code>frontend.i18n.inject</code></td><td><code>&quot;used&quot;</code></td><td>used 尚未按组件裁剪，构建会诊断；当前加载选定语言的完整消息</td></tr><tr><td><code>frontend.i18n.clientLoad</code></td><td><code>&quot;current&quot;</code></td><td>浏览器 locale 加载模式</td></tr><tr><td><code>frontend.i18n.clientSwitch</code></td><td><code>&quot;reload&quot;</code></td><td>声明字段；语言选择与页面导航需由应用实现</td></tr><tr><td><code>frontend.i18n.htmlLang</code></td><td><code>true</code></td><td>写入请求级 <code>{vext.lang}</code> / <code>&lt;html lang&gt;</code></td></tr><tr><td><code>frontend.i18n.vary</code></td><td><code>true</code></td><td>合并实际探测涉及的语言头与既有 Vary；false 时由应用负责外部缓存隔离</td></tr></tbody></table></div>
+<p>完整可运行示例与语言优先级、SSR/浏览器加载及缓存边界见<a href="/zh/frontend/i18n.html" class="rp-link">前端多语言</a>。<code>inject: &quot;used&quot;</code> 和 <code>clientSwitch</code> 的保留行为在该页单独说明。</p>
+<h2 class="rp-toc-include" id="dev-字段"><a href="#dev-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>Dev 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.dev.hot</code></td><td><code>true</code></td><td>启用前端 dev events</td></tr><tr><td><code>frontend.dev.fastRefresh</code></td><td><code>true</code></td><td>尽可能启用 React Fast Refresh</td></tr><tr><td><code>frontend.dev.transport</code></td><td><code>&quot;sse&quot;</code></td><td>Vext development event bus 传输；不是可选 WebSocket 模式</td></tr><tr><td><code>frontend.dev.overlay</code></td><td><code>true</code></td><td>显示前端 rebuild 错误与 render refresh 浏览器提示 UI</td></tr><tr><td><code>frontend.dev.debounceMs</code></td><td><code>50</code></td><td>合并连续文件变更后再触发 rebuild</td></tr><tr><td><code>frontend.dev.renderRefresh</code></td><td><code>&quot;prompt&quot;</code></td><td>render-data 后端 reload 后的浏览器行为</td></tr></tbody></table></div>
+<p><code>frontend.dev.overlay</code> 只控制前端浏览器开发 UI。后端异常 HTML overlay 由顶层 <code>dev.errorOverlay</code> 单独配置。</p>
+<h2 class="rp-toc-include" id="spa-fallback-字段"><a href="#spa-fallback-字段" class="rp-header-anchor rp-link" aria-hidden="true">#</a>SPA Fallback 字段</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>字段</th><th>默认值</th><th>含义</th></tr></thead><tbody><tr><td><code>frontend.spaFallback.enabled</code></td><td><code>true</code></td><td>仅启用仲裁；没有 scope 时不会捕获任何页面</td></tr><tr><td><code>frontend.spaFallback.scopes</code></td><td><code>[]</code></td><td>显式 client-router 子应用 fallback 范围</td></tr><tr><td><code>frontend.spaFallback.exclude</code></td><td><code>[&quot;/api/**&quot;, &quot;/openapi.json&quot;, &quot;/docs/**&quot;, &quot;/_vext/docs/**&quot;]</code></td><td>fallback 永远不会接管的全局路径</td></tr><tr><td><code>scopes[].basePath</code></td><td>必填</td><td>shell 负责的 URL 前缀</td></tr><tr><td><code>scopes[].page</code></td><td>必填</td><td><code>src/frontend/pages/**</code> 下的 shell page id</td></tr><tr><td><code>scopes[].ssr</code></td><td><code>false</code></td><td>shell 是否 SSR 渲染</td></tr><tr><td><code>scopes[].exclude</code></td><td><code>[]</code></td><td>不进入 fallback 的路径</td></tr><tr><td><code>scopes[].status</code></td><td><code>200</code></td><td>fallback 命中后的 HTTP status</td></tr></tbody></table></div>
+<p>应声明单独 scope，而不是全站 catch-all。API、OpenAPI 和文档路由默认被排除，避免 client-router shell 遮住运维 endpoint。</p>
+<p><code>spaFallback: true</code> 是一个特别分支：它创建根路径 <code>/</code>、page 为 <code>index</code> 的 scope；不等于省略配置。自定义全局 <code>exclude</code> 会替换默认数组，需自行保留所需排除项。Fallback 还受请求方法、Accept 和已有路由等条件约束，详见<a href="/zh/frontend/csr-and-spa-fallback.html" class="rp-link">CSR 与 SPA Fallback</a>。未生成 SSR 正文的 shell 使用 <code>createRoot</code>；完成 SSR 的页面使用 <code>hydrateRoot</code>。</p>
+<h2 class="rp-toc-include" id="验证配置变更"><a href="#验证配置变更" class="rp-header-anchor rp-link" aria-hidden="true">#</a>验证配置变更</h2>
+<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-comment)"># 默认 TypeScript 模板包含类型检查，并构建后端、浏览器与 SSR。</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> run</span><span style="color:var(--shiki-token-string)"> build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 若启用了 upload，只预览计划，不上传。</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npx</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> deploy</span><span style="color:var(--shiki-token-string)"> assets</span><span style="color:var(--shiki-token-string)"> --dry-run</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># 启动配套生产产物。</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> start</span><span style="color:var(--shiki-token-string)"> --</span><span style="color:var(--shiki-token-string)"> --port</span><span style="color:var(--shiki-token-constant)"> 3000</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
+<p>先停止占用端口的开发服务；没有配置 upload 时跳过 dry-run 命令。同源示例应保留快速开始中的页面正文与可加载资源。修改 build 或 budget 后，检查当前输出目录的 <code>size-report.json</code>；<code>warnOnly: true</code> 允许超预算告警，未设该项且超出启用的预算会使构建失败。修改 CDN 后，请求一个 SSR 页面和其实际引用的浏览器资源，确认来自同次构建；实际 CDN 可达性需在真实部署环境验证。修改 SPA fallback 后，既验证 scope 内路径，也请求明确排除的 API 路径。验证后按 Ctrl+C 停止服务。较少使用的嵌套字段以<a href="/zh/api/config.html#vextfrontendconfig" class="rp-link">API 参考</a>为准。</p><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/10/9 09:24:02</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><a href="/zh/frontend/hydration-validation.html" class="rp-prev-next-page__item rp-prev-next-page__prev rp-link"><span class="rp-prev-next-page__item__desc">上一页</span><span class="rp-prev-next-page__item__title"><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon rp-prev-next-page__rotate_180"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg><span>Hydration 验证</span></span></a><a href="/zh/frontend/api-client-and-contracts.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>API Client 与契约</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#目录导航" class="rp-toc-item rp-link" title="目录导航" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">目录导航</span></a><a href="#最小配置" class="rp-toc-item rp-link" title="最小配置" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">最小配置</span></a><a href="#决定要配置什么" class="rp-toc-item rp-link" title="决定要配置什么" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">决定要配置什么</span></a><a href="#完整示例" class="rp-toc-item rp-link" title="完整示例" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">完整示例</span></a><a href="#生产交付配置形态" class="rp-toc-item rp-link" title="生产交付配置形态" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">生产交付配置形态</span></a><a href="#同源默认" class="rp-toc-item rp-link" title="同源（默认）" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">同源（默认）</span></a><a href="#cdn-与增量上传" class="rp-toc-item rp-link" title="CDN 与增量上传" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">CDN 与增量上传</span></a><a href="#核心字段" class="rp-toc-item rp-link" title="核心字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心字段</span></a><a href="#render-字段" class="rp-toc-item rp-link" title="Render 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Render 字段</span></a><a href="#style-字段" class="rp-toc-item rp-link" title="Style 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Style 字段</span></a><a href="#build-字段" class="rp-toc-item rp-link" title="Build 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Build 字段</span></a><a href="#deploy-字段" class="rp-toc-item rp-link" title="Deploy 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Deploy 字段</span></a><a href="#seo-字段" class="rp-toc-item rp-link" title="SEO 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SEO 字段</span></a><a href="#i18n-字段" class="rp-toc-item rp-link" title="I18n 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">I18n 字段</span></a><a href="#dev-字段" class="rp-toc-item rp-link" title="Dev 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">Dev 字段</span></a><a href="#spa-fallback-字段" class="rp-toc-item rp-link" title="SPA Fallback 字段" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">SPA Fallback 字段</span></a><a href="#验证配置变更" class="rp-toc-item rp-link" title="验证配置变更" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">验证配置变更</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+    <div id="__rspress_modal_container"></div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+# VextJS
+
+> High-performance Node.js full-stack runtime documentation. The current frontend model is route-owned SSR plus hydration, optional Streaming SSR, and an esbuild build pipeline; React Server Components, Server Functions, and PPR are documented non-goals for this release.
+
+This is the concise English index. Use the complete English index for every public English page, or the documentation manifest for the authoritative bilingual inventory.
+
+## Start here
+
+- [Introduction](https://vextjs.github.io/guide/introduction): VextJS is an AI-first full-stack Node.js framework for APIs, server-rendered React pages, or both. The API and SSR pages define their routes in src/routes/**. A handler can call services, return JSON, or render a page. Route validation and response declarat...
+- [Quick start](https://vextjs.github.io/guide/quick-start): :::tip Release and source scope
+- [Project structure](https://vextjs.github.io/guide/project-structure): VextJS provides default directory conventions and automatic loading entries. Existing project architecture may override suggested locations. Distinguish actual Loader entries from ordinary import directories; configurable roles use their real configuration ...
+
+## Frontend runtime
+
+- [Frontend Overview](https://vextjs.github.io/frontend/overview): Vext Frontend is the built-in full-stack React 19 experience for Vext projects. The URL still belongs to src/routes/; the route handler prepares server data and calls res.render() to render a page from src/frontend/pages/.
+- [Rendering Modes](https://vextjs.github.io/frontend/rendering-modes): Vext supports a mixed full-stack frontend model without mixing server files into the browser bundle.
+- [Boundaries and Roadmap](https://vextjs.github.io/frontend/boundaries-and-roadmap): This page defines the current frontend capability boundaries and separates implemented features, explicitly enabled features, and directions still under consideration. It is for maintainers of frontend pages, server routes, builds, and deployments. For proc...
+- [Data Flow](https://vextjs.github.io/frontend/data-flow): Frontend data in Vext starts on the server. Route handlers call services, prepare JSON-safe values, and pass them into res.render().
+- [Performance Budgets](https://vextjs.github.io/frontend/performance-budgets): Performance budgets limit frontend artifact bytes during a build. They do not measure hydration time on a real device, network latency, or interaction performance; verify those in a browser. This page assumes frontend is enabled.
+
+## Runtime and operations
+
+- [Routing](https://vextjs.github.io/guide/routing): VextJS combines convention-based file routing with route declarations inside defineRoutes(). A route file maps to a URL prefix; its factory declares the methods and paths beneath that prefix.
+- [Service layer](https://vextjs.github.io/guide/services): The service layer concentrates business logic. Put a default-exported service class in src/services/; the framework discovers and instantiates it, then attaches it to app.services for route handlers to use. This page starts with an example that needs no dat...
+- [Build (vext build)](https://vextjs.github.io/guide/build): vext build prepares application output for production. It compiles TypeScript backend code to JavaScript; a pure JavaScript backend runs from source. With frontend enabled, it also builds browser assets, the server renderer, and related manifests.
+- [Deployment and production environment](https://vextjs.github.io/guide/deployment): This page follows the production path: prepare deliverables, start and check the service, connect a process manager and reverse proxy, then release or roll back. First complete the CLI project workflow and Build, then choose the deployment method for your e...
+- [OpenAPI Documentation](https://vextjs.github.io/guide/openapi): VextJS has built-in automatic generation of OpenAPI documentation. Based on route validate and docs configuration, the framework generates an OpenAPI 3.0 JSON document and serves the default /docs page with the Vext Docs Renderer. Third-party documentation ...
+
+## Support and machine-readable documentation
+
+- [Support and Services](https://vextjs.github.io/resources/support-and-services): Where to ask usage questions, report issues, and discuss production reviews or migration work.
+- [Documentation Data and AI](https://vextjs.github.io/resources/documentation-data-and-ai): Documentation identity, rule indexes, locale and snapshot contracts, and the documentation reference boundary for a future knowledge graph.
+
+## Machine-readable assets
+
+- [Documentation manifest](https://vextjs.github.io/docs-manifest.json): authoritative bilingual page metadata, locales, public applicability, relationships, and source hashes.
+- [Capability boundary](https://vextjs.github.io/capabilities.json): supported frontend/runtime capabilities and explicit exclusions.
+- [AI reference questions](https://vextjs.github.io/ai-gold-questions.json): citation-required evaluation prompts.
+- [Event contract](https://vextjs.github.io/docs-events.schema.json): optional privacy-preserving documentation event schema; no collector is enabled by default.
+- [Measurement definition](https://vextjs.github.io/docs-dashboard-definition.json): metric definitions and collection boundary.
+- [Complete English documentation index](https://vextjs.github.io/llms-full.txt): every public English page URL and summary, generated from the manifest.
+
+## Other language
+
+- [Simplified Chinese index](https://vextjs.github.io/zh/llms.txt): Use the locale-specific Chinese index when the requested answer should be grounded in Simplified Chinese documentation.
