@@ -5,12 +5,12 @@
 <title>介绍 - VextJS</title>
 <script>{;var defaultLang = "en", langs = ["en","zh"];if (!/bot|spider|crawl|lighthouse/i.test(window.navigator.userAgent)) {;var firstVisitKey = 'rspress-visited', visited = localStorage.getItem(firstVisitKey);if (!visited) {;localStorage.setItem(firstVisitKey, '1');var targetLang = window.navigator.language.split('-')[0], { pathname, search } = window.location, pathSegments = pathname.split('/').filter(Boolean), currentLang = langs.includes(pathSegments[0]) ? pathSegments[0] : defaultLang;if (langs.includes(targetLang) && targetLang !== currentLang) {;var newPathSegments = pathSegments.slice();if (targetLang === defaultLang) {;newPathSegments.splice(0, 1);} else if (currentLang === defaultLang) {;newPathSegments.splice(0, 0, targetLang);} else {;newPathSegments[0] = targetLang;};;var newPathname = '/' + newPathSegments.join('/'), trailingSlash = newPathname !== '/' && pathname.endsWith('/') ? '/' : '';window.location.replace(newPathname + trailingSlash + search);};};};}</script>
 <link href="/static/css/styles.aaef77532c.css" rel="stylesheet">
-<link rel="preload" href="/static/js/async/route-5168cce28d1a.e8153f115f.js" as="script">
+<link rel="preload" href="/static/js/async/route-5168cce28d1a.c67f7379f7.js" as="script">
 <script defer src="/static/js/styles.cd7c6bfd1d.js"></script>
 <script defer src="/static/js/lib-react.a6847cff74.js"></script>
 <script defer src="/static/js/lib-router.912839e191.js"></script>
 <script defer src="/static/js/3618.e765384e40.js"></script>
-<script defer src="/static/js/index.fcf9dfa947.js"></script>
+<script defer src="/static/js/index.6ced4f6922.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Rspress v2.0.19">
 <meta name="google-site-verification" content="eYbt9ZyPTFQHdpEJ8Iujlb9ndhmAcMlstxZd6106840">
@@ -238,73 +238,8 @@
 <li>要求 Node.js <strong><code>^20.19.0 || &gt;=22.12.0</code></strong></li>
 <li><strong>TypeScript</strong> 5.x（推荐，也支持纯 JavaScript）</li>
 </ul>
-<h2 class="rp-toc-include" id="versions-and-migration"><a href="#versions-and-migration" class="rp-header-anchor rp-link" aria-hidden="true">#</a>版本与迁移</h2>
-<p>本站的当前源码说明与 npm 已发布包需要分别核对。安装后先在应用目录执行：</p>
-<div class="rp-codeblock language-bash"><div class="rp-codeblock__content"><div class="rp-codeblock__content__scroll-container rp-scrollbar rp-scrollbar--always"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-lang="bash"><code><span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> ls</span><span style="color:var(--shiki-token-string)"> vextjs</span><span style="color:var(--shiki-token-string)"> monsqlize</span><span style="color:var(--shiki-token-string)"> schema-dsl</span></span>
-<span class="line"><span style="color:var(--shiki-token-function)">npm</span><span style="color:var(--shiki-token-string)"> exec</span><span style="color:var(--shiki-token-string)"> --</span><span style="color:var(--shiki-token-string)"> vext</span><span style="color:var(--shiki-token-string)"> --help</span></span></code></pre></div><div class="rp-code-button-group"><button class="rp-code-button-group__button rp-code-wrap-button" title="切换代码换行" aria-label="切换代码换行"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrapped"><path fill="currentColor" d="M21 5H3v2h18zM3 19h7v-2H3zm0-6h15c1 0 2 .43 2 2s-1 2-2 2h-2v-2l-4 3 4 3v-2h2c2.95 0 4-1.27 4-4 0-2.72-1-4-4-4H3z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-button-group__icon--wrap"><path fill="currentColor" d="M16 7H3V5h13zM3 19h13v-2H3zm19-7-4-3v2H3v2h15v2z"></path></svg></button><button class="rp-code-button-group__button rp-code-copy-button" title="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--copy"><path fill="currentColor" d="M20 8v12H8V8zm0-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path><path fill="currentColor" d="M4 16H2V4a2 2 0 0 1 2-2h12v2H4Z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="rp-code-button-group__icon rp-code-copy-button__icon rp-code-copy-button__icon--success"><path fill="currentColor" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path></svg></button></div></div></div>
-<p>包版本、锁文件和实际安装结果应一起保存。不要因 package.json 的版本范围包含 2.0.0，就假定当前 main 的每项修复已经发布。</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>使用范围</th><th>已确认的依据</th><th>如何选用</th></tr></thead><tbody><tr><td>已发布 Vext 2.0.0</td><td><a href="https://github.com/devcodex-labs/vextjs/blob/main/changelogs/v2.0.0.md" target="_blank" rel="noopener noreferrer" class="rp-link">2.0.0 发布说明</a>与<a href="https://github.com/devcodex-labs/vextjs/blob/main/MIGRATION.md" target="_blank" rel="noopener noreferrer" class="rp-link">主版本迁移清单</a></td><td>使用 <code>npm install vextjs@2.0.0</code>，按下表核对主版本变化，再运行应用自己的验证。</td></tr><tr><td>本轮文档核对的源码</td><td><a href="https://github.com/devcodex-labs/vextjs/tree/02a28884f6773600ac67dc9212065706c83ed532" target="_blank" rel="noopener noreferrer" class="rp-link">源码快照 02a28884</a>；<a href="https://github.com/devcodex-labs/vextjs/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="rp-link">CHANGELOG 的 Unreleased</a>记录尚待发布的变化</td><td>构建位置/身份、profile 继承、产物事务及恢复等说明按该快照验证；在已发布包使用前应核对该版本源码和实际行为。</td></tr><tr><td>数据库、校验和第三方插件</td><td>各包自己的实际安装版本与发布说明</td><td>上游版本与 Vext 版本分别记录；不要把当前 MonSQLize 的全部 API 推定为任意旧安装版本都有。</td></tr></tbody></table></div>
-<p>需要验证当前源码候选时，在框架仓库执行 <code>npm ci</code>、<code>npm run build</code>、<code>npm pack</code>，然后在独立应用中安装生成的 <code>.tgz</code> 文件。记录源码提交及包文件；候选包里的版本号可能仍为 2.0.0，不能仅凭它判断来自 npm 正式发布。避免用 workspace/source link 代替安装包验收。正常使用已发布版本无需克隆框架仓库。</p>
-<h3 class="rp-toc-include" id="从-1x-迁移到-200"><a href="#从-1x-迁移到-200" class="rp-header-anchor rp-link" aria-hidden="true">#</a>从 1.x 迁移到 2.0.0</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="rp-table-scroll-container rp-scrollbar"><table><thead><tr><th>旧用法或假设</th><th>当前用法</th><th>迁移验证</th></tr></thead><tbody><tr><td><code>app.monsqlize</code> 或缩减的数据库包装</td><td>统一使用原始 MonSQLize 实例 <code>app.db</code></td><td>验证连接、Model/Collection、事务和关闭；不要再重复关闭框架管理的 db。</td></tr><tr><td>scope 自动补齐 Model 短名称</td><td><code>use()</code>/<code>pool()</code> 选择 scope，<code>model()</code> 使用精确注册键</td><td>如 billing/invoice 使用 <code>BillingInvoice</code>，短名称只在模型显式声明别名时可用；详见<a href="/zh/guide/database.html#model-%E5%AE%9A%E4%B9%89" class="rp-link">数据库</a>。</td></tr><tr><td>全局限流默认开启</td><td>显式 <code>rateLimit.enabled: true</code></td><td>验证额度、429、响应头及多进程 Store；<code>setRateLimiter()</code> 不负责启用全局中间件。</td></tr><tr><td>path 参数校验失败断言为 422</td><td>path 为 HTTP 400；body/query/header/cookie 仍为 422</td><td>同时检查测试、OpenAPI 与客户端错误处理。</td></tr></tbody></table></div>
-<p>迁移后依次运行生成类型、应用 typecheck、build、真实 start 和 HTTP/页面验证；启用数据库、SEO/sitemap、无 hydration 页面时再验证这些实际使用的能力。参数和示例以对应版本为准，升级验证不是仅把依赖版本号改掉。</p>
 <h2 class="rp-toc-include" id="下一步"><a href="#下一步" class="rp-header-anchor rp-link" aria-hidden="true">#</a>下一步</h2>
-<p>前往<a href="/zh/guide/quick-start.html" class="rp-link">快速开始</a>创建项目。在已有可运行应用中加入本页 <code>src/routes/index.ts</code> 的 hello 路由并合并配置，执行 <code>npm run dev</code> 后请求 <code>GET http://127.0.0.1:3000/hello</code>，应返回 200 及 <code>data.message: &quot;Hello VextJS!&quot;</code>。已有 index 路由时合并回调，避免覆盖原入口；若得到 404，核对文件前缀和实际端口。</p><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/10/9 05:19:00</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><div class="rp-prev-next-page__placeholder"></div><a href="/zh/guide/quick-start.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>快速开始</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#vextjs-是什么" class="rp-toc-item rp-link" title="VextJS 是什么？" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">VextJS 是什么？</span></a><a href="#核心特性" class="rp-toc-item rp-link" title="核心特性" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心特性</span></a><a href="#-adapter-架构" class="rp-toc-item rp-link" title="🔌 Adapter 架构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🔌 Adapter 架构</span></a><a href="#-性能与取舍" class="rp-toc-item rp-link" title="⚡ 性能与取舍" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">⚡ 性能与取舍</span></a><a href="#️-声明式参数校验" class="rp-toc-item rp-link" title="🛡️ 声明式参数校验" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🛡️ 声明式参数校验</span></a><a href="#-插件系统" class="rp-toc-item rp-link" title="🧩 插件系统" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🧩 插件系统</span></a><a href="#-模块系统与装饰器策略" class="rp-toc-item rp-link" title="🧱 模块系统与装饰器策略" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🧱 模块系统与装饰器策略</span></a><a href="#-开发体验" class="rp-toc-item rp-link" title="🔥 开发体验" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🔥 开发体验</span></a><a href="#-企业级特性" class="rp-toc-item rp-link" title="🏢 企业级特性" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🏢 企业级特性</span></a><a href="#设计理念" class="rp-toc-item rp-link" title="设计理念" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">设计理念</span></a><a href="#1-约定优于配置" class="rp-toc-item rp-link" title="1. 约定优于配置" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">1. 约定优于配置</span></a><a href="#2-分层架构" class="rp-toc-item rp-link" title="2. 分层架构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">2. 分层架构</span></a><a href="#3-底层可替换" class="rp-toc-item rp-link" title="3. 底层可替换" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">3. 底层可替换</span></a><a href="#选型时如何比较" class="rp-toc-item rp-link" title="选型时如何比较" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">选型时如何比较</span></a><a href="#环境要求" class="rp-toc-item rp-link" title="环境要求" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">环境要求</span></a><a href="#versions-and-migration" class="rp-toc-item rp-link" title="版本与迁移" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">版本与迁移</span></a><a href="#从-1x-迁移到-200" class="rp-toc-item rp-link" title="从 1.x 迁移到 2.0.0" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">从 1.x 迁移到 2.0.0</span></a><a href="#下一步" class="rp-toc-item rp-link" title="下一步" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">下一步</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
+<p>前往<a href="/zh/guide/quick-start.html" class="rp-link">快速开始</a>创建项目。在已有可运行应用中加入本页 <code>src/routes/index.ts</code> 的 hello 路由并合并配置，执行 <code>npm run dev</code> 后请求 <code>GET http://127.0.0.1:3000/hello</code>，应返回 200 及 <code>data.message: &quot;Hello VextJS!&quot;</code>。已有 index 路由时合并回调，避免覆盖原入口；若得到 404，核对文件前缀和实际端口。</p><!--/$--></div><footer class="rp-doc-footer"><div class="rp-doc-footer__edit"><div class="rp-last-updated"><p>最后更新于<!-- -->: <span>2026/10/10 05:36:56</span></p></div></div><div class="rp-doc-footer__divider"></div><div class="rp-prev-next-page"><div class="rp-prev-next-page__placeholder"></div><a href="/zh/guide/quick-start.html" class="rp-prev-next-page__item rp-prev-next-page__next rp-link"><span class="rp-prev-next-page__item__desc">下一页</span><span class="rp-prev-next-page__item__title"><span>快速开始</span><svg width="1em" height="1em" viewBox="0 0 32 32" class="rp-prev-next-page__icon"><path fill="currentColor" d="M22 16 12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path></svg></span></a></div></footer></main></div><aside class="rp-doc-layout__outline rp-scrollbar"><div class="rp-outline"><div class="rp-outline__title">目录<svg width="14" height="14" class="rp-progress-circle"><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-divider-light)" stroke-width="2"></circle><circle cx="7" cy="7" r="6" stroke-linecap="round" fill="none" stroke="var(--rp-c-brand)" stroke-width="2" stroke-dasharray="37.69911184307752" stroke-dashoffset="37.69911184307752" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset 0.3s"></circle></svg></div><nav class="rp-outline__toc rp-scrollbar"><a href="#vextjs-是什么" class="rp-toc-item rp-link" title="VextJS 是什么？" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">VextJS 是什么？</span></a><a href="#核心特性" class="rp-toc-item rp-link" title="核心特性" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">核心特性</span></a><a href="#-adapter-架构" class="rp-toc-item rp-link" title="🔌 Adapter 架构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🔌 Adapter 架构</span></a><a href="#-性能与取舍" class="rp-toc-item rp-link" title="⚡ 性能与取舍" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">⚡ 性能与取舍</span></a><a href="#️-声明式参数校验" class="rp-toc-item rp-link" title="🛡️ 声明式参数校验" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🛡️ 声明式参数校验</span></a><a href="#-插件系统" class="rp-toc-item rp-link" title="🧩 插件系统" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🧩 插件系统</span></a><a href="#-模块系统与装饰器策略" class="rp-toc-item rp-link" title="🧱 模块系统与装饰器策略" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🧱 模块系统与装饰器策略</span></a><a href="#-开发体验" class="rp-toc-item rp-link" title="🔥 开发体验" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🔥 开发体验</span></a><a href="#-企业级特性" class="rp-toc-item rp-link" title="🏢 企业级特性" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">🏢 企业级特性</span></a><a href="#设计理念" class="rp-toc-item rp-link" title="设计理念" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">设计理念</span></a><a href="#1-约定优于配置" class="rp-toc-item rp-link" title="1. 约定优于配置" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">1. 约定优于配置</span></a><a href="#2-分层架构" class="rp-toc-item rp-link" title="2. 分层架构" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">2. 分层架构</span></a><a href="#3-底层可替换" class="rp-toc-item rp-link" title="3. 底层可替换" style="padding-left:12px" data-depth="1"><span class="rp-toc-item__text rp-doc">3. 底层可替换</span></a><a href="#选型时如何比较" class="rp-toc-item rp-link" title="选型时如何比较" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">选型时如何比较</span></a><a href="#环境要求" class="rp-toc-item rp-link" title="环境要求" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">环境要求</span></a><a href="#下一步" class="rp-toc-item rp-link" title="下一步" style="padding-left:0" data-depth="0"><span class="rp-toc-item__text rp-doc">下一步</span></a></nav><div class="rp-outline__divider"></div><div class="rp-outline__bottom"></div></div></aside></div></div>
     <div id="__rspress_modal_container"></div>
   </body>
 </html>

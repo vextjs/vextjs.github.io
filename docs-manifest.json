@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "4931d554cd9484cc105d8ca8af4518c8512a7d82e6097eef18e283be508904a5",
+  "documentationRevision": "848f4ad3ecb4ff0ee8619c3b497b9296d1c01c0b0cf71b8d399aab673c5df902",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -29,7 +29,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/index.mdx",
-      "contentHash": "33aa7bd842207d3b02f2a8aa76a1c4f4b4bb04f353e41522fbeca7c1ccf663ab",
+      "contentHash": "16815b37818ff68ffa5150ed4a49215dc5318747c4e7d2afcb1ba1b0be65f0fc",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -3844,7 +3844,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/configuration.md",
-      "contentHash": "205ad39824e0732adca828ef960638f2f8e33ec09d083ec6a5adeac52ef0ff53",
+      "contentHash": "bf0e13c597b80d987b44e7736ef2cba7b672ea428c168065555f8f8851a706a6",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -4089,7 +4089,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/database.md",
-      "contentHash": "3f621186c6141f945f9f4b2703a38f75ae4b1878dbce845f571980d3838a147b",
+      "contentHash": "5b3adb72774282f169a4c634a4b69d714e2a9e6aba5f0adbcb996e10c26da1b6",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -4804,7 +4804,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/introduction.md",
-      "contentHash": "c7df783d5f671abaf776c91cb1c90547f3acad333f007ccdc5df48a71cc9b482",
+      "contentHash": "d3ca1fc7fdec80246625524c7bf249e2baf11289606ed19ec27397f5523994bd",
       "relatedDocuments": [
         {
           "docId": "benchmark",
@@ -5604,7 +5604,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/quick-start.md",
-      "contentHash": "05002c3b0bcf76f0814c1d61dd6d2fbb359ba179f078905aac6fdedb7cb987fa",
+      "contentHash": "a1bc87323dffdd7e5c8fa74182eeb6e00a71a608d961479d45f96feeca0dac58",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -7190,7 +7190,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/index.mdx",
-      "contentHash": "6d4d45a42bb705c7bba896c7375af7552d4c4c2cee2f35ec0efd073f2e15175e",
+      "contentHash": "92304af7ecb4fba9714b1a7e9f653ae09dd1627ea310efbb2094e9937e2d31ae",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -11045,7 +11045,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/configuration.md",
-      "contentHash": "6de0aaff2decc95d5da461072f737448f57218824e4b5521ae919b209ad64746",
+      "contentHash": "e4803ff5fdbee263a6fa917f3e19bed4baa1bccd813e8e23ddb00830e35b8434",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -11290,7 +11290,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/database.md",
-      "contentHash": "163fba62401d701d2905d77cf7883c0f950036b5a0c34ff58934c19988bf8c27",
+      "contentHash": "faa397e67ff07726be34fc45e01a06e644a6b3432a1b30b09f8385b3aeb3ce6e",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -12015,7 +12015,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/introduction.md",
-      "contentHash": "e1c75c0c124a6df0894b9598d62156c6e7f37f7524a1c5e3b1158d367e2adbcb",
+      "contentHash": "881301e1461c216363e4aac460f13368ce495dd03ccd6885e61a322d3d3f0f50",
       "relatedDocuments": [
         {
           "docId": "benchmark",
@@ -12820,7 +12820,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/quick-start.md",
-      "contentHash": "0d7f2d902c6c3e86c08da7d60614d4e447d4acb07b67550414247554dc03ac81",
+      "contentHash": "b9c86ab8d751a552120c22880df97a8d6531e11c0b35e8b2b5f688fcd37ed2a3",
       "relatedDocuments": [
         {
           "docId": "api.app",
