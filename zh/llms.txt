@@ -22,7 +22,7 @@
 
 - [路由](https://vextjs.github.io/zh/guide/routing): VextJS 采用 约定式文件路由 + 三段式路由定义，将文件路径自动映射为 URL 前缀，在文件内部通过 defineRoutes() 声明具体路由。
 - [服务层](https://vextjs.github.io/zh/guide/services): 服务层（Service Layer）用于集中业务逻辑。把默认导出的服务类放在 src/services/，框架会自动扫描、实例化并挂载到 app.services，路由 handler 通过 app.services.xxx 调用。本页先完成一个不依赖数据库的示例，再说明命名、依赖和生命周期。
-- [定时任务 Jobs](https://vextjs.github.io/zh/guide/jobs): Jobs 用于随应用启动的定时工作，例如清理过期数据、刷新统计、定期同步业务数据。把业务放在 Service，Job 负责按计划调用；它复用已经就绪的应用、插件和 app.services。
+- [定时任务 Jobs](https://vextjs.github.io/zh/guide/jobs): Jobs 用于随应用运行的定时工作，例如清理过期数据、刷新统计、同步业务数据。你在任务目录创建文件，写明 Cron，再在 handler 中调用已有 Service；不需要单独启动调度器。
 - [构建 (vext build)](https://vextjs.github.io/zh/guide/build): vext build 为生产运行准备应用产物。TypeScript 后端编译为 JavaScript；纯 JavaScript 后端直接使用源码。启用前端时，还会构建浏览器资源、服务端 renderer 和相关 manifest。
 - [部署与生产环境](https://vextjs.github.io/zh/guide/deployment): 本页按“准备交付物 → 启动并检查 → 接入进程管理与反向代理 → 发布和回退”说明生产部署。先完成 CLI 最小项目流程和构建，再选择适合环境的部署方式。
 - [OpenAPI 文档](https://vextjs.github.io/zh/guide/openapi): VextJS 内置 OpenAPI 文档自动生成功能。基于路由的 validate 和 docs 配置，框架自动生成 OpenAPI 3.0 规范 JSON，并通过 Vext Docs Renderer 提供默认 /docs 文档页。第三方文档工具请直接消费 /openapi.json。

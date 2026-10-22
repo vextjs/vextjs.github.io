@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "0b5dbd088fcf4c660326b9271d16ed5e2e39510e6cd05b52bbb2be7d1b7c6021",
+  "documentationRevision": "ffc489fc1d05d67eae7c76fd86d1f81897f3bb069a7e01dd9146159abcc92eb3",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -7285,7 +7285,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/app.md",
-      "contentHash": "3ab171af67c9beafb9b66987985148b359da2dd39d82d34cff5a03ab120dc793",
+      "contentHash": "4307caaa3f236dfbe02d65e4de4982755269306f426cbb0c1926ad00cc0e8e1c",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -7390,7 +7390,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/config.md",
-      "contentHash": "f5c36018f099239cc7bbec43eae82c55f0c3814c3d499347c1fc7531ee5af581",
+      "contentHash": "69c93db85384edce66fe6e5e3c5156ec3f48b97a4c697724c64928e2c8619087",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -7696,7 +7696,7 @@
       "route": "/zh/api/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/api/jobs",
       "title": "定时任务 API",
-      "summary": "Jobs 在应用就绪后自动调度导出的任务。完整流程、部署与故障排查见定时任务指南，行为约束见定时任务契约。本页是配置与定义字段的完整参考。",
+      "summary": "Jobs在必要初始化与任务就绪条件满足后自动调度。完整流程、部署与故障排查见定时任务指南，行为约束见定时任务契约。本页是配置与定义字段的完整参考。",
       "audience": [
         "developers"
       ],
@@ -7705,7 +7705,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/jobs.md",
-      "contentHash": "83a69df7dc3b09e25603ada90a49c2de9fdecb741fdec22684d52e77f2692e7f",
+      "contentHash": "38ec199c4dee0dbe526353e98d897d28d3617b79b87fe8df8f3241f8e06e013a",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -7721,6 +7721,11 @@
           "docId": "guide.configuration",
           "locale": "zh",
           "canonicalUrl": "https://vextjs.github.io/zh/guide/configuration"
+        },
+        {
+          "docId": "guide.deployment",
+          "locale": "zh",
+          "canonicalUrl": "https://vextjs.github.io/zh/guide/deployment"
         },
         {
           "docId": "guide.jobs",
@@ -7930,7 +7935,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/testing-api.md",
-      "contentHash": "bf299e5e87f10b16b75bbca7d5122a26f487c04c9144653aaa178458cd7ab0d7",
+      "contentHash": "694532c23df050fd2d384dcf4814d260f02d55243b0e81134d45b9c64e0af6f2",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -10820,7 +10825,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cli.md",
-      "contentHash": "40ba219dad723d808baa7b4e71aaa09e171ecf9e228b88915b7c5cf8c55f7133",
+      "contentHash": "00ada82623f0aa804b2c0f4be28c57ea93ee6a8a75470bc4a804a916937a83a4",
       "relatedDocuments": [
         {
           "docId": "frontend.dev-workflow",
@@ -10920,7 +10925,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cluster.md",
-      "contentHash": "3e0babb8bd62707398ca73922a9a85c22fe493924a6b84ad22d1067f380d78ec",
+      "contentHash": "3d61bb6d02e95e7f29e24e282b1e1ead94d1a84e41a2d602be83234e98356711",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -11005,7 +11010,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/configuration.md",
-      "contentHash": "941857369cea281ab578ef94e9da2174d80f018524856a15b42334ce28d513db",
+      "contentHash": "a5136b6a63eb5d83e489c130a8abfeab12424e103f07e8aee2bdb31c2ce90731",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -11365,12 +11370,17 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/deployment.md",
-      "contentHash": "caa7b0123c6b1ebedaf55d8022d8dda2df333da63d6507ed58a85b8ed5db971c",
+      "contentHash": "65b02d47841e050ce1f4d38471564679a354d3037327bdc92f72d0154c5d0be1",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
           "locale": "zh",
           "canonicalUrl": "https://vextjs.github.io/zh/api/access-log"
+        },
+        {
+          "docId": "api.jobs",
+          "locale": "zh",
+          "canonicalUrl": "https://vextjs.github.io/zh/api/jobs"
         },
         {
           "docId": "benchmark",
@@ -12056,7 +12066,7 @@
       "route": "/zh/guide/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/guide/jobs",
       "title": "定时任务 Jobs",
-      "summary": "Jobs 用于随应用启动的定时工作，例如清理过期数据、刷新统计、定期同步业务数据。把业务放在 Service，Job 负责按计划调用；它复用已经就绪的应用、插件和 app.services。",
+      "summary": "Jobs 用于随应用运行的定时工作，例如清理过期数据、刷新统计、同步业务数据。你在任务目录创建文件，写明 Cron，再在 handler 中调用已有 Service；不需要单独启动调度器。",
       "audience": [
         "developers"
       ],
@@ -12065,7 +12075,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/jobs.md",
-      "contentHash": "a89d3e69c22d71a19fecd798efb52a3d05d95e04e994921bdce0847557a99d98",
+      "contentHash": "ca85a8a98e1d93c76598e478509e301c3164219da6f5e20cf222066fd5d3e6e3",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -12200,7 +12210,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/mcp-generation.md",
-      "contentHash": "f27eb2b67227a5bd537849f4070911a2190dcf2f9ffed11370799fc5e1cd3f7c",
+      "contentHash": "0716314ac920beb0c32bc34665aa287cec74ccfc6d507a8ab2734882be18b1a9",
       "relatedDocuments": [
         {
           "docId": "guide.cli",
@@ -12350,7 +12360,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/openapi.md",
-      "contentHash": "7ef9fc95243580991cb8381f1e921219c3f76d28d845dca89cbc50730a612f0f",
+      "contentHash": "fd6d455ffcdb3e03e0a751069dd2437684a9d5d921ee330812e3322b1697e398",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -12435,7 +12445,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/plugins.md",
-      "contentHash": "496ecab494166b851c208c966c624a58144c5e8d3fd24bfdc14ca0e1ef855b9c",
+      "contentHash": "96bcb583f270a5e0a3bed4ef3554b660296c3322e094909b3988615675017516",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -13440,7 +13450,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/testing.md",
-      "contentHash": "af2b269a5c8137113bf33dca6297775e6e25c3a0ae70b451f4391adeed67688e",
+      "contentHash": "afc894e188da5da4ff85ffa91f6876a65a3f459326f8feb1aecd723dec68ff26",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -13796,7 +13806,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/index.md",
-      "contentHash": "d158588716ec83972c194fbb5b4ea470596f5cadfb0b6d6e281ea3f575018fab",
+      "contentHash": "7989e7d18a7c060d360b9502c007b62aa9f26b429c56cfe02c5b0a0e06545f4c",
       "relatedDocuments": [
         {
           "docId": "frontend.boundaries-and-roadmap",
@@ -13866,7 +13876,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/architecture.md",
-      "contentHash": "a9ce002fe49b386a8a6445b7cb8371b1958b48e9378bb1da644327707ade7c69",
+      "contentHash": "fa2c0f381dc93e266cad8a393ed3a2d939ac2376e9fd72ad103e92779dbbcd0d",
       "relatedDocuments": [
         {
           "docId": "frontend.api-client-and-contracts",
@@ -14057,7 +14067,7 @@
       "route": "/zh/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/specification/jobs",
       "title": "定时任务契约",
-      "summary": "src/jobs 中的有限默认 defineJob() 随应用启动发现；配置、名称、cron、时区、声明形状和必要 Redis 连通性在 HTTP 监听前校验。启用 Job 的必要 onReady 失败必须拒绝启动并清理；无启用 Job 保留日志隔离。Local 在就绪后激活。所有内置 Cluster 模式先由 Master 核对实际 ready 集合与清单并发送激活；Worker 收到匹配激活后启动未来 Timer 并 ACK。Master 收齐有效 ACK、复核成员未变后才报告 Jobs 整体就绪，app...",
+      "summary": "本页说明使用Jobs时可以依赖的行为及其限制。创建、配置和排错见指南，字段说明见API参考。",
       "audience": [
         "developers"
       ],
@@ -14066,7 +14076,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/jobs.md",
-      "contentHash": "e0abf2a48abe15914c16cfd9c77324a8cfd1b00a576607c2356005b04a3b6234",
+      "contentHash": "962f5bea2d0ff1becc78b792b52a2228350307874002a6de47016b45a2ef264e",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -14106,7 +14116,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/operations.md",
-      "contentHash": "5e2bbe6e2455a9ff175c027a101ed45dd06db326383172019d311e453ff94a66",
+      "contentHash": "26ef1fff8cd7f6ec48b831680ce062b485b0b2cf03781bffb3062c4945ce28a5",
       "relatedDocuments": [
         {
           "docId": "frontend.build-and-deploy",
