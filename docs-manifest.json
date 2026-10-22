@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "1b9151abfb5d5b4decc975a427d10b2108997fba00eb15d1c4c564c52272927b",
+  "documentationRevision": "792ce0c15334feda6b1ec55fd5ffc681189c60a7f918f1237c85baa5ddcf26c5",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -574,7 +574,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/api/jobs.md",
-      "contentHash": "6d91b72f27a4b30b3e2a0e870d43bc303f489b1821bd07053413ed76a72c71cb",
+      "contentHash": "b79527b2b6ad1901a15c4b2ec274f7a646b889eb21715ad04c88aa71c0c8ba5a",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -3759,7 +3759,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/cluster.md",
-      "contentHash": "419e5b486fd4a2c25c679d95431f7071cd93ef952601b7828874cf76cb401e22",
+      "contentHash": "6c5bfed2615f8d2cf70d100fa7ba0608e2de13052d5d7c162e6e66953c34d5f6",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -4894,7 +4894,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/jobs.md",
-      "contentHash": "52fb7685b122ff2ff7242d5d2e67f47db41e7e9ca294165579418482d6f9919a",
+      "contentHash": "60dedd802f8df47d29e8b544391894a05ae2989d457b7b2c80eb53b6d275939e",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -6876,7 +6876,7 @@
       "route": "/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/specification/jobs",
       "title": "Scheduled Jobs contract",
-      "summary": "Startup discovers defineJob() exports in src/jobs. Configuration, names, cron, timezone and Redis connectivity are validated before HTTP listening. Future timers are registered only after plugins, services and readiness complete.",
+      "summary": "Startup discovers finite default SDK Jobs in src/jobs. Configuration, names, Cron, timezone, declaration shape and required Redis connectivity are checked before listening. With enabled Jobs, a necessary onReady failure rejects and cleans up startup; withou...",
       "audience": [
         "developers"
       ],
@@ -6885,7 +6885,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/specification/jobs.md",
-      "contentHash": "a66265b3bd6af083a80c10a48d09d97b2a3d2058337020be175ccc24adbafa18",
+      "contentHash": "25fc6c1b14616892e9c860dc8c69087b9f51853c4aeac4a47ada39fbefa394d4",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -7705,7 +7705,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/jobs.md",
-      "contentHash": "e1518ce3534eea8d26be2ff52a874dc3dd16834003a5e5ee19a294a1f099a091",
+      "contentHash": "83a69df7dc3b09e25603ada90a49c2de9fdecb741fdec22684d52e77f2692e7f",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -10920,7 +10920,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cluster.md",
-      "contentHash": "54737cb41defed36c2ae4ba757058972cf1be658aa230408fceeda1eaba747db",
+      "contentHash": "3e0babb8bd62707398ca73922a9a85c22fe493924a6b84ad22d1067f380d78ec",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -12065,7 +12065,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/jobs.md",
-      "contentHash": "1e158d4660686d115d54647261d0e29a592eb4957be2360fa5418f97cc2ae017",
+      "contentHash": "a89d3e69c22d71a19fecd798efb52a3d05d95e04e994921bdce0847557a99d98",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -14057,7 +14057,7 @@
       "route": "/zh/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/specification/jobs",
       "title": "定时任务契约",
-      "summary": "src/jobs 中的 defineJob() 随应用启动发现；配置、名称、cron、时区和 Redis 连通性在 HTTP 监听前校验。插件、服务及 ready 阶段全部完成后才注册未来定时器。",
+      "summary": "src/jobs 中的有限默认 defineJob() 随应用启动发现；配置、名称、cron、时区、声明形状和必要 Redis 连通性在 HTTP 监听前校验。启用 Job 的必要 onReady 失败必须拒绝启动并清理；无启用 Job 保留日志隔离。Local 在就绪后激活；内置 Cluster 在 Master 清单屏障和激活 ACK 后才运行未来定时器，appReady 与 JobsActive 分开。",
       "audience": [
         "developers"
       ],
@@ -14066,7 +14066,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/jobs.md",
-      "contentHash": "2f91bb454bfd8d6db604c77d33b8f821b78bb0a7c1871fea4322186a8094cefd",
+      "contentHash": "271a9b7793d5299da6d0104dfe18f0794b8f5a9e01baa402a63472d8a3c9453d",
       "relatedDocuments": [
         {
           "docId": "api.jobs",

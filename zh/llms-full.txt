@@ -91,7 +91,7 @@
 - [架构与职责规范](https://vextjs.github.io/zh/specification/architecture): 本页规定 VextJS 应用各部分的职责和实际加载边界，适用于当前框架的开发、生产和测试入口。目录组织建议使用 SHOULD；加载合同使用 MUST。建议不等于运行时会自动检查全部业务代码。
 - [数据访问规范](https://vextjs.github.io/zh/specification/data-access): 本页规定 VextJS 内置 MonSQLize 集成的入口、模型与数据一致性边界。连接配置和完整用法见数据库指南，HTTP 响应缓存见缓存指南。
 - [HTTP 与路由规范](https://vextjs.github.io/zh/specification/http-and-routing): 本页说明路由模块如何被加载、哪些声明能被运行时和静态工具共同识别，以及请求处理各层的职责。具体操作见 路由指南，参数和类型见 路由定义 API。
-- [定时任务契约](https://vextjs.github.io/zh/specification/jobs): src/jobs 中的 defineJob() 随应用启动发现；配置、名称、cron、时区和 Redis 连通性在 HTTP 监听前校验。插件、服务及 ready 阶段全部完成后才注册未来定时器。
+- [定时任务契约](https://vextjs.github.io/zh/specification/jobs): src/jobs 中的有限默认 defineJob() 随应用启动发现；配置、名称、cron、时区、声明形状和必要 Redis 连通性在 HTTP 监听前校验。启用 Job 的必要 onReady 失败必须拒绝启动并清理；无启用 Job 保留日志隔离。Local 在就绪后激活；内置 Cluster 在 Master 清单屏障和激活 ACK 后才运行未来定时器，appReady 与 JobsActive 分开。
 - [构建与运行规范](https://vextjs.github.io/zh/specification/operations): 本页规定应用从本地验证到生产运行的边界。具体命令见 CLI、构建、部署，前端交付见前端构建与发布。
 - [安全与资源规范](https://vextjs.github.io/zh/specification/security-and-resources): 本页规定认证、授权、Session、CSRF、安全响应头、限流、响应缓存与上传资源的职责，以及长期资源的生命周期和隔离合同。先确定访问保护，再核对状态、执行位置和资源预算。配置字段参考配置 API，完整路由合同参考路由定义。
 - [校验与数据契约规范](https://vextjs.github.io/zh/specification/validation-and-contracts): 本页定义输入校验、类型、JSON 响应合同与业务约束之间的边界。编写路由的操作步骤见参数校验，全部路由选项见路由定义参考。
