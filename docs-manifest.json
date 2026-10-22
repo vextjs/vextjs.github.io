@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "792ce0c15334feda6b1ec55fd5ffc681189c60a7f918f1237c85baa5ddcf26c5",
+  "documentationRevision": "0b5dbd088fcf4c660326b9271d16ed5e2e39510e6cd05b52bbb2be7d1b7c6021",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -6885,7 +6885,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/specification/jobs.md",
-      "contentHash": "25fc6c1b14616892e9c860dc8c69087b9f51853c4aeac4a47ada39fbefa394d4",
+      "contentHash": "2913740ceb0f2bf050c1f5349f09090ac1f1bee6d5c5f4b950aa04b94cac4115",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -14057,7 +14057,7 @@
       "route": "/zh/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/specification/jobs",
       "title": "定时任务契约",
-      "summary": "src/jobs 中的有限默认 defineJob() 随应用启动发现；配置、名称、cron、时区、声明形状和必要 Redis 连通性在 HTTP 监听前校验。启用 Job 的必要 onReady 失败必须拒绝启动并清理；无启用 Job 保留日志隔离。Local 在就绪后激活；内置 Cluster 在 Master 清单屏障和激活 ACK 后才运行未来定时器，appReady 与 JobsActive 分开。",
+      "summary": "src/jobs 中的有限默认 defineJob() 随应用启动发现；配置、名称、cron、时区、声明形状和必要 Redis 连通性在 HTTP 监听前校验。启用 Job 的必要 onReady 失败必须拒绝启动并清理；无启用 Job 保留日志隔离。Local 在就绪后激活。所有内置 Cluster 模式先由 Master 核对实际 ready 集合与清单并发送激活；Worker 收到匹配激活后启动未来 Timer 并 ACK。Master 收齐有效 ACK、复核成员未变后才报告 Jobs 整体就绪，app...",
       "audience": [
         "developers"
       ],
@@ -14066,7 +14066,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/jobs.md",
-      "contentHash": "271a9b7793d5299da6d0104dfe18f0794b8f5a9e01baa402a63472d8a3c9453d",
+      "contentHash": "e0abf2a48abe15914c16cfd9c77324a8cfd1b00a576607c2356005b04a3b6234",
       "relatedDocuments": [
         {
           "docId": "api.jobs",

@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "792ce0c15334feda6b1ec55fd5ffc681189c60a7f918f1237c85baa5ddcf26c5",
+  "documentationRevision": "0b5dbd088fcf4c660326b9271d16ed5e2e39510e6cd05b52bbb2be7d1b7c6021",
   "frameworkVersion": "2.0.0",
   "rules": [
     {
@@ -738,7 +738,7 @@
       "level": "must",
       "title": "Application startup",
       "anchor": "vext-job-001",
-      "contentHash": "c023e21f9cccc511aab91d2da8b4bee9b314d9047a4c234a3bc1ae4241164a74",
+      "contentHash": "3ad7ab4ef36b8039c24340cf25635bd09cd36a2e021da1c305280b45360f5c83",
       "docId": "specification.jobs",
       "locale": "en",
       "canonicalUrl": "https://vextjs.github.io/specification/jobs",
@@ -749,7 +749,7 @@
       "level": "must",
       "title": "应用启动集成",
       "anchor": "vext-job-001",
-      "contentHash": "288cd28193ae2bdd432aad50983bed2fcce20748775ecf327b6a5e5f905d0a65",
+      "contentHash": "011e09b322a5800c3ac6651af5748e025d9d46606ee0c532d08d80aa2ef220fd",
       "docId": "specification.jobs",
       "locale": "zh",
       "canonicalUrl": "https://vextjs.github.io/zh/specification/jobs",
