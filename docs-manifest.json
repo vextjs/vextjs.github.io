@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "f3c58b768640ade1d2514baf6b034cbabbed48286bba878fa011aaf7b570df1e",
+  "documentationRevision": "3b89fdf82687f313587585e64a1b8693c1feaf17d5831f3d7439b0a124feda52",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -1139,7 +1139,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/examples/permission-core-auth.md",
-      "contentHash": "2f86c724ddf4240213459b29445c2be7ff6c86eaec5d4cd1f64f34d9bd02cc11",
+      "contentHash": "dae5683907c0618adbcb155521bc4264b2db5187b4ec7c11ad1e1ad42e23bb9f",
       "relatedDocuments": [
         {
           "docId": "api.route-definition",
@@ -3844,7 +3844,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/configuration.md",
-      "contentHash": "7e63d6097eeeb837c060817fcc2733e805daba5a011908c0ab8491bf1577953f",
+      "contentHash": "2bfe0d4b266a9a78cc4a9a5889440940d3b85bc952541342deed2ed2245d67d9",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -4089,7 +4089,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/database.md",
-      "contentHash": "5b3adb72774282f169a4c634a4b69d714e2a9e6aba5f0adbcb996e10c26da1b6",
+      "contentHash": "3f09053191b0d3fdd4fa1258b42568b1f5505ad5784d3c9361cdc706f90539ce",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -8300,7 +8300,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/examples/permission-core-auth.md",
-      "contentHash": "080598107beeb294204910dca2873ff82545613fcedae95fa427a407de8dfc9d",
+      "contentHash": "4d9a87be1bf1882c83e419425f190d0ac2a138c0f9f291849f98890a512383ab",
       "relatedDocuments": [
         {
           "docId": "api.route-definition",
@@ -11015,7 +11015,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/configuration.md",
-      "contentHash": "a5136b6a63eb5d83e489c130a8abfeab12424e103f07e8aee2bdb31c2ce90731",
+      "contentHash": "2749d17c858de750ad74952c08ed76c282082bf12eb4ec86ebf35583f1c56e66",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -11260,7 +11260,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/database.md",
-      "contentHash": "faa397e67ff07726be34fc45e01a06e644a6b3432a1b30b09f8385b3aeb3ce6e",
+      "contentHash": "79feafb711d031cf7ae5b6f324100d3f2d79e2b18aae464853fda03213d37b6e",
       "relatedDocuments": [
         {
           "docId": "api.app",
