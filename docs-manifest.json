@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "ffc489fc1d05d67eae7c76fd86d1f81897f3bb069a7e01dd9146159abcc92eb3",
+  "documentationRevision": "acd402c7b1e13756725a662e50d7ac2b8d0c1a6dd5054d8afec11902a94358c3",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -565,7 +565,7 @@
       "route": "/api/jobs",
       "canonicalUrl": "https://vextjs.github.io/api/jobs",
       "title": "Scheduled Jobs API",
-      "summary": "Jobs schedule exported definitions automatically after application readiness. See the Jobs guide for setup, deployment and troubleshooting, and the contract for behavior rules. This page is the complete field reference.",
+      "summary": "This page is the reference for public signatures, validation and errors. The Jobs guide covers configuration, development, deployment and troubleshooting; the contract defines execution guarantees.",
       "audience": [
         "developers"
       ],
@@ -574,7 +574,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/api/jobs.md",
-      "contentHash": "b79527b2b6ad1901a15c4b2ec274f7a646b889eb21715ad04c88aa71c0c8ba5a",
+      "contentHash": "2ab91d11a14ced3c77c219924643f5ceec44586a0cac1df367ba17c7ddbda869",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -592,14 +592,14 @@
           "canonicalUrl": "https://vextjs.github.io/guide/configuration"
         },
         {
+          "docId": "guide.deployment",
+          "locale": "en",
+          "canonicalUrl": "https://vextjs.github.io/guide/deployment"
+        },
+        {
           "docId": "guide.jobs",
           "locale": "en",
           "canonicalUrl": "https://vextjs.github.io/guide/jobs"
-        },
-        {
-          "docId": "guide.testing",
-          "locale": "en",
-          "canonicalUrl": "https://vextjs.github.io/guide/testing"
         },
         {
           "docId": "specification.jobs",
@@ -3650,7 +3650,7 @@
       "route": "/guide/cli",
       "canonicalUrl": "https://vextjs.github.io/guide/cli",
       "title": "CLI commands",
-      "summary": ":::tip Release and source scope",
+      "summary": "The vext CLI covers project creation, development, builds, production startup, and operations. This page starts with a verifiable lifecycle, then documents individual commands. MCP extensions follow the core lifecycle.",
       "audience": [
         "developers"
       ],
@@ -3659,7 +3659,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/cli.md",
-      "contentHash": "215a00a5e7334c006923790df05bdb9e2977604d693b1f80a0186bc1f5b06aa1",
+      "contentHash": "93eba67353373eebf5c7342512fe199cbc876f301542966e1282f225d199e4f8",
       "relatedDocuments": [
         {
           "docId": "frontend.dev-workflow",
@@ -3759,7 +3759,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/cluster.md",
-      "contentHash": "6c5bfed2615f8d2cf70d100fa7ba0608e2de13052d5d7c162e6e66953c34d5f6",
+      "contentHash": "666a56b4b45bb61915175fb152eb4c01f110661f78bb8eb4a02ac3881898a633",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -3844,7 +3844,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/configuration.md",
-      "contentHash": "ec01287e7a75e424cdcd2cc0eb8e68b5d2738b454a2662bbc481e67ae40af187",
+      "contentHash": "7e63d6097eeeb837c060817fcc2733e805daba5a011908c0ab8491bf1577953f",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -4199,12 +4199,17 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/deployment.md",
-      "contentHash": "fd21624a64ab16cb62819d21a282bf7ae3d540a6614ceb1cec363bd448b4abba",
+      "contentHash": "c0cfc1f625eef1141c85f5057136640146bcd0790b687b747a232d43e3e00f9c",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
           "locale": "en",
           "canonicalUrl": "https://vextjs.github.io/api/access-log"
+        },
+        {
+          "docId": "api.jobs",
+          "locale": "en",
+          "canonicalUrl": "https://vextjs.github.io/api/jobs"
         },
         {
           "docId": "benchmark",
@@ -4885,7 +4890,7 @@
       "route": "/guide/jobs",
       "canonicalUrl": "https://vextjs.github.io/guide/jobs",
       "title": "Scheduled Jobs",
-      "summary": "Jobs perform scheduled application work such as expiring data, refreshing statistics and synchronizing business data. Put business logic in a Service and use the Job to call it on schedule; it shares the ready application, plugins and app.services.",
+      "summary": "Jobs runs Cron tasks with your application, such as cleaning expired data, producing reports or synchronizing business data. A Job owns the schedule and calls a Service for business work. Starting the application discovers Jobs and waits for future schedule...",
       "audience": [
         "developers"
       ],
@@ -4894,7 +4899,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/jobs.md",
-      "contentHash": "60dedd802f8df47d29e8b544391894a05ae2989d457b7b2c80eb53b6d275939e",
+      "contentHash": "30d1bb6f3bb1dd9e827aa70852a03b836ec554e5a8ea26acab356ab6565aa550",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -4950,6 +4955,11 @@
           "docId": "guide.services",
           "locale": "en",
           "canonicalUrl": "https://vextjs.github.io/guide/services"
+        },
+        {
+          "docId": "guide.testing",
+          "locale": "en",
+          "canonicalUrl": "https://vextjs.github.io/guide/testing"
         },
         {
           "docId": "specification.architecture",
@@ -5029,7 +5039,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/mcp-generation.md",
-      "contentHash": "32681063afccb580c140d1d13b8bac0a6c0dac6026769f2610f98a1c6d17560e",
+      "contentHash": "8667fa7a4406dd0185c4572d8a791a55c6b5016a95fdc72a2aa911784e658429",
       "relatedDocuments": [
         {
           "docId": "guide.cli",
@@ -5174,7 +5184,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/openapi.md",
-      "contentHash": "bd4b552a8cc2ba74e4573f551423e9b7bfbe91ea72a89e6c648b456b79169dfb",
+      "contentHash": "356bc49b512a6253c8631d51755e0e1e6d82e00a6df21c5d558d72c117919d80",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -5259,7 +5269,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/plugins.md",
-      "contentHash": "0a35cc4bd7230ad60356141dd5394df64cbc8729afa1119b3acf8c2b18260df5",
+      "contentHash": "4057ce7cf2a7e472b11f538a5d5e9c1e9909cfca77566606e8b512f14d334eb7",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -5464,7 +5474,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/project-structure.md",
-      "contentHash": "2e827d2abd30895e063eb88244a8861c8e1dfa450d3fd2c107ba4c9dccfb7166",
+      "contentHash": "e968beeb2b9060fbeddf9a4f7d1c77ef4010d08d8b9b925a47b89b94332b0254",
       "relatedDocuments": [
         {
           "docId": "api.context",
@@ -5575,7 +5585,7 @@
       "route": "/guide/quick-start",
       "canonicalUrl": "https://vextjs.github.io/guide/quick-start",
       "title": "Quick start",
-      "summary": ":::tip Release and source scope",
+      "summary": "Prerequisites: Node.js ^20.19.0 || >=22.12.0, npm, and a writable project directory. Check with node --version and npm --version. The create commands below are alternatives; do not run them in sequence against the same target directory.",
       "audience": [
         "developers"
       ],
@@ -5584,7 +5594,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/quick-start.md",
-      "contentHash": "a1bc87323dffdd7e5c8fa74182eeb6e00a71a608d961479d45f96feeca0dac58",
+      "contentHash": "d908ab88c80514df5a77773008c3471a9586aa159981dd4305fefe00afce9d68",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -6264,13 +6274,8 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/testing.md",
-      "contentHash": "488a04bb1a5c9fed7e7394ae8765c2f4a0888f3c89838db51e5b71f994c5af06",
+      "contentHash": "46f7e6fbeeee85b8584deb16bceb7b7040da5f48c30b45d0c64f255bd7ce88d9",
       "relatedDocuments": [
-        {
-          "docId": "api.jobs",
-          "locale": "en",
-          "canonicalUrl": "https://vextjs.github.io/api/jobs"
-        },
         {
           "docId": "api.plugin-api",
           "locale": "en",
@@ -6320,6 +6325,11 @@
           "docId": "guide.hot-reload",
           "locale": "en",
           "canonicalUrl": "https://vextjs.github.io/guide/hot-reload"
+        },
+        {
+          "docId": "guide.jobs",
+          "locale": "en",
+          "canonicalUrl": "https://vextjs.github.io/guide/jobs"
         },
         {
           "docId": "guide.middleware",
@@ -6876,7 +6886,7 @@
       "route": "/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/specification/jobs",
       "title": "Scheduled Jobs contract",
-      "summary": "Startup discovers finite default SDK Jobs in src/jobs. Configuration, names, Cron, timezone, declaration shape and required Redis connectivity are checked before listening. With enabled Jobs, a necessary onReady failure rejects and cleans up startup; withou...",
+      "summary": "This page defines observable guarantees, prerequisites and limits. Use the guide for integration and the API for precise fields.",
       "audience": [
         "developers"
       ],
@@ -6885,7 +6895,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/specification/jobs.md",
-      "contentHash": "2913740ceb0f2bf050c1f5349f09090ac1f1bee6d5c5f4b950aa04b94cac4115",
+      "contentHash": "ab7489427ec3632c27210a39bbeae1b3d4311056fd86fdff668714f1a5ade368",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -7696,7 +7706,7 @@
       "route": "/zh/api/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/api/jobs",
       "title": "定时任务 API",
-      "summary": "Jobs在必要初始化与任务就绪条件满足后自动调度。完整流程、部署与故障排查见定时任务指南，行为约束见定时任务契约。本页是配置与定义字段的完整参考。",
+      "summary": "本页提供公开签名、字段约束和错误边界。创建、配置、部署和排错的完整操作见定时任务指南，执行保证见定时任务契约。",
       "audience": [
         "developers"
       ],
@@ -7705,7 +7715,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/jobs.md",
-      "contentHash": "38ec199c4dee0dbe526353e98d897d28d3617b79b87fe8df8f3241f8e06e013a",
+      "contentHash": "02322ef617010339609cf15d7ab5d81624e43a9e6814b6897173840892aa5a09",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -7731,11 +7741,6 @@
           "docId": "guide.jobs",
           "locale": "zh",
           "canonicalUrl": "https://vextjs.github.io/zh/guide/jobs"
-        },
-        {
-          "docId": "guide.testing",
-          "locale": "zh",
-          "canonicalUrl": "https://vextjs.github.io/zh/guide/testing"
         },
         {
           "docId": "specification.jobs",
@@ -10816,7 +10821,7 @@
       "route": "/zh/guide/cli",
       "canonicalUrl": "https://vextjs.github.io/zh/guide/cli",
       "title": "CLI 命令",
-      "summary": ":::tip 发布版本与源码范围",
+      "summary": "VextJS 的 vext 命令覆盖创建、开发、构建、生产启动与运维。本页先给出一条可验证的使用流程，再按命令查阅选项；MCP 等扩展入口放在基本生命周期之后。",
       "audience": [
         "developers"
       ],
@@ -10825,7 +10830,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cli.md",
-      "contentHash": "00ada82623f0aa804b2c0f4be28c57ea93ee6a8a75470bc4a804a916937a83a4",
+      "contentHash": "26cb62f230fec4aaa610037bfcd02dc84dcd1e062718fcb47ae3ba9d234d593f",
       "relatedDocuments": [
         {
           "docId": "frontend.dev-workflow",
@@ -10925,7 +10930,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cluster.md",
-      "contentHash": "3d61bb6d02e95e7f29e24e282b1e1ead94d1a84e41a2d602be83234e98356711",
+      "contentHash": "cb968c3543bad0bd332dde1aaf9de476c896d7e6f42c8169fb2efdfac63fbc67",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -11370,7 +11375,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/deployment.md",
-      "contentHash": "65b02d47841e050ce1f4d38471564679a354d3037327bdc92f72d0154c5d0be1",
+      "contentHash": "084ea078d95d2256824ff1651ce5a8d8437e99ac05fcccfaaa6f98f811153fa9",
       "relatedDocuments": [
         {
           "docId": "api.access-log",
@@ -12066,7 +12071,7 @@
       "route": "/zh/guide/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/guide/jobs",
       "title": "定时任务 Jobs",
-      "summary": "Jobs 用于随应用运行的定时工作，例如清理过期数据、刷新统计、同步业务数据。你在任务目录创建文件，写明 Cron，再在 handler 中调用已有 Service；不需要单独启动调度器。",
+      "summary": "Jobs 用于随应用运行的 Cron 定时任务，例如清理过期数据、生成日报或同步业务数据。任务文件负责计划，Service 负责业务；启动应用后，框架自动发现任务并等待未来计划点。",
       "audience": [
         "developers"
       ],
@@ -12075,7 +12080,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/jobs.md",
-      "contentHash": "ca85a8a98e1d93c76598e478509e301c3164219da6f5e20cf222066fd5d3e6e3",
+      "contentHash": "d39ae5e9ed1ebc51d434ecd41d68071ee61a51cbb19346ae203750af9d32f39a",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -12131,6 +12136,11 @@
           "docId": "guide.services",
           "locale": "zh",
           "canonicalUrl": "https://vextjs.github.io/zh/guide/services"
+        },
+        {
+          "docId": "guide.testing",
+          "locale": "zh",
+          "canonicalUrl": "https://vextjs.github.io/zh/guide/testing"
         },
         {
           "docId": "specification.architecture",
@@ -12210,7 +12220,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/mcp-generation.md",
-      "contentHash": "0716314ac920beb0c32bc34665aa287cec74ccfc6d507a8ab2734882be18b1a9",
+      "contentHash": "824b43e12f073ae1075145bd4063f93d32932cfc542120e6f5e48550ba3a72f0",
       "relatedDocuments": [
         {
           "docId": "guide.cli",
@@ -12360,7 +12370,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/openapi.md",
-      "contentHash": "fd6d455ffcdb3e03e0a751069dd2437684a9d5d921ee330812e3322b1697e398",
+      "contentHash": "5224f96d6743e4fe169caeed6412fdf06f42579dfd3cea7109156145c4779e2c",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -12650,7 +12660,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/project-structure.md",
-      "contentHash": "3f46bc0401dbbeba02346eda7c49fd69e89f2b8e003e90dfb46e2252cfd3fe08",
+      "contentHash": "404fc6140c0e7227a61a9ac21e33910476b1740af6ec575e343e5f897e4e75d4",
       "relatedDocuments": [
         {
           "docId": "api.context",
@@ -12761,7 +12771,7 @@
       "route": "/zh/guide/quick-start",
       "canonicalUrl": "https://vextjs.github.io/zh/guide/quick-start",
       "title": "快速开始",
-      "summary": ":::tip 发布版本与源码范围",
+      "summary": "前置条件：Node.js ^20.19.0 || >=22.12.0、npm，以及可写的项目目录。先用 node --version 和 npm --version 确认环境。下面的创建命令是不同选择，不要依次在同一目标目录执行。",
       "audience": [
         "developers"
       ],
@@ -12770,7 +12780,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/quick-start.md",
-      "contentHash": "b9c86ab8d751a552120c22880df97a8d6531e11c0b35e8b2b5f688fcd37ed2a3",
+      "contentHash": "644f1d1b09543dbacb04a9d6d10a20739b0cb66e85d955174ec3bdb401af93da",
       "relatedDocuments": [
         {
           "docId": "api.app",
@@ -13450,13 +13460,8 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/testing.md",
-      "contentHash": "afc894e188da5da4ff85ffa91f6876a65a3f459326f8feb1aecd723dec68ff26",
+      "contentHash": "92785b6320a3afd1044bc4796b3453ba55833fb73975592875b5644f6a39cefe",
       "relatedDocuments": [
-        {
-          "docId": "api.jobs",
-          "locale": "zh",
-          "canonicalUrl": "https://vextjs.github.io/zh/api/jobs"
-        },
         {
           "docId": "api.plugin-api",
           "locale": "zh",
@@ -13506,6 +13511,11 @@
           "docId": "guide.hot-reload",
           "locale": "zh",
           "canonicalUrl": "https://vextjs.github.io/zh/guide/hot-reload"
+        },
+        {
+          "docId": "guide.jobs",
+          "locale": "zh",
+          "canonicalUrl": "https://vextjs.github.io/zh/guide/jobs"
         },
         {
           "docId": "guide.middleware",
@@ -14067,7 +14077,7 @@
       "route": "/zh/specification/jobs",
       "canonicalUrl": "https://vextjs.github.io/zh/specification/jobs",
       "title": "定时任务契约",
-      "summary": "本页说明使用Jobs时可以依赖的行为及其限制。创建、配置和排错见指南，字段说明见API参考。",
+      "summary": "本页说明使用者可以依赖的前提、行为和限制。接入与配置见指南，精确字段见API。",
       "audience": [
         "developers"
       ],
@@ -14076,7 +14086,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/specification/jobs.md",
-      "contentHash": "962f5bea2d0ff1becc78b792b52a2228350307874002a6de47016b45a2ef264e",
+      "contentHash": "99005aab9294ddffbdd26184a8447f7845e0b690bc63e4e21d5679705e54b7e4",
       "relatedDocuments": [
         {
           "docId": "api.jobs",

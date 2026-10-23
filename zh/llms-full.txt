@@ -10,7 +10,7 @@
 - [配置项](https://vextjs.github.io/zh/api/config): 本页说明公开配置分组、默认值、覆盖规则和实际生效边界。首次配置请先读配置指南；片段按分组合并到现有文件，不要把互斥示例拼成多个 default export。插件自定义配置以对应插件文档为准，内部 _testMode / _runtimeMode 不属于用户设置。
 - [请求与响应](https://vextjs.github.io/zh/api/context): 本页详细介绍 VextJS 的请求对象 VextRequest 和响应对象 VextResponse 的完整 API。
 - [Fetch API](https://vextjs.github.io/zh/api/fetch): 本页提供 app.fetch 内置 HTTP 客户端的API 参考。完整的使用指南、示例和最佳实践请参阅 内置 HTTP 客户端指南。
-- [定时任务 API](https://vextjs.github.io/zh/api/jobs): Jobs在必要初始化与任务就绪条件满足后自动调度。完整流程、部署与故障排查见定时任务指南，行为约束见定时任务契约。本页是配置与定义字段的完整参考。
+- [定时任务 API](https://vextjs.github.io/zh/api/jobs): 本页提供公开签名、字段约束和错误边界。创建、配置、部署和排错的完整操作见定时任务指南，执行保证见定时任务契约。
 - [插件 API](https://vextjs.github.io/zh/api/plugin-api): 本页用于查询插件定义、中间件定义辅助函数和相关类型的签名、参数与边界。第一次编写插件，请先完成插件指南的完整示例；配置白名单并引用中间件的完整流程见中间件指南。
 - [路由定义](https://vextjs.github.io/zh/api/route-definition): 本页详细介绍 VextJS 的路由定义 API，包括 defineRoutes、路由选项、参数校验、中间件引用和文档配置。
 - [测试工具](https://vextjs.github.io/zh/api/testing-api): 本页详细介绍 VextJS 的测试工具 API，包括 createTestApp、TestApp、TestRequest、TestRequestBuilder、TestResponse 和 createTestJobScheduler。完整业务夹具与执行步骤见测试指南，本页用于查询签名、默认值和执行边界。
@@ -55,7 +55,7 @@
 - [Adapter 架构](https://vextjs.github.io/zh/guide/adapters): VextJS 使用 Adapter 架构替换底层 HTTP 处理层。基于 VextJS req / res 编写的路由与服务通常可以保持原有接口；底层框架专属的中间件、插件和能力仍需核对适配边界。本页先完成一次安装、配置、启动和切换验证，再解释实现自定义适配器需要满足的接口。
 - [构建 (vext build)](https://vextjs.github.io/zh/guide/build): vext build 为生产运行准备应用产物。TypeScript 后端编译为 JavaScript；纯 JavaScript 后端直接使用源码。启用前端时，还会构建浏览器资源、服务端 renderer 和相关 manifest。
 - [响应缓存](https://vextjs.github.io/zh/guide/cache): VextJS 提供声明式路由级响应缓存，通过路由选项的 cache 字段配置。路由中间件和认证守卫先执行；缓存命中后跳过参数校验和 handler，返回缓存结果。适合允许短时陈旧的公开查询，不适合依靠每次 handler 执行产生副作用的接口。
-- [CLI 命令](https://vextjs.github.io/zh/guide/cli): :::tip 发布版本与源码范围
+- [CLI 命令](https://vextjs.github.io/zh/guide/cli): VextJS 的 vext 命令覆盖创建、开发、构建、生产启动与运维。本页先给出一条可验证的使用流程，再按命令查阅选项；MCP 等扩展入口放在基本生命周期之后。
 - [Cluster 多进程](https://vextjs.github.io/zh/guide/cluster): VextJS 通过一个 Master 管理多个 HTTP Worker。每个 Worker 有独立应用实例，监听同一服务端口；Master 负责启动、故障替换、心跳检查和滚动重启。
 - [配置](https://vextjs.github.io/zh/guide/configuration): 本页说明配置从哪里加载、各层如何合并，以及如何验证实际生效值。首次建项目见快速开始。先完成下方不依赖外部服务的完整示例，再按需要阅读加载机制与分项配置；字段的精确签名和完整嵌套项见配置 API。各分项代码是独立片段，需合并到已有配置中，不能反复覆盖整个文件。
 - [Cookies 与 Sessions](https://vextjs.github.io/zh/guide/cookies-session): Vext 提供 Cookie 读取/写入、配置驱动的 Session 和 CSRF 中间件，覆盖 Native、Hono、Fastify、Express、Koa adapter。基础 Cookie 和内存 Session 不需要额外安装库；使用 Redis 等外部 Store 时需要对应客户端。本页先跑通一个完整流程，再说明保存、隔离和失败边界。
@@ -68,7 +68,7 @@
 - [热重载](https://vextjs.github.io/zh/guide/hot-reload): VextJS 内置热重载机制，通过 vext dev 命令启动开发模式。框架监听文件变更，按职责执行后端 soft reload、前端重建或应用 worker 冷重启。
 - [国际化 (i18n)](https://vextjs.github.io/zh/guide/i18n): VextJS 内置国际化支持，通过 src/locales/ 目录下的语言包文件，实现错误消息的多语言翻译。语言包由 i18n-loader 自动扫描加载，与 app.throw() 和 schema-dsl 校验系统无缝联动。
 - [介绍](https://vextjs.github.io/zh/guide/introduction): VextJS 是一个面向 API、服务端渲染 React 页面或两者并存场景的 AI-first Node.js 全栈框架。应用的 API 与 SSR 页面由 src/routes/** 定义路由，handler 可以调用服务、返回 JSON 或渲染页面。路由上的校验和响应声明可用于生成 OpenAPI 与类型客户端；授权、业务规则和缓存策略仍需按各自职责配置。你可以从默认全栈脚手架起步，也可以保持 API-only。
-- [定时任务 Jobs](https://vextjs.github.io/zh/guide/jobs): Jobs 用于随应用运行的定时工作，例如清理过期数据、刷新统计、同步业务数据。你在任务目录创建文件，写明 Cron，再在 handler 中调用已有 Service；不需要单独启动调度器。
+- [定时任务 Jobs](https://vextjs.github.io/zh/guide/jobs): Jobs 用于随应用运行的 Cron 定时任务，例如清理过期数据、生成日报或同步业务数据。任务文件负责计划，Service 负责业务；启动应用后，框架自动发现任务并等待未来计划点。
 - [日志 (Logger)](https://vextjs.github.io/zh/guide/logger): 通过 app.logger 记录结构化业务日志，使用 child logger 标识 Service，并与请求 ID 关联。内置实现支持 JSON/pretty 输出、六级日志、运行时阈值、Error 序列化和可选字段脱敏；默认日志内核不依赖第三方日志包。
 - [MCP 代码生成与依赖知识](https://vextjs.github.io/zh/guide/mcp-generation): Vext MCP 提供项目事实、生成候选和检查流程。宿主负责应用文件、执行命令并验证业务。ready 表示候选可进入宿主审查；scaffold: true 表示骨架，不能据此宣布业务完成。安装或导出 Skill 也不能证明宿主已实际调用 MCP。
 - [中间件](https://vextjs.github.io/zh/guide/middleware): VextJS 的中间件采用 洋葱模型（Onion Model），支持前置和后置逻辑。框架提供 defineMiddleware 和 defineMiddlewareFactory 两种定义方式，按配置白名单从约定目录加载。本页先用无业务依赖的完整例子验证定义、配置与路由引用，再说明认证、错误处理和生命周期。
@@ -76,7 +76,7 @@
 - [插件](https://vextjs.github.io/zh/guide/plugins): VextJS 的插件系统负责应用启动阶段的能力扩展。通过插件，你可以向 app 对象注入自定义能力、注册全局中间件、替换内置实现、管理资源生命周期。路由、服务、Adapter与构建工具有各自的入口，职责边界见架构规范。
 - [预加载（Preload）](https://vextjs.github.io/zh/guide/preload): VextJS 提供了 预加载（Preload） 机制，允许以下两类来源在应用入口模块执行之前运行脚本：
 - [项目结构](https://vextjs.github.io/zh/guide/project-structure): VextJS 提供默认目录约定及自动加载入口。用户可以沿用自己的架构和公共目录规范；有自动扫描语义的入口与普通 import 目录需要区分，支持配置的角色可使用实际配置覆盖。
-- [快速开始](https://vextjs.github.io/zh/guide/quick-start): :::tip 发布版本与源码范围
+- [快速开始](https://vextjs.github.io/zh/guide/quick-start): 前置条件：Node.js ^20.19.0 || >=22.12.0、npm，以及可写的项目目录。先用 node --version 和 npm --version 确认环境。下面的创建命令是不同选择，不要依次在同一目标目录执行。
 - [请求限流](https://vextjs.github.io/zh/guide/rate-limit): VextJS 的全局限流默认关闭。显式启用后，可以按 IP、自定义请求键或受支持的用户字段计数，并为单个路由覆盖额度或跳过限流。架构边界见安全与资源规范。
 - [请求上下文 (Request Context)](https://vextjs.github.io/zh/guide/request-context): requestContext 用于在同一请求的调用链中共享少量数据，例如 requestId、语言、认证快照。VextJS 的 Adapter 默认为每个入站请求建立独立的 AsyncLocalStorage 作用域；在这个作用域中调用的中间件、handler 和 Service 可以直接读取数据。
 - [路由](https://vextjs.github.io/zh/guide/routing): VextJS 采用 约定式文件路由 + 三段式路由定义，将文件路径自动映射为 URL 前缀，在文件内部通过 defineRoutes() 声明具体路由。
@@ -91,7 +91,7 @@
 - [架构与职责规范](https://vextjs.github.io/zh/specification/architecture): 本页规定 VextJS 应用各部分的职责和实际加载边界，适用于当前框架的开发、生产和测试入口。目录组织建议使用 SHOULD；加载合同使用 MUST。建议不等于运行时会自动检查全部业务代码。
 - [数据访问规范](https://vextjs.github.io/zh/specification/data-access): 本页规定 VextJS 内置 MonSQLize 集成的入口、模型与数据一致性边界。连接配置和完整用法见数据库指南，HTTP 响应缓存见缓存指南。
 - [HTTP 与路由规范](https://vextjs.github.io/zh/specification/http-and-routing): 本页说明路由模块如何被加载、哪些声明能被运行时和静态工具共同识别，以及请求处理各层的职责。具体操作见 路由指南，参数和类型见 路由定义 API。
-- [定时任务契约](https://vextjs.github.io/zh/specification/jobs): 本页说明使用Jobs时可以依赖的行为及其限制。创建、配置和排错见指南，字段说明见API参考。
+- [定时任务契约](https://vextjs.github.io/zh/specification/jobs): 本页说明使用者可以依赖的前提、行为和限制。接入与配置见指南，精确字段见API。
 - [构建与运行规范](https://vextjs.github.io/zh/specification/operations): 本页规定应用从本地验证到生产运行的边界。具体命令见 CLI、构建、部署，前端交付见前端构建与发布。
 - [安全与资源规范](https://vextjs.github.io/zh/specification/security-and-resources): 本页规定认证、授权、Session、CSRF、安全响应头、限流、响应缓存与上传资源的职责，以及长期资源的生命周期和隔离合同。先确定访问保护，再核对状态、执行位置和资源预算。配置字段参考配置 API，完整路由合同参考路由定义。
 - [校验与数据契约规范](https://vextjs.github.io/zh/specification/validation-and-contracts): 本页定义输入校验、类型、JSON 响应合同与业务约束之间的边界。编写路由的操作步骤见参数校验，全部路由选项见路由定义参考。
