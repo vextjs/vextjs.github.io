@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "acd402c7b1e13756725a662e50d7ac2b8d0c1a6dd5054d8afec11902a94358c3",
+  "documentationRevision": "f3c58b768640ade1d2514baf6b034cbabbed48286bba878fa011aaf7b570df1e",
   "frameworkVersion": "2.0.0",
   "channel": "stable",
   "stableVersion": "2.0.0",
@@ -574,7 +574,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/api/jobs.md",
-      "contentHash": "2ab91d11a14ced3c77c219924643f5ceec44586a0cac1df367ba17c7ddbda869",
+      "contentHash": "c0c98c594e07c11e3c70341d8cac29c9c48f03cd4f6eaa34ca4e260505a48e6d",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -4899,7 +4899,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/guide/jobs.md",
-      "contentHash": "30d1bb6f3bb1dd9e827aa70852a03b836ec554e5a8ea26acab356ab6565aa550",
+      "contentHash": "3cd722608954cafb8d478c87e515104572a74edba71c3657094d91ee94ff3c85",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -6895,7 +6895,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/en/specification/jobs.md",
-      "contentHash": "ab7489427ec3632c27210a39bbeae1b3d4311056fd86fdff668714f1a5ade368",
+      "contentHash": "ec4fe174e864360f0915591a9817d372e3da97417c0ca252384ba5ec711a04dc",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
@@ -7715,7 +7715,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/api/jobs.md",
-      "contentHash": "02322ef617010339609cf15d7ab5d81624e43a9e6814b6897173840892aa5a09",
+      "contentHash": "6f13b6c29030a4fa245afc93c3d3a304ec79ad04e01587164f19f46b4ac8f1d5",
       "relatedDocuments": [
         {
           "docId": "api.config",
@@ -12080,7 +12080,7 @@
       ],
       "stability": "stable",
       "sourcePath": "website/docs/zh/guide/jobs.md",
-      "contentHash": "d39ae5e9ed1ebc51d434ecd41d68071ee61a51cbb19346ae203750af9d32f39a",
+      "contentHash": "01fe5bfd46f82952b25d8758ad73eb42674df420642e8bf78b109daa89a41448",
       "relatedDocuments": [
         {
           "docId": "api.jobs",
