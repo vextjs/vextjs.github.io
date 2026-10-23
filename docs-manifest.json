@@ -4,10 +4,10 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "cb34c7ab831a63cd1b67a48a5ca9d8ad24491f8aa3399fe527c58f92252135d6",
+  "documentationRevision": "ddc8c0598bcb719efba4f0013efaf8c74486bdc04b2573a3b78b32ea964c16dc",
   "frameworkVersion": "2.1.0",
-  "channel": "next",
-  "stableVersion": "2.0.0",
+  "channel": "stable",
+  "stableVersion": "2.1.0",
   "nextVersion": "2.1.0",
   "defaultLocale": "en",
   "siteUrl": "https://vextjs.github.io/",
@@ -27,7 +27,7 @@
       "appliesTo": [
         "framework"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/index.mdx",
       "contentHash": "16815b37818ff68ffa5150ed4a49215dc5318747c4e7d2afcb1ba1b0be65f0fc",
       "relatedDocuments": [
@@ -97,7 +97,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/access-log.md",
       "contentHash": "70acdd2d8cdf032193b69ec0a6dd53b62af2b79eecba6e069a999e18eff49eae",
       "relatedDocuments": [
@@ -157,7 +157,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/app.md",
       "contentHash": "7c11c42bc2a4dab63a85447c2d37233bdba33ac586799f276b74dd4280086f58",
       "relatedDocuments": [
@@ -262,7 +262,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/config.md",
       "contentHash": "8f2edf40a5cd0b1fb84a3a69fcd7e94b3eef19ed052e4f01c4b31173b7028473",
       "relatedDocuments": [
@@ -417,7 +417,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/context.md",
       "contentHash": "621afa6b5924114f0c726d5b9a2bc102e659db64530b4536d08431fc076495ab",
       "relatedDocuments": [
@@ -527,7 +527,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/fetch.md",
       "contentHash": "1ee88545239ca06fe7ec299abf6e235b61e4545e1a82f0c6dae16cc8060d1409",
       "relatedDocuments": [
@@ -572,7 +572,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/jobs.md",
       "contentHash": "c0c98c594e07c11e3c70341d8cac29c9c48f03cd4f6eaa34ca4e260505a48e6d",
       "relatedDocuments": [
@@ -622,7 +622,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/plugin-api.md",
       "contentHash": "0c720d9640362496f5fc836b2aea862df6e679c9bdd11b145e038b488966d07e",
       "relatedDocuments": [
@@ -672,7 +672,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/route-definition.md",
       "contentHash": "db7ed1b81fc913d4e6f49853bf7dbcdc9820e6752dedadb5a152ba22eec6fead",
       "relatedDocuments": [
@@ -777,7 +777,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/api/testing-api.md",
       "contentHash": "5f9c3ca6672d91c58821d26f36a267b82ea73f1b4b3a0fe5e3f252418e5fe7d8",
       "relatedDocuments": [
@@ -837,7 +837,7 @@
       "appliesTo": [
         "performance"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/benchmark.md",
       "contentHash": "459f9c6399382da64f2d1f08a40255930789bc1180ad39c889a299051d83a660",
       "relatedDocuments": [
@@ -892,7 +892,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/examples/crud-api.md",
       "contentHash": "28468791e05b2ea136e5e7c96257b5f57182302932d7903168c873d13b8bb001",
       "relatedDocuments": [
@@ -947,7 +947,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/examples/hello-world.md",
       "contentHash": "8dc493a5d4b5beee6b3f136e8980b1540baf0ba4d8d36caefc7eb1d46eeef76e",
       "relatedDocuments": [
@@ -1017,7 +1017,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/examples/nacos-integration.md",
       "contentHash": "26415379b831ae0eed73413201bbe7309320624b59f87355de74b69c00f85dac",
       "relatedDocuments": [
@@ -1067,7 +1067,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/examples/opentelemetry.md",
       "contentHash": "70dc2acba2e8b4a0f54c0077dfa594a3bebd4d7a7db29c8d16b1834ea491fe05",
       "relatedDocuments": [
@@ -1137,7 +1137,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/examples/permission-core-auth.md",
       "contentHash": "dae5683907c0618adbcb155521bc4264b2db5187b4ec7c11ad1e1ad42e23bb9f",
       "relatedDocuments": [
@@ -1192,7 +1192,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/api-client-and-contracts.md",
       "contentHash": "d8a21200d75d97f11de75aff2c5d7ee70867eebe9e85a066272ec0bc8df6c893",
       "relatedDocuments": [
@@ -1242,7 +1242,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/boundaries-and-roadmap.md",
       "contentHash": "b62ed41a06ea5410ec14c6a10f89ac29a38b4c036f712edb66a1615765514499",
       "relatedDocuments": [
@@ -1337,7 +1337,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/build-and-deploy.md",
       "contentHash": "b353356d04dbdfa52624517436940674edd1a063eecacb3a1a49dd4e14ba5854",
       "relatedDocuments": [
@@ -1412,7 +1412,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/build-deploy-performance.md",
       "contentHash": "3ef5d0e83464255b2c9ec9ee62c8b1f174145e9bcfbf6ee27d045c64714f7478",
       "relatedDocuments": [
@@ -1462,7 +1462,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/code-splitting.md",
       "contentHash": "bdf2662429d8c0645667a9bd8153e6d454fcf219a17e9ff8deeb6ef0ad28d559",
       "relatedDocuments": [
@@ -1507,7 +1507,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/configuration.md",
       "contentHash": "95b7a46a65cdc0870c48ee3838911585a17851f08f59863a1f76295d83699be1",
       "relatedDocuments": [
@@ -1617,7 +1617,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/csr-and-spa-fallback.md",
       "contentHash": "c1dea211e98fdb016dfe6083536ae9f1d43f26464b97f0f334e68363e3b0b6d0",
       "relatedDocuments": [
@@ -1702,7 +1702,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/data-and-api.md",
       "contentHash": "09df4e3afd95634c723d69764579f5d3e74f8b7e5b94479d74de98d53ecaab40",
       "relatedDocuments": [
@@ -1737,7 +1737,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/data-flow.md",
       "contentHash": "193bfc02f47be1b0bcac52733aab69b157064f3a445a91e8b4e01e6b7e6e2fb7",
       "relatedDocuments": [
@@ -1812,7 +1812,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/dev-workflow.md",
       "contentHash": "ca037f86879f7934a9b251ba6da385dcc339aec95aa2f679a64cf4eb5e38f3d4",
       "relatedDocuments": [
@@ -1872,7 +1872,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/diagnostics-and-leak-scan.md",
       "contentHash": "e4b9f69907e87c0c50c480ce039d90ddb85019cc196c2e6df8faa8b851ee1792",
       "relatedDocuments": [
@@ -1912,7 +1912,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/errors-and-document.md",
       "contentHash": "0f6c6d52c1d17235c2205e7d4b5705a4df5b04dba30c966f5d28f5127b213e0b",
       "relatedDocuments": [
@@ -1967,7 +1967,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/fast-refresh.md",
       "contentHash": "bb71174864b2c9a6e5027cc99df5b724bd8b4ab4d2c7db4e7af4144e49d13afc",
       "relatedDocuments": [
@@ -2022,7 +2022,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/getting-started.md",
       "contentHash": "bfb20ffa052fc49921096e05a2263d1fbca30c4f078902f80b2b7224bc1b09e6",
       "relatedDocuments": [
@@ -2172,7 +2172,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/hydration.md",
       "contentHash": "0856f3861fae9689595f32b46ed8f5fa0acf69b13a5a4c8b6c7c8cc45d60772f",
       "relatedDocuments": [
@@ -2242,7 +2242,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/hydration-validation.md",
       "contentHash": "d3acd0ae857741af3cffca354f044fa0e938ce8ff6898262251aa0ea8e6bf30f",
       "relatedDocuments": [
@@ -2312,7 +2312,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/i18n.md",
       "contentHash": "c9adfb863812e490b7df5e36cd853609f9f31f0bc8956e1afe33577a6d01efa6",
       "relatedDocuments": [
@@ -2367,7 +2367,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/jscss.md",
       "contentHash": "1e18af22d285bbb7652ac28b25909f9c5f7c6ca7f272992f8c9e82a801adbe53",
       "relatedDocuments": [
@@ -2407,7 +2407,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/layouts-and-components.md",
       "contentHash": "e549a6fc2c0724ee825aa74f306a29d8abcf460f0d646ec59de40bcde18a3305",
       "relatedDocuments": [
@@ -2477,7 +2477,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/overview.md",
       "contentHash": "bfbd22cbb6c6ab0252251fce2295ccd30f150acd60bd4f4e28e06c6e2febde99",
       "relatedDocuments": [
@@ -2627,7 +2627,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/pages-and-rendering.md",
       "contentHash": "238bd5db16f3e2570325dea57c96afaf6a79f08b058147b09957c8ba2859e2ad",
       "relatedDocuments": [
@@ -2682,7 +2682,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/performance-budgets.md",
       "contentHash": "13332fdf0157e15d54927258c80160300389d61c32217b39ee242c83c1e65edc",
       "relatedDocuments": [
@@ -2727,7 +2727,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/project-structure.md",
       "contentHash": "3baaa27483afe866f862ce81e83344b0e036c84da48b1b51e67c51cea2b2a3d1",
       "relatedDocuments": [
@@ -2797,7 +2797,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/render-data-and-cache.md",
       "contentHash": "a978eddc026184512b160b8b4c852d260562ca7a748d7a7f25e32645f10a6a90",
       "relatedDocuments": [
@@ -2862,7 +2862,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/render-refresh.md",
       "contentHash": "6274a5f5bcf43ef72c3bc64c67915fe66efce92b505a477284b0be7bff817943",
       "relatedDocuments": [
@@ -2907,7 +2907,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/rendering-modes.md",
       "contentHash": "0e3b4a447ece4ee71803c3575b98d08e65e9038cfc7a51bebe4c619804b32754",
       "relatedDocuments": [
@@ -3007,7 +3007,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/routing-and-pages.md",
       "contentHash": "5b3ede99712e07b7c7dfaea3a3dfdadc0570c3a59656bfa2b4d6150fce664b2a",
       "relatedDocuments": [
@@ -3102,7 +3102,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/seo-sitemap.md",
       "contentHash": "3e5db9b93f0ce3c607287a127521666883c277c812be490643ce294492c6b4ac",
       "relatedDocuments": [
@@ -3152,7 +3152,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/ssr.md",
       "contentHash": "b51adeca54e71b04d310c6d44665a2cdc4093654872bd8ea7c4fa99a12f70af2",
       "relatedDocuments": [
@@ -3212,7 +3212,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/static-assets-and-cdn.md",
       "contentHash": "1f6d9968b0e4dfadf9f360b30528a5d4c8c33f2bf3bf857bafbcad21408d4d4d",
       "relatedDocuments": [
@@ -3277,7 +3277,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/styles-and-assets.md",
       "contentHash": "200c98675e23f9909826066f9aa1eee2728456ad15ce99b7af500ca3b8cfcc9b",
       "relatedDocuments": [
@@ -3347,7 +3347,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/frontend/troubleshooting.md",
       "contentHash": "e66297b19aad89c8d66105ea31bbbc628a8aae3ca4d814ff44041aaa7e66acf8",
       "relatedDocuments": [
@@ -3422,7 +3422,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/adapters.md",
       "contentHash": "10160c1dfbb1feaeb9050784a7f5f5eaa18d97499853bed94abbb62b8af4d665",
       "relatedDocuments": [
@@ -3492,7 +3492,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/build.md",
       "contentHash": "54bcf8d0b241a3cfd7f058f33893ecb663e149d32deb2142ff8039fe5bfcb72d",
       "relatedDocuments": [
@@ -3572,7 +3572,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/cache.md",
       "contentHash": "a916bfe0f780e58d5ff6e67b67432a33eb7c2cdb02477bf4dc732b7cd3e3b9e2",
       "relatedDocuments": [
@@ -3657,9 +3657,9 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/cli.md",
-      "contentHash": "93eba67353373eebf5c7342512fe199cbc876f301542966e1282f225d199e4f8",
+      "contentHash": "dcca239f4dc039c5622e5758b8d558e81b1eac4c29267cedf3123ca0c8b1e1cf",
       "relatedDocuments": [
         {
           "docId": "frontend.dev-workflow",
@@ -3757,7 +3757,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/cluster.md",
       "contentHash": "666a56b4b45bb61915175fb152eb4c01f110661f78bb8eb4a02ac3881898a633",
       "relatedDocuments": [
@@ -3842,7 +3842,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/configuration.md",
       "contentHash": "2bfe0d4b266a9a78cc4a9a5889440940d3b85bc952541342deed2ed2245d67d9",
       "relatedDocuments": [
@@ -4027,7 +4027,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/cookies-session.md",
       "contentHash": "4b128df8f72952ca7b94a397430c2994329ed5e5585a110f0fe0fd30c662c763",
       "relatedDocuments": [
@@ -4087,7 +4087,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/database.md",
       "contentHash": "3f09053191b0d3fdd4fa1258b42568b1f5505ad5784d3c9361cdc706f90539ce",
       "relatedDocuments": [
@@ -4197,7 +4197,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/deployment.md",
       "contentHash": "c0cfc1f625eef1141c85f5057136640146bcd0790b687b747a232d43e3e00f9c",
       "relatedDocuments": [
@@ -4317,7 +4317,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/error-handling.md",
       "contentHash": "89deaf787dca8513a1eec8168342bd30dd2206fdcb8ab8da56002e99832713c8",
       "relatedDocuments": [
@@ -4402,7 +4402,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/fetch.md",
       "contentHash": "f1c939b20bed885ba4ac60b55cba5fa2fdc8ac2551606af9dfa5e2b6eb1b8805",
       "relatedDocuments": [
@@ -4487,7 +4487,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/frontend.md",
       "contentHash": "08144f8face03608d901eb2c99d9f45ba46a62af40321c21ae1962f11b14d749",
       "relatedDocuments": [
@@ -4557,7 +4557,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/hooks.md",
       "contentHash": "7cc862c346b862cef146913bfe7b19e30375525a9f7f921893932cac80157cd4",
       "relatedDocuments": [
@@ -4627,7 +4627,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/hot-reload.md",
       "contentHash": "d792c97a838101dd04923248f18144f57091b320e09928dedd6bf3bfcc27da98",
       "relatedDocuments": [
@@ -4712,7 +4712,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/i18n.md",
       "contentHash": "b3daaa9b66882ad06d4a6e8d403d475ef03405baf8309304c43b376dbdfab2c0",
       "relatedDocuments": [
@@ -4807,7 +4807,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/introduction.md",
       "contentHash": "d3ca1fc7fdec80246625524c7bf249e2baf11289606ed19ec27397f5523994bd",
       "relatedDocuments": [
@@ -4897,7 +4897,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/jobs.md",
       "contentHash": "3cd722608954cafb8d478c87e515104572a74edba71c3657094d91ee94ff3c85",
       "relatedDocuments": [
@@ -4987,7 +4987,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/logger.md",
       "contentHash": "66951da0e78d3544ce748b5027e9de2124391783b39efdfa1e59216d59c5cbf8",
       "relatedDocuments": [
@@ -5037,7 +5037,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/mcp-generation.md",
       "contentHash": "8667fa7a4406dd0185c4572d8a791a55c6b5016a95fdc72a2aa911784e658429",
       "relatedDocuments": [
@@ -5072,7 +5072,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/middleware.md",
       "contentHash": "3b0d20cd1ff433b69ef89b4c71fe5117a52764101038325f8cd18442753cfdba",
       "relatedDocuments": [
@@ -5182,7 +5182,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/openapi.md",
       "contentHash": "356bc49b512a6253c8631d51755e0e1e6d82e00a6df21c5d558d72c117919d80",
       "relatedDocuments": [
@@ -5267,7 +5267,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/plugins.md",
       "contentHash": "4057ce7cf2a7e472b11f538a5d5e9c1e9909cfca77566606e8b512f14d334eb7",
       "relatedDocuments": [
@@ -5417,7 +5417,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/preload.md",
       "contentHash": "8d77a0cef5bed87340dc8dcf92244aa7492d40880ce6040339025aa13fd700cb",
       "relatedDocuments": [
@@ -5472,7 +5472,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/project-structure.md",
       "contentHash": "e968beeb2b9060fbeddf9a4f7d1c77ef4010d08d8b9b925a47b89b94332b0254",
       "relatedDocuments": [
@@ -5592,7 +5592,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/quick-start.md",
       "contentHash": "d908ab88c80514df5a77773008c3471a9586aa159981dd4305fefe00afce9d68",
       "relatedDocuments": [
@@ -5787,7 +5787,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/rate-limit.md",
       "contentHash": "750afc07463f0b3d773fbf804deee8e7f695534c60b8f308adc8144e74d76bbf",
       "relatedDocuments": [
@@ -5862,7 +5862,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/request-context.md",
       "contentHash": "217d3e4a02011d4c2941f75cea8e9845556ecc68e2781d77c10bb2e62be4d742",
       "relatedDocuments": [
@@ -5952,7 +5952,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/routing.md",
       "contentHash": "8f17cfd4e8599a4c8c3247166394a51538514705f9b8817eaf1530baa1cf2f5e",
       "relatedDocuments": [
@@ -6062,7 +6062,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/security.md",
       "contentHash": "28b2b2326373109df5d6e2a2f49fa11078243044e3db66e1b59028a54b438741",
       "relatedDocuments": [
@@ -6167,7 +6167,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/services.md",
       "contentHash": "1ed41f61a558527fc2e374cc1f8421ba24af84ab70f05fa185a802e9e1eb1b46",
       "relatedDocuments": [
@@ -6272,7 +6272,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/testing.md",
       "contentHash": "46f7e6fbeeee85b8584deb16bceb7b7040da5f48c30b45d0c64f255bd7ce88d9",
       "relatedDocuments": [
@@ -6382,7 +6382,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/uploads.md",
       "contentHash": "b986eb4f8cc1c56c42e94f844a8105eb5826d0e5b7471298dd5b029abea4b38b",
       "relatedDocuments": [
@@ -6447,7 +6447,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/guide/validation.md",
       "contentHash": "368f0043e0b8ea9fcab287670f13a6aac61c567c69ef2b3faf8540df2b443e3b",
       "relatedDocuments": [
@@ -6532,7 +6532,7 @@
       "appliesTo": [
         "documentation"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/resources/documentation-data-and-ai.md",
       "contentHash": "884671db3999abb2e8ef331b5a29f57b92db8365f32bb0c2bea68cfbdf463f74",
       "relatedDocuments": [
@@ -6578,7 +6578,7 @@
       "appliesTo": [
         "documentation"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/resources/support-and-services.md",
       "contentHash": "5486a1301817a9fe3a0f934d05eea44244d71626e49c626503bd7ceefb076f20",
       "relatedDocuments": [
@@ -6623,7 +6623,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/index.md",
       "contentHash": "99530acd3d16c3356ab77b1c3c56ff56b1a830751fd0eb9a2ba37674311a95b8",
       "relatedDocuments": [
@@ -6693,7 +6693,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/architecture.md",
       "contentHash": "1b121c29b8056624c2b22e36e6fc18e3988b3bccd99b4d3bd0887cf6e378a1f5",
       "relatedDocuments": [
@@ -6793,7 +6793,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/data-access.md",
       "contentHash": "e5b901d6767f5fd8c5c70c29322a0379550ae5cc7902259950b0c8e43b75aabb",
       "relatedDocuments": [
@@ -6833,7 +6833,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/http-and-routing.md",
       "contentHash": "da12e5ae0dcb5272f6dd801eb70e63b21a51c75c4262ced1ef13d322247bf0c0",
       "relatedDocuments": [
@@ -6893,7 +6893,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/jobs.md",
       "contentHash": "ec4fe174e864360f0915591a9817d372e3da97417c0ca252384ba5ec711a04dc",
       "relatedDocuments": [
@@ -6933,7 +6933,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/operations.md",
       "contentHash": "c3183e41c53f9f164bc9fabfe47e1972ebe5fa7c5a1debe4b50eacd7948d7878",
       "relatedDocuments": [
@@ -7003,7 +7003,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/security-and-resources.md",
       "contentHash": "d198bf809a9de4c131dd3689c5e497b5dcaf14d8af172d287669ed7a6a6929d2",
       "relatedDocuments": [
@@ -7083,7 +7083,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/en/specification/validation-and-contracts.md",
       "contentHash": "481f79cf85388a2ec17493046a87e821070b9fb8827fb58caad3b31f43136628",
       "relatedDocuments": [
@@ -7158,7 +7158,7 @@
       "appliesTo": [
         "framework"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/index.mdx",
       "contentHash": "92304af7ecb4fba9714b1a7e9f653ae09dd1627ea310efbb2094e9937e2d31ae",
       "relatedDocuments": [
@@ -7228,7 +7228,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/access-log.md",
       "contentHash": "02978a62238cd062104b0e0521066d3bea53770e756780eb1f68bb05f935adf2",
       "relatedDocuments": [
@@ -7293,7 +7293,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/app.md",
       "contentHash": "4307caaa3f236dfbe02d65e4de4982755269306f426cbb0c1926ad00cc0e8e1c",
       "relatedDocuments": [
@@ -7398,7 +7398,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/config.md",
       "contentHash": "69c93db85384edce66fe6e5e3c5156ec3f48b97a4c697724c64928e2c8619087",
       "relatedDocuments": [
@@ -7558,7 +7558,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/context.md",
       "contentHash": "b6485d84b4b491e6e4964e661b57abd9199984f98b17365731033a54dc8962f3",
       "relatedDocuments": [
@@ -7668,7 +7668,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/fetch.md",
       "contentHash": "be1a1590a3e5c00b8a4c5990cc2c35cc6328d3f08a389ce6e40a254d6d03be5c",
       "relatedDocuments": [
@@ -7713,7 +7713,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/jobs.md",
       "contentHash": "6f13b6c29030a4fa245afc93c3d3a304ec79ad04e01587164f19f46b4ac8f1d5",
       "relatedDocuments": [
@@ -7763,7 +7763,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/plugin-api.md",
       "contentHash": "1531d40ca913fc501b4586f3385737ab657b26b712e5cda476ed401bce39a0d8",
       "relatedDocuments": [
@@ -7828,7 +7828,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/route-definition.md",
       "contentHash": "8efb97bceacb86895a2e9cdb37802d457636800397c6bdd43cc4f64c5134e88e",
       "relatedDocuments": [
@@ -7938,7 +7938,7 @@
       "appliesTo": [
         "public-api"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/api/testing-api.md",
       "contentHash": "694532c23df050fd2d384dcf4814d260f02d55243b0e81134d45b9c64e0af6f2",
       "relatedDocuments": [
@@ -7998,7 +7998,7 @@
       "appliesTo": [
         "performance"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/benchmark.md",
       "contentHash": "540e90cce24286e11756335bdbf6bcaa9deff8eb3657cf532ca41b300b289472",
       "relatedDocuments": [
@@ -8053,7 +8053,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/examples/crud-api.md",
       "contentHash": "933820951fbd9409c281109800a02d0363b4764f5e2e2ac189da54f9a978b096",
       "relatedDocuments": [
@@ -8108,7 +8108,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/examples/hello-world.md",
       "contentHash": "e8577449d7ebf4454db51e68b34647ac14104b60567755a9fc3339217ede1b52",
       "relatedDocuments": [
@@ -8178,7 +8178,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/examples/nacos-integration.md",
       "contentHash": "b718301716dbe7fa4d8f3371016960ce5a19b41558696aa69404e0c0a4053f1e",
       "relatedDocuments": [
@@ -8228,7 +8228,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/examples/opentelemetry.md",
       "contentHash": "ab667919f45090273b6433ea1b5fb39491392aa52ab2633e2489abddd07445d0",
       "relatedDocuments": [
@@ -8298,7 +8298,7 @@
       "appliesTo": [
         "examples"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/examples/permission-core-auth.md",
       "contentHash": "4d9a87be1bf1882c83e419425f190d0ac2a138c0f9f291849f98890a512383ab",
       "relatedDocuments": [
@@ -8353,7 +8353,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/api-client-and-contracts.md",
       "contentHash": "7fb2750ab8a91f3ed330664cb82084ef41be2d72a4f58e03459db2252ae8980e",
       "relatedDocuments": [
@@ -8403,7 +8403,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/boundaries-and-roadmap.md",
       "contentHash": "b1b64ae970a03ce2a0cf8a5368f44aa0edd0f8669a9c4c1e917cc6e995122714",
       "relatedDocuments": [
@@ -8498,7 +8498,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/build-and-deploy.md",
       "contentHash": "b6f51895e987deff04ac45eec27ea6f76ad839b6d9b4c0ef35592e44b4c7f359",
       "relatedDocuments": [
@@ -8573,7 +8573,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/build-deploy-performance.md",
       "contentHash": "257a8b2b255cceb192019c44713a0512f2cad0d7f2d303e19ee0a31946caafe9",
       "relatedDocuments": [
@@ -8623,7 +8623,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/code-splitting.md",
       "contentHash": "145bb566b8223b9d8c96153d047e84c58940578ba3b6905a2f694f96be9abbbf",
       "relatedDocuments": [
@@ -8668,7 +8668,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/configuration.md",
       "contentHash": "298518b800c930abae4ce6ae5a8e2bfe03bc9afd37df992f21a9ad52cf0a0c89",
       "relatedDocuments": [
@@ -8783,7 +8783,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/csr-and-spa-fallback.md",
       "contentHash": "8adb753dab7e5931ec04d407d6a1f18263ed3d3843ad29cc94d61e3628a3b34f",
       "relatedDocuments": [
@@ -8868,7 +8868,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/data-and-api.md",
       "contentHash": "7f1732c0803ed664a32eae6f7f7944cbb09ba7cdd03da1210fe0375fcb6157a2",
       "relatedDocuments": [
@@ -8903,7 +8903,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/data-flow.md",
       "contentHash": "a0ef15046e4d63148cf46c1055a26fbb617d51936c4bf20e688cf0026a0c968d",
       "relatedDocuments": [
@@ -8978,7 +8978,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/dev-workflow.md",
       "contentHash": "02a7601fe4cf1b9a452d3ccfe10182145ec2fd6500bbe4a67aa727c0661c998a",
       "relatedDocuments": [
@@ -9038,7 +9038,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/diagnostics-and-leak-scan.md",
       "contentHash": "25840ef953914301b2b3c3f33c9b468fde5e47f67723ebd20a943e1982d79378",
       "relatedDocuments": [
@@ -9078,7 +9078,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/errors-and-document.md",
       "contentHash": "a963b8180595db3a29bf604a396cc06a9415c93576d5a7aa44c7ad20f277817b",
       "relatedDocuments": [
@@ -9133,7 +9133,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/fast-refresh.md",
       "contentHash": "ec6c8222c3bf387223c504041044e70ca4abdc32214398be38cb501513e5502c",
       "relatedDocuments": [
@@ -9188,7 +9188,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/getting-started.md",
       "contentHash": "dc50f76fa1d4e88fa8b54592e675c6728766da39bca9f9252acb9436b80b7915",
       "relatedDocuments": [
@@ -9338,7 +9338,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/hydration.md",
       "contentHash": "9d4016367a422d8ed5c44597354255dc2013042489672bbea5ead050e610137c",
       "relatedDocuments": [
@@ -9408,7 +9408,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/hydration-validation.md",
       "contentHash": "bb797444175f0eb16427adf7c14a21ab35f045400c4e80480c93adf7b1cca6fc",
       "relatedDocuments": [
@@ -9478,7 +9478,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/i18n.md",
       "contentHash": "441cd4b59d0a56bcc37c49bf55c577c8721aee9fdf9f1fcab4791a0a7e5ad6f5",
       "relatedDocuments": [
@@ -9533,7 +9533,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/jscss.md",
       "contentHash": "19d73d41c8bf10084cd66531d9086d83a5794ef01b49999997864a23bac58e35",
       "relatedDocuments": [
@@ -9573,7 +9573,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/layouts-and-components.md",
       "contentHash": "b42f9d2cfe0b35e9b211ce206cb417a02dcf9e6807915fc8005c4709ca907969",
       "relatedDocuments": [
@@ -9643,7 +9643,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/overview.md",
       "contentHash": "97ad836aa5f54adda1a0f3374681c886e3fb00ba6e3473e8687ae938f45e9ba2",
       "relatedDocuments": [
@@ -9793,7 +9793,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/pages-and-rendering.md",
       "contentHash": "c3093a6d4e4ae40f01bc8b4d326362a9b081b45ed9581e4a06cd8f99d795eeef",
       "relatedDocuments": [
@@ -9848,7 +9848,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/performance-budgets.md",
       "contentHash": "9a8c7d831c640f3703d7f53642d6d864c686bb67a9d4ef54cde537a46ea695c3",
       "relatedDocuments": [
@@ -9893,7 +9893,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/project-structure.md",
       "contentHash": "ae931c7c35b5504961b1322b4dae3a4f4bfa01fb2be556059db716af3b471170",
       "relatedDocuments": [
@@ -9963,7 +9963,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/render-data-and-cache.md",
       "contentHash": "5100bf18844e4589f6c855c265bef2214f27da33877ef9cf5612a6cfe173137b",
       "relatedDocuments": [
@@ -10028,7 +10028,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/render-refresh.md",
       "contentHash": "295d1207b1a7fdf9db46d834cefd71a890ad66ba693c57ec905c31ea354c413f",
       "relatedDocuments": [
@@ -10073,7 +10073,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/rendering-modes.md",
       "contentHash": "0fac2a892961685d1075a8f79f651927cf128d19efb647266a9f485d7ceef3cc",
       "relatedDocuments": [
@@ -10173,7 +10173,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/routing-and-pages.md",
       "contentHash": "8068833d6fc589c68d05acab309e5dbeadaec7d3a24d2d8711a038d05999e832",
       "relatedDocuments": [
@@ -10268,7 +10268,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/seo-sitemap.md",
       "contentHash": "87ba46f89ebb69ae3af53f8aee6048b48dbd83af288a7a7d93ff533569e555c2",
       "relatedDocuments": [
@@ -10318,7 +10318,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/ssr.md",
       "contentHash": "af8a32b6e31d923f5b09e4cd54df2ec787c9071c79b74f5593b625c85f25d019",
       "relatedDocuments": [
@@ -10378,7 +10378,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/static-assets-and-cdn.md",
       "contentHash": "c32d3548df709ea2da0c6e9ffd58a40a1200f444348417010195837e18770a9a",
       "relatedDocuments": [
@@ -10443,7 +10443,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/styles-and-assets.md",
       "contentHash": "0da596941086409c277a6709419da0f24654d8466c73ed09382e4130f12f9a82",
       "relatedDocuments": [
@@ -10513,7 +10513,7 @@
       "appliesTo": [
         "frontend"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/frontend/troubleshooting.md",
       "contentHash": "6578d3169cf2ecdcbad23a8cfb1f4db832ab9127383494c7c3ba48422cb13ad1",
       "relatedDocuments": [
@@ -10588,7 +10588,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/adapters.md",
       "contentHash": "be019fccfc96bba6b1a0f3a07e8c8de56c4b2c7c14f60876bca7c79f885192de",
       "relatedDocuments": [
@@ -10658,7 +10658,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/build.md",
       "contentHash": "0b45d769cf1e89adec383b61794290082dddf695d5b77c5383cbea2f2f726dcd",
       "relatedDocuments": [
@@ -10743,7 +10743,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cache.md",
       "contentHash": "d9d4dc2c1b9c97eba366f845794c569ee11e3bd188e3edf635f5044790fef3c4",
       "relatedDocuments": [
@@ -10828,9 +10828,9 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cli.md",
-      "contentHash": "26cb62f230fec4aaa610037bfcd02dc84dcd1e062718fcb47ae3ba9d234d593f",
+      "contentHash": "00a4f50cfe96b14196cf9fd29391c8da08ff3a3214f32b6125909c877ec9a70b",
       "relatedDocuments": [
         {
           "docId": "frontend.dev-workflow",
@@ -10928,7 +10928,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cluster.md",
       "contentHash": "cb968c3543bad0bd332dde1aaf9de476c896d7e6f42c8169fb2efdfac63fbc67",
       "relatedDocuments": [
@@ -11013,7 +11013,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/configuration.md",
       "contentHash": "2749d17c858de750ad74952c08ed76c282082bf12eb4ec86ebf35583f1c56e66",
       "relatedDocuments": [
@@ -11198,7 +11198,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/cookies-session.md",
       "contentHash": "8b765316392f421951a119e31d9809e05169068104a506226433e9aa5e062299",
       "relatedDocuments": [
@@ -11258,7 +11258,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/database.md",
       "contentHash": "79feafb711d031cf7ae5b6f324100d3f2d79e2b18aae464853fda03213d37b6e",
       "relatedDocuments": [
@@ -11373,7 +11373,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/deployment.md",
       "contentHash": "084ea078d95d2256824ff1651ce5a8d8437e99ac05fcccfaaa6f98f811153fa9",
       "relatedDocuments": [
@@ -11493,7 +11493,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/error-handling.md",
       "contentHash": "45dc366da6fc86a7f7f20c2ed42bf171b9e2c4466c47e59c334e85beef0219e9",
       "relatedDocuments": [
@@ -11583,7 +11583,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/fetch.md",
       "contentHash": "f3e99c373af9b23394082975767c0319fea95034b085211d3666ff7a7b4e95d9",
       "relatedDocuments": [
@@ -11668,7 +11668,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/frontend.md",
       "contentHash": "dd4d597254adcf786afa55f1ee921657de4edc4cff731b86c94fbc3b3bdce302",
       "relatedDocuments": [
@@ -11738,7 +11738,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/hooks.md",
       "contentHash": "ee3181af9a2d0fe91c48deeb92148481fede26f04bda03a3dad43b8e0ad550ea",
       "relatedDocuments": [
@@ -11808,7 +11808,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/hot-reload.md",
       "contentHash": "d3a3eb8379e0a76dc5c25a3934891fd9e058bd76ee7f14e0b0e672a6bbe15e22",
       "relatedDocuments": [
@@ -11893,7 +11893,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/i18n.md",
       "contentHash": "31df95e66559ec4761e94303b816b6709c584a0d45a39f442153d957b749dbb1",
       "relatedDocuments": [
@@ -11988,7 +11988,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/introduction.md",
       "contentHash": "881301e1461c216363e4aac460f13368ce495dd03ccd6885e61a322d3d3f0f50",
       "relatedDocuments": [
@@ -12078,7 +12078,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/jobs.md",
       "contentHash": "01fe5bfd46f82952b25d8758ad73eb42674df420642e8bf78b109daa89a41448",
       "relatedDocuments": [
@@ -12168,7 +12168,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/logger.md",
       "contentHash": "1b991c509a8808ed3f64a5d90b43e95e9b11d0de98f6e0cf9a8f63fba74101bd",
       "relatedDocuments": [
@@ -12218,7 +12218,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/mcp-generation.md",
       "contentHash": "824b43e12f073ae1075145bd4063f93d32932cfc542120e6f5e48550ba3a72f0",
       "relatedDocuments": [
@@ -12253,7 +12253,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/middleware.md",
       "contentHash": "c157e6fb52694660381017c2ab1a9dbfc52fab4bf642af81d09c668f5d5189bd",
       "relatedDocuments": [
@@ -12368,7 +12368,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/openapi.md",
       "contentHash": "5224f96d6743e4fe169caeed6412fdf06f42579dfd3cea7109156145c4779e2c",
       "relatedDocuments": [
@@ -12453,7 +12453,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/plugins.md",
       "contentHash": "96bcb583f270a5e0a3bed4ef3554b660296c3322e094909b3988615675017516",
       "relatedDocuments": [
@@ -12603,7 +12603,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/preload.md",
       "contentHash": "fbf0daf9c74b33efdb31744decd915b86b196e57de3c9dcce3a18b0d7feb4354",
       "relatedDocuments": [
@@ -12658,7 +12658,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/project-structure.md",
       "contentHash": "404fc6140c0e7227a61a9ac21e33910476b1740af6ec575e343e5f897e4e75d4",
       "relatedDocuments": [
@@ -12778,7 +12778,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/quick-start.md",
       "contentHash": "644f1d1b09543dbacb04a9d6d10a20739b0cb66e85d955174ec3bdb401af93da",
       "relatedDocuments": [
@@ -12973,7 +12973,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/rate-limit.md",
       "contentHash": "90b073c682878535e4f6af05456da4ead49b9ddfa7755352fbaf43d2ef2b4ddb",
       "relatedDocuments": [
@@ -13048,7 +13048,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/request-context.md",
       "contentHash": "bc0e82505b9dc31ebce74587d582217a11da8c00f5498b7c33c1ea4f0dedd940",
       "relatedDocuments": [
@@ -13138,7 +13138,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/routing.md",
       "contentHash": "073232fbad398513dac04269c60c5c68a6113af81e3ad3873d2d042ba2969262",
       "relatedDocuments": [
@@ -13248,7 +13248,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/security.md",
       "contentHash": "4d8d423523490a9d5fccb56f2ba0b3e63e36641a779d45221488dce957e8cc86",
       "relatedDocuments": [
@@ -13353,7 +13353,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/services.md",
       "contentHash": "ac24487ddc59a8973fce6c5dfd595dcc2d305b7a6da137987241d9287e9552d6",
       "relatedDocuments": [
@@ -13458,7 +13458,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/testing.md",
       "contentHash": "92785b6320a3afd1044bc4796b3453ba55833fb73975592875b5644f6a39cefe",
       "relatedDocuments": [
@@ -13568,7 +13568,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/uploads.md",
       "contentHash": "bc493cf43daec50368646556783f45e36948fcb201a402de5f7a2796263e178d",
       "relatedDocuments": [
@@ -13633,7 +13633,7 @@
       "appliesTo": [
         "runtime"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/guide/validation.md",
       "contentHash": "ae02f94ff4a2265e0374878cd8e1bc5f8c50a1bb18b408d2eabf85b2b6c65030",
       "relatedDocuments": [
@@ -13723,7 +13723,7 @@
       "appliesTo": [
         "documentation"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/resources/documentation-data-and-ai.md",
       "contentHash": "4738eaa6ef08e5afcb1dfacb5c4aaeb71b1d4006f2846f2a3b04a2fc98f8a17d",
       "relatedDocuments": [
@@ -13769,7 +13769,7 @@
       "appliesTo": [
         "documentation"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/resources/support-and-services.md",
       "contentHash": "e7b65d380a0f8ed2b3f523a4cf635d6244ceba75db6815c69b60a1655865b4f6",
       "relatedDocuments": [
@@ -13814,7 +13814,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/index.md",
       "contentHash": "7989e7d18a7c060d360b9502c007b62aa9f26b429c56cfe02c5b0a0e06545f4c",
       "relatedDocuments": [
@@ -13884,7 +13884,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/architecture.md",
       "contentHash": "fa2c0f381dc93e266cad8a393ed3a2d939ac2376e9fd72ad103e92779dbbcd0d",
       "relatedDocuments": [
@@ -13984,7 +13984,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/data-access.md",
       "contentHash": "7026ffd4e2a5b5eba89a3b5186677cbf873e29f5ee97bcbd1338320dcd57bb29",
       "relatedDocuments": [
@@ -14024,7 +14024,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/http-and-routing.md",
       "contentHash": "ba9a62c6e24ce03ba6dfec57558ca21fffec487aee01d0c347fe79bf5f7929fd",
       "relatedDocuments": [
@@ -14084,7 +14084,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/jobs.md",
       "contentHash": "99005aab9294ddffbdd26184a8447f7845e0b690bc63e4e21d5679705e54b7e4",
       "relatedDocuments": [
@@ -14124,7 +14124,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/operations.md",
       "contentHash": "26ef1fff8cd7f6ec48b831680ce062b485b0b2cf03781bffb3062c4945ce28a5",
       "relatedDocuments": [
@@ -14194,7 +14194,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/security-and-resources.md",
       "contentHash": "f712ca72332e7f582daf770aa96a6b3d7c9172f9cfddc5c229278c275263040e",
       "relatedDocuments": [
@@ -14274,7 +14274,7 @@
       "appliesTo": [
         "framework-contract"
       ],
-      "stability": "next",
+      "stability": "stable",
       "sourcePath": "website/docs/zh/specification/validation-and-contracts.md",
       "contentHash": "044ae8070419fd8000dc4246fa8860e5eb6dc7b8a9f2640219521472e11c85e5",
       "relatedDocuments": [
