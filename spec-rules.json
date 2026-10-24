@@ -4,7 +4,7 @@
   "verification": {
     "scope": "stage"
   },
-  "documentationRevision": "ddc8c0598bcb719efba4f0013efaf8c74486bdc04b2573a3b78b32ea964c16dc",
+  "documentationRevision": "6b5fb3eca669b54a7f0dbdabf96938cf3943147183b9c2856a0655f9e001cc82",
   "frameworkVersion": "2.1.0",
   "rules": [
     {
